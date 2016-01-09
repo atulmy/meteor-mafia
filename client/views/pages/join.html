@@ -1,0 +1,45 @@
+<template name="pagesJoin">
+
+<!-- Header -->
+    <!-- Left -->
+    {{#contentFor "headerLeft"}}
+        {{> commonHeaderSideMenu }}
+    {{/contentFor}}
+
+    <!-- Center -->
+    {{#contentFor "headerCenter"}}
+        <a id="logo-container" href="{{ pathFor route='join' }}" class="brand-logo tx-uppercase tx-lighter">
+            Join
+        </a>
+    {{/contentFor}}
+
+    <!-- Right -->
+    {{#contentFor "headerRight"}}
+        <a href="#" class="button-actions waves-effect waves-light">
+            <i class="material-icons">navigate_next</i>
+        </a>
+    {{/contentFor}}
+
+<!-- Page Content -->
+    <div class="container display-none animate-fade-in">
+        <div class="row vertical-align">
+            <div class="col s12 vertical-align-child">
+                <form>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="mafia_city_code" type="text" class="validate" value="" />
+                            <label for="mafia_city_code">Enter "Mafia City Code"</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <a class="waves-effect waves-light btn-large btn-block red accent-2">Join <i class="material-icons right">navigate_next</i></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</template>

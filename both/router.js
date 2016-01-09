@@ -8,7 +8,7 @@ Router.configure({
 AccountsTemplates.configureRoute('signIn');
 AccountsTemplates.configureRoute('signUp');
 Router.plugin('ensureSignedIn', {
-    except: ['splash', 'home', 'about', 'profile']
+    except: ['splash', 'how', 'about']
 });
 
 // Pages
@@ -22,10 +22,25 @@ Router.plugin('ensureSignedIn', {
         name: 'home',
         template: 'pagesHome'
     });
+    // Join
+    Router.route('/join', {
+        name: 'join',
+        template: 'pagesJoin'
+    });
+    // How
+    Router.route('/how-to-play', {
+        name: 'how',
+        template: 'pagesHow'
+    });
     // About
     Router.route('/about', {
         name: 'about',
         template: 'pagesAbout'
+    });
+    // Contact
+    Router.route('/contact', {
+        name: 'contact',
+        template: 'pagesContact'
     });
 
 // User
@@ -33,4 +48,8 @@ Router.plugin('ensureSignedIn', {
     Router.route('/profile', {
         name: 'profile',
         template: 'userProfile'
+    });
+    Router.route('/profile/edit', {
+        name: 'profileEdit',
+        template: 'userProfileEdit'
     });

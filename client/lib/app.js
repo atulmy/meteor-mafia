@@ -2,12 +2,16 @@ App = {
     init: function() {
         // Common Page Animation
         $('.animate-fade-in').fadeIn();
-        $('.drag-target').remove()
-        $(".button-collapse").sideNav();
     },
 
     Materialize: {
         Init: {
+            sideNav: function() {
+                $('.button-collapse').sideNav();
+                $('.side-nav').on('click', function() {
+                    $('.button-collapse').sideNav('hide');
+                });
+            },
             modal: function() {
                 $('.modal-trigger').leanModal();
             },

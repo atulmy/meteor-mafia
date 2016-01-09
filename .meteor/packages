@@ -25,7 +25,9 @@
 
 # Accounts
     accounts-facebook
+    accounts-password
     useraccounts:materialize
+    service-configuration
 
 # UI / Theme
     materialize:materialize
@@ -37,4 +39,3 @@
 # Helpers
     zimme:active-route
     momentjs:moment
-    service-configuration

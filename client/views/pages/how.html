@@ -1,0 +1,104 @@
+<template name="pagesHow">
+
+    <!-- Header Left -->
+    {{#contentFor "headerLeft"}}
+        {{> commonHeaderSideMenu }}
+    {{/contentFor}}
+
+    <!-- Header Center -->
+    {{#contentFor "headerCenter"}}
+        <a id="logo-container" href="{{ pathFor route='how' }}" class="brand-logo tx-uppercase tx-lighter">
+            How to play
+        </a>
+    {{/contentFor}}
+
+    <!-- Header Right -->
+    {{#contentFor "headerRight"}}{{/contentFor}}
+
+    <!-- Page Content -->
+    <div class="container display-none animate-fade-in">
+        <div class="row">
+            <div class="col s12">
+                <h5 class="header light m0">Characters</h5>
+
+                <ul class="collection">
+                    <li class="collection-item avatar">
+                        <img src="/images/logo.png" alt="Mafia" class="circle">
+                        <span class="title">Mafia</span>
+                        <p>
+                            There can be one or more Mafia in a game.
+                            Mafia(s) can kill one person each round.
+                            Once the person dies, he/she can come back only if mafia is caught in the discussion.
+                        </p>
+                    </li>
+
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle green darken-2">add_box</i>
+                        <span class="title">The Doctor</span>
+                        <p>
+                            The doctor can save any one person per round in the game including himself/herself.
+                            If the mafia has selected the same person the doctor has saved, he/she will not be killed and will remain in the game.
+                        </p>
+                    </li>
+
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle indigo darken-2">search</i>
+                        <span class="title">The Detective</span>
+                        <p>
+                            The detective can make a guess on any person and will be given the feedback if the guessed person is mafia or not.
+                            The detective then can make more emphasis upon the mafia during the discussion.
+                        </p>
+                    </li>
+
+                    <li class="collection-item avatar">
+                        <i class="material-icons circle deep-orange darken-2">people</i>
+                        <span class="title">The Citizens</span>
+                        <p>
+                            They have to keep an eye on everyone and need to find out the mafia otherwise all will be lost and there will be blood in your city.
+                        </p>
+                    </li>
+                </ul>
+
+                <h5 class="header light m0">Rules</h5>
+
+                <ul class="collection">
+                    <li class="collection-item">
+                        <span class="title">Mafia</span>
+                        <p class="mt0">
+                            There can be one or more Mafia in a game.
+                            Mafia(s) can kill one person each round.
+                            Once the person dies, he/she can come back only if mafia is caught in the discussion.
+                        </p>
+                    </li>
+                </ul>
+
+                <h5 class="header light m0">Info</h5>
+
+                <ul class="collection">
+                    <li class="collection-item">
+                        <span class="title">Mafia</span>
+                        <p>
+                            There can be one or more Mafia in a game.
+                            Mafia(s) can kill one person each round.
+                            Once the person dies, he/she can come back only if mafia is caught in the discussion.
+                        </p>
+                    </li>
+                </ul>
+
+                <h5 class="header light m0">Money Game</h5>
+
+                <ul class="collection">
+                    <li class="collection-item">
+                        <span class="title">Mafia</span>
+                        <p>
+                            There can be one or more Mafia in a game.
+                            Mafia(s) can kill one person each round.
+                            Once the person dies, he/she can come back only if mafia is caught in the discussion.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</template>

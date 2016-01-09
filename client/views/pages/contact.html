@@ -1,0 +1,55 @@
+<template name="pagesContact">
+
+<!-- Header -->
+    <!-- Left -->
+    {{#contentFor "headerLeft"}}
+        <a href="{{ pathFor route='about' }}" class="button-collapse waves-effect waves-light">
+            <i class="material-icons">navigate_before</i>
+        </a>
+    {{/contentFor}}
+
+    <!-- Center -->
+    {{#contentFor "headerCenter"}}
+        <a id="logo-container" href="{{ pathFor route='join' }}" class="brand-logo tx-uppercase tx-lighter">
+            Contact
+        </a>
+    {{/contentFor}}
+
+    <!-- Right -->
+    {{#contentFor "headerRight"}}
+        <a href="#" class="button-actions waves-effect waves-light">
+            <i class="material-icons">check</i>
+        </a>
+    {{/contentFor}}
+
+<!-- Page Content -->
+    <div class="container display-none animate-fade-in">
+        <div class="row vertical-align">
+            <div class="col s12 vertical-align-child">
+                <form>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="contact_name" type="text" class="validate" value="{{ currentUser.profile.name }}" />
+                            <label for="contact_name" class="active">Name</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="contact_email" type="text" class="validate" value="" />
+                            <label for="contact_email" class="active">Email</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <textarea id="contact_message" class="materialize-textarea"></textarea>
+                            <label for="contact_message" class="active">Message</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <a class="waves-effect waves-light btn-large btn-block red accent-2"><i class="material-icons left">check</i> Send</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</template>

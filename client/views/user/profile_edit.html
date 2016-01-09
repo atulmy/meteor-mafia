@@ -1,0 +1,47 @@
+<template name="userProfileEdit">
+
+<!-- Header -->
+    <!-- Left -->
+    {{#contentFor "headerLeft"}}
+        <a href="{{ pathFor route='profile' }}" class="button-collapse waves-effect waves-light">
+            <i class="material-icons">navigate_before</i>
+        </a>
+    {{/contentFor}}
+
+    <!-- Center -->
+    {{#contentFor "headerCenter"}}
+        <a id="logo-container" href="{{ pathFor route='profileEdit' }}" class="brand-logo tx-uppercase tx-lighter">
+            Profile Edit
+        </a>
+    {{/contentFor}}
+
+    <!-- Right -->
+    {{#contentFor "headerRight"}}
+        <a href="#modal-profile-edit" class="button-actions modal-trigger waves-effect waves-light">
+            <i class="material-icons">check</i>
+        </a>
+    {{/contentFor}}
+
+<!-- Page Content -->
+    <div class="container display-none animate-fade-in">
+        <div class="row vertical-align">
+            <div class="col s12 vertical-align-child">
+                <form>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="user_profile_name" type="text" class="validate" value="{{ currentUser.profile.name }}" />
+                            <label for="user_profile_name" class="active">Name</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <a class="waves-effect waves-light btn-large btn-block red accent-2"><i class="material-icons left">check</i> Save</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</template>

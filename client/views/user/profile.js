@@ -14,7 +14,5 @@ Template.userProfile.events({
 Template.userProfile.rendered = function() {
     $( function() {
         App.init();
-        App.Materialize.Init.modal();
-        App.Materialize.Init.form();
     });
 };
