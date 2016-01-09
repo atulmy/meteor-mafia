@@ -1,0 +1,128 @@
+<template name="userProfile">
+
+    <!-- Header Left -->
+    {{#contentFor "headerLeft"}}
+        {{> commonHeaderSideMenu }}
+    {{/contentFor}}
+
+    <!-- Header Center -->
+    {{#contentFor "headerCenter"}}
+        <a id="logo-container" href="{{ pathFor route='profile' }}" class="brand-logo tx-uppercase tx-lighter">
+            Profile
+        </a>
+    {{/contentFor}}
+
+    <!-- Header Right -->
+    {{#contentFor "headerRight"}}
+        <a href="#modal-profile-edit" class="button-actions modal-trigger waves-effect waves-light">
+            <i class="material-icons">edit</i>
+        </a>
+    {{/contentFor}}
+
+    <!-- Page Content -->
+    <div class="display-none animate-fade-in">
+        <div class="container">
+            <div class="row mt20">
+                <div class="col s4 offset-s4 align-center">
+                    <img class="circle responsive-img" src="http://images6.fanpop.com/image/photos/35100000/Emma-Watson-Icons-emma-watson-35139250-200-200.jpg" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <div class="divider divider-theme"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 center-align">
+                    <h1 class="tx-lg m0">Emma Watson</h1>
+
+                    <p class="mt10">Foodie &bull; Female &bull; Bangalore, India</p>
+
+                    <a href="#modal-profile-phone-edit" class="modal-trigger waves-effect waves-light red accent-2 btn"><i class="material-icons left">phone</i> +91 9930306891</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Profile Edit -->
+    <div id="modal-profile-edit" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Edit</h4>
+
+            <form class="col s12">
+                <div class="row mb5">
+                    <div class="input-field col s6">
+                        <input id="first_name" type="text" class="validate" value="Emma">
+                        <label for="first_name" class="active">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Last Name</label>
+                    </div>
+                </div>
+
+                <div class="row mb5">
+                    <div class="input-field col s12">
+                        <select>
+                            <option value="1">Traveller</option>
+                            <option value="2">Hiker</option>
+                            <option value="3">Foodie</option>
+                        </select>
+                        <label>What describes you best</label>
+                    </div>
+                </div>
+
+                <div class="row mb5">
+                    <div class="input-field col s12 mt0 mb10">
+                        <p class="m0">I'm a</p>
+                        <p class="m0">
+                            <input name="group1" type="radio" id="test1" />
+                            <label for="test1">Male</label>
+                        </p>
+                        <p class="m0">
+                            <input name="group1" type="radio" id="test2" checked="checked"/>
+                            <label for="test2">Female</label>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row mb0">
+                    <div class="input-field col s12">
+                        <input id="location" type="text" class="validate" value="Bangalore, India">
+                        <label for="location" class="active">Location</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Okay</a>
+        </div>
+    </div>
+
+
+    <!-- Modal Profile Phone Edit -->
+    <div id="modal-profile-phone-edit" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Update Number</h4>
+
+            <form class="col s12">
+                <div class="row mb5">
+                    <div class="input-field col s12">
+                        <input id="first_name" type="text" class="validate" value="+91 9930306893">
+                        <label for="first_name" class="active">Phone number</label>
+                    </div>
+                </div>
+                <div class="row mb5">
+                    {{> commonLoading }}
+                    <p class="center-align secondary-text-color">verifying...</p>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Okay</a>
+        </div>
+    </div>
+
+</template>

@@ -1,0 +1,31 @@
+<template name="pagesAbout">
+
+    <!-- Header Left -->
+    {{#contentFor "headerLeft"}}
+        {{> commonHeaderSideMenu }}
+    {{/contentFor}}
+
+    <!-- Header Center -->
+    {{#contentFor "headerCenter"}}
+        <a id="logo-container" href="{{ pathFor route='about' }}" class="brand-logo tx-uppercase tx-lighter">
+            About
+        </a>
+    {{/contentFor}}
+
+    <!-- Header Right -->
+    {{#contentFor "headerRight"}}
+        <a href="#" class="button-actions waves-effect waves-light">
+            <i class="material-icons">email</i>
+        </a>
+    {{/contentFor}}
+
+    <!-- Page Content -->
+    <div class="display-none animate-fade-in">
+        <div class="container">
+            <div class="row center mt30">
+                <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+            </div>
+        </div>
+    </div>
+
+</template>

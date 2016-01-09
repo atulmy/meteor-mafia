@@ -1,0 +1,23 @@
+<template name="commonHeader">
+
+    <nav class="brown darken-2" role="navigation">
+        <div class="nav-wrapper container">
+            {{> yield "headerLeft"}}
+
+            {{> yield "headerCenter"}}
+
+            {{> yield "headerRight"}}
+
+            <!-- Side Menu -->
+            <ul class="right hide-on-med-and-down">
+                {{> commonHeaderLinks }}
+            </ul>
+
+            <!-- Mobile -->
+            <ul id="nav-mobile" class="side-nav">
+                {{> commonHeaderLinks }}
+            </ul>
+        </div>
+    </nav>
+
+</template>

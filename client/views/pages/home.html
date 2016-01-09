@@ -1,0 +1,32 @@
+<template name="pagesHome">
+
+    <!-- Header Left -->
+    {{#contentFor "headerLeft"}}
+        {{> commonHeaderSideMenu }}
+    {{/contentFor}}
+
+    <!-- Header Center -->
+    {{#contentFor "headerCenter"}}
+        <a id="logo-container" href="{{ pathFor route='getaways' }}" class="brand-logo tx-uppercase tx-lighter">
+            Mafia!
+        </a>
+    {{/contentFor}}
+
+    <!-- Header Right -->
+    {{#contentFor "headerRight"}}
+        <a href="#modal-filter" class="button-actions modal-trigger1 waves-effect waves-light">
+            <i class="material-icons">filter_list</i>
+        </a>
+    {{/contentFor}}
+
+    <!-- Page Content -->
+    <div class="container display-none animate-fade-in">
+        <div class="row vertical-align">
+            <div class="col s12 vertical-align-child">
+                <a class="waves-effect waves-light btn-large btn-block red accent-2">Create</a>
+                <a class="waves-effect waves-light btn-large btn-block red accent-2 mt20">Join</a>
+            </div>
+        </div>
+    </div>
+
+</template>

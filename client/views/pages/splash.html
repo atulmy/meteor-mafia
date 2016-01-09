@@ -1,0 +1,53 @@
+<template name="pagesSplash">
+    <style>
+        #app-header { display: none; }
+        #app-footer { display: none; }
+        #app-content {
+            top: 0px !important;
+            bottom: 0px !important;
+        }
+    </style>
+
+    <div class="slider fullscreen">
+        <ul class="slides">
+            <li>
+                <img src="/images/background.jpg" />
+                <div class="caption center-align">
+                    <p>
+                        <img src="/images/logo.png" class="circle responsive-img" />
+                    </p>
+                    <h3>Mafia!</h3>
+                    <h5 class="light grey-text text-lighten-3">Gonna kill you all!</h5>
+                    <div class="row center">
+                        <a href="{{ pathFor route='home' }}" class="btn waves-effect waves-light red accent-2">Start <i class="material-icons right m0">navigate_next</i></a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <img src="/images/background.jpg" />
+                <div class="caption left-align">
+                    <h3><span class="tx-light">Mafia:</span> The Detective</h3>
+                    <h5 class="light grey-text text-lighten-3">Detective must guess who is the mafia, otherwise there will be blood.</h5>
+                    <a href="{{ pathFor route='getaways' }}" class="btn waves-effect waves-light red accent-2">Start <i class="material-icons right m0">navigate_next</i></a>
+                </div>
+            </li>
+            <li>
+                <img src="/images/background.jpg" />
+                <div class="caption left-align">
+                    <h3><span class="tx-light">Mafia:</span> The Doctor</h3>
+                    <h5 class="light grey-text text-lighten-3">Only the doctor can save common peoples life and its own.</h5>
+                    <a href="{{ pathFor route='explore' }}" class="btn waves-effect waves-light red accent-2">Start <i class="material-icons right m0">navigate_next</i></a>
+                </div>
+            </li>
+            <li>
+                <img src="/images/background.jpg" />
+                <div class="caption left-align">
+                    <h3><span class="tx-light">Mafia:</span> The Common People</h3>
+                    <h5 class="light grey-text text-lighten-3">Save your city. You need to be smart and eliminate the mafia as soon as possible.</h5>
+                    <a href="{{ pathFor route='explore' }}" class="btn waves-effect waves-light red accent-2">Start <i class="material-icons right m0">navigate_next</i></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</template>

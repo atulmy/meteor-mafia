@@ -1,0 +1,185 @@
+/* materialpalette.com/brown/red */
+    .dark-primary-color    { background: #5D4037; }
+    .default-primary-color { background: #795548; }
+    .light-primary-color   { background: #D7CCC8; }
+    .text-primary-color    { color: #FFFFFF; }
+    .accent-color          { background: #FF5252; }
+    .primary-text-color    { color: #212121; }
+    .secondary-text-color  { color: #727272; }
+    .divider-color         { border-color: #B6B6B6; }
+
+/* --------------- Common --------------- */
+    html, body { background-color: #efebe9; }
+    .display-none { display: none; }
+    .divider-theme { background-color: #B6B6B6; }
+/* --------------- / Common --------------- */
+
+/* --------------- Typography --------------- */
+    .tx-uppercase { text-transform: uppercase; }
+    .tx-underlined { text-decoration: underline; }
+    .tx-italic { font-style: italic; }
+    /* size */
+        .tx-xxs { font-size: 10px; }
+        .tx-xs { font-size: 12px; }
+        .tx-sm { font-size: 14px; }
+        .tx-md { font-size: 18px; }
+        .tx-lg { font-size: 22px; }
+        .tx-xl { font-size: 28px; }
+        .tx-xxl { font-size: 32px; }
+    /* thickness */
+        .tx-thin { font-weight: 100; }
+        .tx-light { font-weight: 200; }
+        .tx-lighter { font-weight: 300; }
+        .tx-bold { font-weight: 500; }
+        .tx-bolder { font-weight: 700; }
+        .tx-spacing { letter-spacing: 0.2em; }
+        .tx-spacing-light { letter-spacing: 0.05em; }
+        .tx-spacing-lighter { letter-spacing: 0.02em; }
+/* --------------- / Typography --------------- */
+
+/* --------------- Margins and Padding --------------- */
+    /* left */
+    .ml0 { margin-left: 0px; }
+    /* right */
+    .mr0 { margin-right: 0px; }
+    /* top */
+    .mt0 { margin-top: 0px; }
+    .mt5 { margin-top: 5px; }
+    .mt10 { margin-top: 10px; }
+    .mt20 { margin-top: 20px; }
+    .mt30 { margin-top: 30px; }
+    .mt15p { margin-top: 15%; }
+    /* bottom */
+    .mb0 { margin-bottom: 0px; }
+    .mb5 { margin-bottom: 5px; }
+    .mb10 { margin-bottom: 10px; }
+    /* all */
+    .m0 { margin: 0px; }
+    .p0 { padding: 0px; }
+/* --------------- / Margins and Padding --------------- */
+
+/* --------------- App Header --------------- */
+    #app-header {
+        clear: both;
+        height: 50px;
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+    }
+    #app-header nav .brand-logo {
+        font-size: 1.5rem;
+    }
+    #app-header nav, #app-header nav .button-collapse, #app-header nav .button-collapse i {
+        height: 50px;
+        line-height: 50px;
+    }
+    #app-header nav .button-actions {
+        float: left;
+        height: 50px;
+        line-height: 50px;
+        position: relative;
+        z-index: 1;
+        float: right;
+    }
+    #app-header nav .button-actions i {
+        font-size: 2.7rem;
+        height: 50px;
+        line-height: 50px;
+    }
+/* --------------- / App Header --------------- */
+
+/* --------------- App Content --------------- */
+    #app-content {
+        bottom: 77px;
+        clear: both;
+        left: 0;
+        overflow: hidden;
+        position: fixed;
+        right: 0;
+        top: 50px;
+    }
+    #app-content .container {
+        height: 100%;
+    }
+    /* map */
+        #app-content .map {
+            height: 100%;
+        }
+    /* content split vertically */
+        #app-content .content-split-vertically {
+            margin: 0px;
+        }
+        #app-content .content-split-vertically .col {
+            padding: 0px;
+            height: 50%;
+        }
+    /* vertical align */
+        #app-content .vertical-align {
+            display: table;
+            height: 100%;
+            width: 100%;
+            margin: 0px;
+        }
+        #app-content .vertical-align .vertical-align-child {
+            display: table-cell;
+            vertical-align: middle;
+            float: none;
+        }
+    /* fullscreen slider */
+        #app-content .slider.fullscreen {
+            text-shadow: 0px 1px 1px #666;
+        }
+        #app-content .slider.fullscreen .btn {
+            text-shadow: none;
+        }
+/* --------------- / App Content --------------- */
+
+/* --------------- App Footer --------------- */
+    #app-footer {
+        clear: both;
+        height: 77px;
+        left: 0;
+        position: fixed;
+        right: 0;
+        bottom: 0;
+    }
+    /* footer icons */
+        #app-footer .footer-icons {
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            background-color: #fff;
+            margin: 0px;
+            border-top: 2px solid #5D4037;
+        }
+        #app-footer .footer-icons .col {
+            padding: 0px;
+        }
+        #app-footer .footer-icons .col a {
+            color: #5D4037;
+            display: block;
+            padding: 10px 0px;
+            text-transform: uppercase;
+        }
+        #app-footer .footer-icons .col a.active {
+            color: #FF5252;
+        }
+        #app-footer .footer-icons a p {
+            margin: 0px;
+        }
+/* --------------- / App Footer --------------- */
+
+/* --------------- MaterialzeCSS Overrides --------------- */
+    .slider .indicators .indicator-item.active { background-color: #FF5252; }
+    .btn-block { display: block!important; }
+/* --------------- / MaterialzeCSS Overrides --------------- */
+
+/* --------------- Responsive --------------- */
+    @media(max-width: 600px) {
+        .brand-logo .material-icons {
+            padding: 14px 0px
+        }
+    }
+/* --------------- / Responsive --------------- */
