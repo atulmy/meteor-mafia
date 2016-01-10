@@ -15,7 +15,7 @@
 
     <!-- Right -->
     {{#contentFor "headerRight"}}
-        <a href="#" class="button-actions waves-effect waves-light">
+        <a href="#" data-action-form="#form-create-game" class="header-actions button-actions waves-effect waves-light">
             <i class="material-icons">navigate_next</i>
         </a>
     {{/contentFor}}
@@ -24,14 +24,14 @@
     <div class="container display-none animate-fade-in">
         <div class="row vertical-align">
             <div class="col s12 vertical-align-child">
-                <form>
+                <form id="form-create-game">
                     <div class="row">
-                        <p class="col s12 center-align" style="font-size: 5.5rem; line-height: 5.5rem; margin: 0px 0px 20px 0px" id="game_range_text">
+                        <p class="col s12 center-align" style="font-size: 5.5rem; line-height: 5.5rem; margin: 0px 0px 20px 0px" id="game-players-text">
                             6
                         </p>
                         <div class="input-field col s12">
                             <p class="range-field">
-                                <input type="range" id="game_range" min="6" max="18" value="6"/>
+                                <input type="range" id="game-players" min="6" max="18" value="6"/>
                             </p>
                             <label for="range" class="active">Number of players</label>
                         </div>
@@ -39,7 +39,7 @@
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <select id="game_money">
+                            <select id="game-money">
                                 <option value="0" selected="selected">No</option>
                                 <option value="1">Yes</option>
                             </select>
@@ -49,7 +49,7 @@
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <a class="waves-effect waves-light btn-large btn-block red accent-2">Create <i class="material-icons right">navigate_next</i></a>
+                            <button type="submit" id="form-create-game-submit" class="waves-effect waves-light btn-large btn-block red accent-2">Create <i class="material-icons right">navigate_next</i></button>
                         </div>
                     </div>
                 </form>

@@ -1,21 +1,22 @@
 <template name="pagesHow">
 
-    <!-- Header Left -->
+<!-- Header -->
+    <!-- Left -->
     {{#contentFor "headerLeft"}}
         {{> commonHeaderSideMenu }}
     {{/contentFor}}
 
-    <!-- Header Center -->
+    <!-- Center -->
     {{#contentFor "headerCenter"}}
         <a id="logo-container" href="{{ pathFor route='how' }}" class="brand-logo tx-uppercase tx-lighter">
             How to play
         </a>
     {{/contentFor}}
 
-    <!-- Header Right -->
+    <!-- Right -->
     {{#contentFor "headerRight"}}{{/contentFor}}
 
-    <!-- Page Content -->
+<!-- Page Content -->
     <div class="container display-none animate-fade-in">
         <div class="row">
             <div class="col s12">

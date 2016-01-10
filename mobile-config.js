@@ -22,5 +22,7 @@ App.configurePlugin('com.phonegap.plugins.facebookconnect', {
     APP_NAME: 'Mafia!'
 });
 
+App.setPreference('StatusBarOverlaysWebView', true);
+App.setPreference('StatusBarStyle', 'default');
 App.setPreference('SplashScreen', 'CDVSplashScreen');
 App.setPreference('android-versionCode', '1');

@@ -17,16 +17,6 @@ Router.plugin('ensureSignedIn', {
         name: 'splash',
         template: 'pagesSplash'
     });
-    // Home
-    Router.route('/home', {
-        name: 'home',
-        template: 'pagesHome'
-    });
-    // Join
-    Router.route('/join', {
-        name: 'join',
-        template: 'pagesJoin'
-    });
     // How
     Router.route('/how-to-play', {
         name: 'how',
@@ -42,6 +32,34 @@ Router.plugin('ensureSignedIn', {
         name: 'contact',
         template: 'pagesContact'
     });
+
+    // Game
+        // Home
+        Router.route('/home', {
+            name: 'home',
+            template: 'pagesHome'
+        });
+        // Join
+        Router.route('/join', {
+            name: 'join',
+            template: 'pagesJoin'
+        });
+        // Play
+        Router.route('/play/:gameId', {
+            name: 'play',
+            template: 'pagesPlay',
+            waitOn: function() {
+                return Meteor.subscribe('game', this.params.gameId);
+            },
+            onBeforeAction: function() {
+                Session.set('gameId', this.params.gameId);
+                this.next();
+            },
+            onStop: function() {
+                // Clear game id in session
+                Session.set('gameId', '');
+            }
+        });
 
 // User
     // Profile

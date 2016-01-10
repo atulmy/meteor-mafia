@@ -18,6 +18,7 @@
 
 # Database
     aldeed:collection2
+    check
 
 # Routing
     iron:router

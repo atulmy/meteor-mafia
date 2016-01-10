@@ -15,6 +15,7 @@ Coming Soon.
 ## Authors
 
 Atul Yadav - [GitHub](https://github.com/atulmy) &bull; [Twitter](https://twitter.com/atulmy)
+
 Swapnil Mhaske - [GitHub](https://github.com/swapnil0545) &bull; [Twitter](https://twitter.com/swapnil0545)
 
 ## Made with Meteor

@@ -106,6 +106,9 @@
     #app-content .container {
         height: 100%;
     }
+    #app-content .common-loading {
+        text-align: center;
+    }
     /* map */
         #app-content .map {
             height: 100%;
@@ -180,7 +183,7 @@
 
 /* --------------- MaterialzeCSS Overrides --------------- */
     .slider .indicators .indicator-item.active { background-color: #FF5252; }
-    .btn-block { display: block!important; }
+    .btn-block { display: block!important; width: 100%; }
     .input-field label, .input-field label.active, .select-wrapper + label { font-size: 1rem; }
     input[type="range"], input[type="range"]:focus { border: none; outline: none; }
     .collection .collection-item .title { font-size: 16px; }
