@@ -20,6 +20,9 @@ Template.pagesHome.events({
 
         console.log('E - submit #form-create-game');
 
+        // Show action loading
+        App.Helpers.actionLoading('#form-create-game-submit', 'before');
+
         // Get Inputs
         var input = {};
         input.players = parseInt(template.$('#game-players').val());
@@ -32,8 +35,10 @@ Template.pagesHome.events({
             Meteor.call('gameCreate', input, function (error, response) {
                 console.log('M - gameCreate');
 
+                App.Helpers.actionLoading('#form-create-game-submit', 'after');
+
                 if (error) {
-                    Materialize.toast('There was some error, please try again', 4000);
+                    Materialize.toast('There was some error', 4000);
                 } else {
                     Materialize.toast(response.message, 4000);
 
@@ -45,6 +50,8 @@ Template.pagesHome.events({
             });
         } else {
             Materialize.toast('Please provide all the required data.', 4000);
+
+            App.Helpers.actionLoading('#form-create-game-submit', 'after');
         }
     }
 });

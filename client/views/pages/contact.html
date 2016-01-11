@@ -17,8 +17,11 @@
 
     <!-- Right -->
     {{#contentFor "headerRight"}}
-        <a href="#" class="button-actions waves-effect waves-light">
+        <a href="#" data-action-form="#form-contact" class="header-action button-actions waves-effect waves-light">
             <i class="material-icons">check</i>
+        </a>
+        <a href="#" class="header-action-loading button-actions waves-effect waves-light display-none">
+            <i class="material-icons">hourglass_empty</i>
         </a>
     {{/contentFor}}
 
@@ -26,25 +29,28 @@
     <div class="container display-none animate-fade-in">
         <div class="row vertical-align">
             <div class="col s12 vertical-align-child">
-                <form>
+                <form id="form-contact">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="contact_name" type="text" class="validate" value="{{ currentUser.profile.name }}" />
-                            <label for="contact_name" class="active">Name</label>
+                            <input id="contact-name" type="text" class="validate" value="{{ currentUser.profile.name }}" required="required"/>
+                            <label for="contact-name" class="active">Name</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="contact_email" type="text" class="validate" value="" />
-                            <label for="contact_email" class="active">Email</label>
+                            <input id="contact-email" type="email" class="validate" value="" required="required"/>
+                            <label for="contact-email" class="active">Email</label>
                         </div>
                         <div class="input-field col s12">
-                            <textarea id="contact_message" class="materialize-textarea"></textarea>
-                            <label for="contact_message" class="active">Message</label>
+                            <textarea id="contact-message" class="materialize-textarea"></textarea>
+                            <label for="contact-message" class="active">Message</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <a class="waves-effect waves-light btn-large btn-block red accent-2"><i class="material-icons left">check</i> Send</a>
+                            <button type="submit" id="form-contact-submit" class=" waves-effect waves-light btn-large btn-block red accent-2">
+                                <span class="action-text"><i class="material-icons left">check</i> Send</span>
+                                <span class="action-loading display-none">{{> commonLoadingAction }}</span>
+                            </button>
                         </div>
                     </div>
                 </form>

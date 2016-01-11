@@ -15,8 +15,11 @@
 
     <!-- Right -->
     {{#contentFor "headerRight"}}
-        <a href="#" data-action-form="#form-create-game" class="header-actions button-actions waves-effect waves-light">
+        <a href="#" data-action-form="#form-create-game" class="header-action button-actions waves-effect waves-light">
             <i class="material-icons">navigate_next</i>
+        </a>
+        <a href="#" class="header-action-loading button-actions waves-effect waves-light display-none">
+            <i class="material-icons">hourglass_empty</i>
         </a>
     {{/contentFor}}
 
@@ -49,7 +52,10 @@
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <button type="submit" id="form-create-game-submit" class="waves-effect waves-light btn-large btn-block red accent-2">Create <i class="material-icons right">navigate_next</i></button>
+                            <button type="submit" id="form-create-game-submit" class=" waves-effect waves-light btn-large btn-block red accent-2">
+                                <span class="action-text">Create <i class="material-icons right">navigate_next</i></span>
+                                <span class="action-loading display-none">{{> commonLoadingAction }}</span>
+                            </button>
                         </div>
                     </div>
                 </form>

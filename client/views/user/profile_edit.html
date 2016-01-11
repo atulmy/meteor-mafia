@@ -17,8 +17,11 @@
 
     <!-- Right -->
     {{#contentFor "headerRight"}}
-        <a href="#modal-profile-edit" class="button-actions modal-trigger waves-effect waves-light">
+        <a href="#" data-action-form="#form-user-profile" class="header-action button-actions waves-effect waves-light">
             <i class="material-icons">check</i>
+        </a>
+        <a href="#" class="header-action-loading button-actions waves-effect waves-light display-none">
+            <i class="material-icons">hourglass_empty</i>
         </a>
     {{/contentFor}}
 
@@ -26,17 +29,30 @@
     <div class="container display-none animate-fade-in">
         <div class="row vertical-align">
             <div class="col s12 vertical-align-child">
-                <form>
+                <form id="form-user-profile">
                     <div class="row">
-                        <div class="input-field col s12">
-                            <input id="user_profile_name" type="text" class="validate" value="{{ currentUser.profile.name }}" />
-                            <label for="user_profile_name" class="active">Name</label>
+                        <div class="col s12 center-align" style="position: relative;">
+                            <div class="rounded">
+                                <img src="{{ currentUser.profile.picture }}" id="user-profile-picture-preview" class="responsive-img" />
+                            </div>
+                            <a href="#" id="user-profile-image" style="position: absolute; left: 0px; right: 0px; bottom: 10px; text-shadow: 0px 0px 10px #666;" class="white-text"><i class="material-icons medium">photo_camera</i></a>
+                            <input id="user-profile-picture" type="hidden" value="{{ currentUser.profile.picture }}" />
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <a class="waves-effect waves-light btn-large btn-block red accent-2"><i class="material-icons left">check</i> Save</a>
+                            <input id="user-profile-name" type="text" class="validate" value="{{ currentUser.profile.name }}" />
+                            <label for="user-profile-name" class="active">Name</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <button type="submit" id="form-user-profile-submit" class=" waves-effect waves-light btn-large btn-block red accent-2">
+                                <span class="action-text"><i class="material-icons left">check</i> Save</span>
+                                <span class="action-loading display-none">{{> commonLoadingAction }}</span>
+                            </button>
                         </div>
                     </div>
                 </form>

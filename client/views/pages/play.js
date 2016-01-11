@@ -14,6 +14,8 @@ Template.pagesPlay.events({
 
 // On Render
 Template.pagesPlay.rendered = function() {
+    console.log('R - Template.pagesPlay.rendered');
+
     $( function() {
         App.init();
     });

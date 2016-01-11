@@ -1,4 +1,8 @@
 App = {
+    Defaults: {
+        toastTime: 4000
+    },
+
     init: function() {
         // Common Page Animation
         $('.animate-fade-in').fadeIn();
@@ -29,6 +33,23 @@ App = {
     Helpers: {
         randomNumber: function(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
+        },
+        actionLoading: function(button, isBeforeAfter) {
+            if(isBeforeAfter == 'before') {
+                $(button).attr('disabled', 'disabled')
+                $(button).find('.action-text').hide();
+                $(button).find('.action-loading').fadeIn();
+                $(button).find('.action-loading .preloader-wrapper').addClass('active');
+                $('.header-action').hide();
+                $('.header-action-loading').fadeIn();
+            } else {
+                $(button).removeAttr('disabled');
+                $(button).find('.action-loading .preloader-wrapper').removeClass('active');
+                $(button).find('.action-loading').hide();
+                $(button).find('.action-text').fadeIn();
+                $('.header-action-loading').hide();
+                $('.header-action').fadeIn();
+            }
         }
     }
 };

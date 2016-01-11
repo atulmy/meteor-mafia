@@ -69,24 +69,23 @@
         z-index: 998;
     }
     #app-header nav .brand-logo {
-        font-size: 1.5rem;
-    }
-    #app-header nav, #app-header nav .button-collapse, #app-header nav .button-collapse i {
+        font-size: 28px;
         height: 50px;
-        line-height: 50px;
+        line-height: 52px;
+    }
+    #app-header nav, #app-header nav .button-collapse {
+        height: 50px;
+        line-height: 52px;
+    }
+    #app-header nav .button-collapse i, #app-header nav .button-actions i  {
+        font-size: 30px;
+        line-height: 52px;
+        height: 50px;
     }
     #app-header nav .button-actions {
-        float: left;
-        height: 50px;
-        line-height: 50px;
         position: relative;
         z-index: 1;
         float: right;
-    }
-    #app-header nav .button-actions i {
-        font-size: 2.7rem;
-        height: 50px;
-        line-height: 50px;
     }
 /* --------------- / App Header --------------- */
 
@@ -187,6 +186,25 @@
     .input-field label, .input-field label.active, .select-wrapper + label { font-size: 1rem; }
     input[type="range"], input[type="range"]:focus { border: none; outline: none; }
     .collection .collection-item .title { font-size: 16px; }
+    button .preloader-wrapper.small { margin-top: 9px; }
+    .row .col.offset-s2 { margin-left: 16.6667% !important; }
+    .camera-popup { overflow: hidden; }
+    .camera-popup img { width: 100% !important; }
+    .rounded {
+        border-radius: 50%;
+        overflow: hidden;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+    }
+    .rounded img {
+        display: block;
+        /* Stretch
+              height: 100%;
+              width: 100%; */
+        min-width: 100%;
+        min-height: 100%;
+    }
 /* --------------- / MaterialzeCSS Overrides --------------- */
 
 /* --------------- Responsive --------------- */

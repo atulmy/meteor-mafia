@@ -29,10 +29,12 @@
     accounts-password
     useraccounts:materialize
     service-configuration
+    mdg:camera
 
 # UI / Theme
     materialize:materialize
     udondan:slick
+    meteorhacks:ssr
 
 # Mobile
     chriswessels:hammer
@@ -40,3 +42,6 @@
 # Helpers
     zimme:active-route
     momentjs:moment
+
+# Email
+    email

@@ -49,12 +49,15 @@ iron:router@1.0.12
 iron:url@1.0.11
 jquery@1.11.4
 launch-screen@1.0.4
+less@2.5.1
 livedata@1.0.15
 localstorage@1.0.5
 logging@1.0.8
 materialize:materialize@0.97.3
+mdg:camera@1.2.0
 meteor@1.1.10
 meteor-base@1.0.1
+meteorhacks:ssr@2.2.0
 minifiers@1.1.7
 minimongo@1.0.10
 mobile-experience@1.0.1

@@ -12,27 +12,6 @@ Router.plugin('ensureSignedIn', {
 });
 
 // Pages
-    // Splash
-    Router.route('/', {
-        name: 'splash',
-        template: 'pagesSplash'
-    });
-    // How
-    Router.route('/how-to-play', {
-        name: 'how',
-        template: 'pagesHow'
-    });
-    // About
-    Router.route('/about', {
-        name: 'about',
-        template: 'pagesAbout'
-    });
-    // Contact
-    Router.route('/contact', {
-        name: 'contact',
-        template: 'pagesContact'
-    });
-
     // Game
         // Home
         Router.route('/home', {
@@ -60,6 +39,27 @@ Router.plugin('ensureSignedIn', {
                 Session.set('gameId', '');
             }
         });
+
+    // Splash
+    Router.route('/', {
+        name: 'splash',
+        template: 'pagesSplash'
+    });
+    // How
+    Router.route('/how-to-play', {
+        name: 'how',
+        template: 'pagesHow'
+    });
+    // About
+    Router.route('/about', {
+        name: 'about',
+        template: 'pagesAbout'
+    });
+    // Contact
+    Router.route('/contact', {
+        name: 'contact',
+        template: 'pagesContact'
+    });
 
 // User
     // Profile
