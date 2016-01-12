@@ -42,6 +42,13 @@
 
                     <div class="row">
                         <div class="input-field col s12">
+                            <input type="text" id="game-city" value="Random" readonly="readonly" class="cursor-pointer black-text"/>
+                            <label class="active">City</label>
+                        </div>
+                    </div>
+
+                    <div class="row display-none">
+                        <div class="input-field col s12">
                             <select id="game-money">
                                 <option value="0" selected="selected">No</option>
                                 <option value="1">Yes</option>
@@ -52,7 +59,7 @@
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <button type="submit" id="form-create-game-submit" class=" waves-effect waves-light btn-large btn-block red accent-2">
+                            <button type="submit" id="form-create-game-submit" class="waves-effect waves-light btn-large btn-block red accent-2">
                                 <span class="action-text">Create <i class="material-icons right">navigate_next</i></span>
                                 <span class="action-loading display-none">{{> commonLoadingAction }}</span>
                             </button>
@@ -62,5 +69,24 @@
             </div>
         </div>
     </div>
+
+<!-- Modals -->
+    {{#contentFor "modals"}}
+        <!-- City Selection -->
+        <div id="modal-game-city-selection" class="modal">
+            <div class="modal-content">
+                <h4 class="tx-light tx-uppercase tx-md">Select City</h4>
+
+                <div class="collection m0">
+                    {{#each cities }}
+                        <a href="#" onclick="$('#game-city').val('{{ this }}');$('#modal-game-city-selection').closeModal();" class="waves-effect waves-light collection-item">{{ this }}</a>
+                    {{/each }}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
+        </div>
+    {{/contentFor}}
 
 </template>

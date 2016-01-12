@@ -12,6 +12,8 @@
     html, body { background-color: #efebe9; }
     .display-none { display: none; }
     .divider-theme { background-color: #B6B6B6; }
+    .divider-dark { background-color: #333; }
+    .cursor-pointer { cursor: pointer; }
 /* --------------- / Common --------------- */
 
 /* --------------- Typography --------------- */
@@ -40,6 +42,7 @@
 /* --------------- Margins and Padding --------------- */
     /* left */
     .ml0 { margin-left: 0px; }
+    .ml10 { margin-left: 10px; }
     /* right */
     .mr0 { margin-right: 0px; }
     /* top */
@@ -58,6 +61,43 @@
     .p0 { padding: 0px; }
 /* --------------- / Margins and Padding --------------- */
 
+/* --------------- Content --------------- */
+    /* content split vertically */
+        .content-split-vertically {
+            margin: 0px;
+        }
+        .content-split-vertically .col-50 {
+            padding: 0px;
+            height: 50%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .content-split-vertically .col-40 {
+            padding: 0px;
+            height: 40%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .content-split-vertically .col-10 {
+            padding: 0px;
+            height: 10%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+    /* vertical align */
+        .vertical-align {
+            display: table;
+            height: 100%;
+            width: 100%;
+            margin: 0px !important;
+        }
+        .vertical-align .vertical-align-child {
+            display: table-cell;
+            vertical-align: middle;
+            float: none;
+        }
+/* --------------- / Content --------------- */
+
 /* --------------- App Header --------------- */
     #app-header {
         clear: both;
@@ -69,7 +109,7 @@
         z-index: 998;
     }
     #app-header nav .brand-logo {
-        font-size: 28px;
+        font-size: 18px;
         height: 50px;
         line-height: 52px;
     }
@@ -112,26 +152,6 @@
         #app-content .map {
             height: 100%;
         }
-    /* content split vertically */
-        #app-content .content-split-vertically {
-            margin: 0px;
-        }
-        #app-content .content-split-vertically .col {
-            padding: 0px;
-            height: 50%;
-        }
-    /* vertical align */
-        #app-content .vertical-align {
-            display: table;
-            height: 100%;
-            width: 100%;
-            margin: 0px;
-        }
-        #app-content .vertical-align .vertical-align-child {
-            display: table-cell;
-            vertical-align: middle;
-            float: none;
-        }
     /* fullscreen slider */
         #app-content .slider.fullscreen {
             text-shadow: 0px 1px 1px #666;
@@ -170,17 +190,61 @@
             display: block;
             padding: 10px 0px;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 12px;
         }
         #app-footer .footer-icons .col a.active {
             color: #FF5252;
+        }
+        #app-footer .footer-icons .col a i {
+            font-size: 31px;
         }
         #app-footer .footer-icons a p {
             margin: 0px;
         }
 /* --------------- / App Footer --------------- */
 
+
+/* --------------- App Game Content --------------- */
+    #app-game-content {
+        bottom: 0px;
+        clear: both;
+        left: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: fixed;
+        right: 0;
+        top: 0px;
+        z-index: 996;
+        background-color: #292929;
+        background-image: url('/images/background.jpg');
+        background-size: 100% 100%;
+        color: #ffffff;
+        border: 5px solid #000;
+        padding: 0px;
+    }
+    #app-game-content .container-fluid {
+        height: 100%;
+    }
+    #app-game-content .btn {
+        border-radius: 18px;
+    }
+    #app-game-content .collection {
+        border: 1px solid #000;
+    }
+    #app-game-content .collection .collection-item {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-bottom: 1px solid #000000;
+    }
+    #app-game-content .collection .collection-item:last-child {
+        border-bottom: none;
+    }
+    #app-game-content .collection .collection-item.avatar {
+        min-height: auto;
+    }
+/* --------------- / App Game Content --------------- */
+
 /* --------------- MaterialzeCSS Overrides --------------- */
+    form .row { margin-top: 0px; margin-bottom: 0px }
     .slider .indicators .indicator-item.active { background-color: #FF5252; }
     .btn-block { display: block!important; width: 100%; }
     .input-field label, .input-field label.active, .select-wrapper + label { font-size: 1rem; }

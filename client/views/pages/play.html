@@ -1,31 +1,101 @@
 <template name="pagesPlay">
 
-<!-- Header -->
-    <!-- Left -->
-    {{#contentFor "headerLeft"}}
-        {{> commonHeaderSideMenu }}
-    {{/contentFor}}
-
-    <!-- Center -->
-    {{#contentFor "headerCenter"}}
-        <a id="logo-container" href="{{ pathFor route='play' gameId=game._id }}" class="brand-logo tx-uppercase tx-lighter">
-            Play
-        </a>
-    {{/contentFor}}
-
-    <!-- Right -->
-    {{#contentFor "headerRight"}}
-        <a href="{{ pathFor route='contact' }}" class="button-actions waves-effect waves-light">
-            <i class="material-icons">email</i>
-        </a>
-    {{/contentFor}}
-
 <!-- Page Content -->
-    <div class="container display-none animate-fade-in">
-        <div class="row">
-            <div class="col s12">
-                <h5 class="header light m0">{{ game.by.name }}</h5>
-                <p>{{ game.secretCityCode }}</p>
+    <div class="container-fluid display-none animate-fade-in content-split-vertically">
+        <div class="col col-50 s12 center-align">
+            <h5 class="mt5 tx-uppercase tx-lg">Mafia in {{ game.city.name }}</h5>
+
+            <div class="divider divider-dark"></div>
+
+            <p class="tx-lg">Code: {{ game.city.code }}</p>
+
+            <p class="center-align">{{>commonLoadingAction active="active" }}</p>
+            <p class="center-align">waiting for players...</p>
+
+            <div class="divider divider-dark"></div>
+
+            <p class="tx-lg center-align mb0">Players joined: 1/{{ game.players }}</p>
+        </div>
+
+        <div class="col col-40 s12">
+            <ul class="collection m0">
+                <li class="collection-item avatar">
+                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
+                    <span class="title">{{ currentUser.profile.name }}</span>
+                    <p class="grey-text">Ready</p>
+                    <a href="#" class="secondary-content"><i class="material-icons">done</i></a>
+                </li>
+
+                <li class="collection-item avatar">
+                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
+                    <span class="title">{{ currentUser.profile.name }}</span>
+                    <p class="grey-text">Not ready</p>
+                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
+                </li>
+
+                <li class="collection-item avatar">
+                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
+                    <span class="title">{{ currentUser.profile.name }}</span>
+                    <p class="grey-text">Not ready</p>
+                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
+                </li>
+
+                <li class="collection-item avatar">
+                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
+                    <span class="title">{{ currentUser.profile.name }}</span>
+                    <p class="grey-text">Not ready</p>
+                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
+                </li>
+
+                <li class="collection-item avatar">
+                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
+                    <span class="title">{{ currentUser.profile.name }}</span>
+                    <p class="grey-text">Not ready</p>
+                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
+                </li>
+
+                <li class="collection-item avatar">
+                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
+                    <span class="title">{{ currentUser.profile.name }}</span>
+                    <p class="grey-text">Not ready</p>
+                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
+                </li>
+
+                <li class="collection-item avatar">
+                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
+                    <span class="title">{{ currentUser.profile.name }}</span>
+                    <p class="grey-text">Not ready</p>
+                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
+                </li>
+
+                <li class="collection-item avatar">
+                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
+                    <span class="title">{{ currentUser.profile.name }}</span>
+                    <p class="grey-text">Not ready</p>
+                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
+                </li>
+
+                <li class="collection-item avatar">
+                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
+                    <span class="title">{{ currentUser.profile.name }}</span>
+                    <p class="grey-text">Not ready</p>
+                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
+                </li>
+
+                <li class="collection-item avatar">
+                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
+                    <span class="title">{{ currentUser.profile.name }}</span>
+                    <p class="grey-text">Not ready</p>
+                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col col-10 s12 center-align vertical-align">
+            <div class="clearfix vertical-align-child">
+                <button class="btn waves-effect waves-light red accent-2"><i class="material-icons left">group_add</i> Invite</button>
+
+                <button class="btn waves-effect waves-light ml10" disabled="disabled">Start <i class="material-icons right">navigate_next</i></button>
             </div>
         </div>
     </div>

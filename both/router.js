@@ -8,7 +8,7 @@ Router.configure({
 AccountsTemplates.configureRoute('signIn');
 AccountsTemplates.configureRoute('signUp');
 Router.plugin('ensureSignedIn', {
-    except: ['splash', 'how', 'about']
+    except: ['splash', 'how', 'about', 'contact']
 });
 
 // Pages
@@ -27,6 +27,7 @@ Router.plugin('ensureSignedIn', {
         Router.route('/play/:gameId', {
             name: 'play',
             template: 'pagesPlay',
+            layoutTemplate: 'layoutsGame',
             waitOn: function() {
                 return Meteor.subscribe('game', this.params.gameId);
             },

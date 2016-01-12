@@ -15,7 +15,8 @@ Meteor.methods({
 
         // validate data
         check(input.players, Number);
-        check(input.secretCityCode, Number);
+        check(input.city, String);
+        check(input.code, Number);
         check(input.isMoneyGame, Boolean);
 
         // create game document
@@ -26,7 +27,10 @@ Meteor.methods({
                 name: Meteor.user().profile.name,
                 image: Meteor.user().profile.picture
             },
-            secretCityCode: input.secretCityCode,
+            city: {
+                name: input.city,
+                code: input.code
+            },
             isMoneyGame: input.isMoneyGame,
             isPublic: false
         };
@@ -35,7 +39,7 @@ Meteor.methods({
         var gameId = Games.insert(game);
         if(gameId) {
             response.success = true;
-            response.message = 'Game has been created successfully.';
+            response.message = 'The game has been created. Good luck!';
             response.data = gameId;
         }
 

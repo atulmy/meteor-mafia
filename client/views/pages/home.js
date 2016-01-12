@@ -2,11 +2,21 @@
 
 // Helper
 Template.pagesHome.helpers({
-
+    'cities': function() {
+        return App.Defaults.cities;
+    }
 });
 
 // Events
 Template.pagesHome.events({
+    'click #game-city': function(event, template) {
+        event.preventDefault();
+
+        console.log('E - click #game-city');
+
+        $('#modal-game-city-selection').openModal();
+    },
+
     'input #game-players': function(event, template) {
         event.preventDefault();
 
@@ -26,12 +36,16 @@ Template.pagesHome.events({
         // Get Inputs
         var input = {};
         input.players = parseInt(template.$('#game-players').val());
+        input.city = template.$('#game-city').val();
+        if(input.city == 'Random') {
+            input.city = App.Defaults.cities[App.Helpers.randomNumber(0, (App.Defaults.cities.length - 1))];
+        }
+        input.code = App.Helpers.randomNumber(1000, 9999);
         input.isMoneyGame = (parseInt(template.$('#game-money').find(':selected').val()) === 1) ? true : false;
-        input.secretCityCode = App.Helpers.randomNumber(1000, 9999);
         console.log(input);
 
         // Validate
-        if(input.gamePlayers != '' && input.gameMoney != '') {
+        if(input.gamePlayers != '' && input.city != '' && input.code != '' && input.gameMoney != '') {
             Meteor.call('gameCreate', input, function (error, response) {
                 console.log('M - gameCreate');
 

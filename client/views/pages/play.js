@@ -9,7 +9,21 @@ Template.pagesPlay.helpers({
 
 // Events
 Template.pagesPlay.events({
-
+    'click .share': function(event, template) {
+        event.preventDefault();
+        if (Meteor.isCordova) {
+            var message = 'This is the message!';
+            var subject = 'A subject for my message';
+            var image = 'https://pedlar.co/pedlar.png';
+            var link = 'https://pedlar.co';
+            window.plugins.socialsharing.share(
+                message,
+                subject,
+                image,
+                link
+            );
+        }
+    }
 });
 
 // On Render

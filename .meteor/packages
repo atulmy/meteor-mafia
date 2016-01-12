@@ -29,15 +29,16 @@
     accounts-password
     useraccounts:materialize
     service-configuration
-    mdg:camera
 
 # UI / Theme
     materialize:materialize
     udondan:slick
     meteorhacks:ssr
+    planettraining:material-design-icons-font
 
 # Mobile
-    chriswessels:hammer
+    # chriswessels:hammer
+    mdg:camera
 
 # Helpers
     zimme:active-route

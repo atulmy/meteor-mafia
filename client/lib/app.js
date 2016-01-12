@@ -1,6 +1,18 @@
 App = {
     Defaults: {
-        toastTime: 4000
+        toastTime: 4000,
+        cities: [
+            'London',
+            'New York',
+            'Paris',
+            'Mumbai',
+            'Singapore',
+            'Barcelona',
+            'Bangkok',
+            'Kuala Lumpur',
+            'Dubai',
+            'Istanbul'
+        ]
     },
 
     init: function() {

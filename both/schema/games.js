@@ -12,6 +12,15 @@ var userInfo = new SimpleSchema({
     }
 });
 
+var city = new SimpleSchema({
+    name: {
+        type: String
+    },
+    code: {
+        type: String
+    }
+});
+
 Games.attachSchema(new SimpleSchema({
     players: {
         type: Number
@@ -21,8 +30,8 @@ Games.attachSchema(new SimpleSchema({
         type: userInfo
     },
 
-    secretCityCode: {
-        type: Number
+    city: {
+        type: city
     },
 
     isMoneyGame: {
