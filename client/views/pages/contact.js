@@ -2,7 +2,13 @@
 
 // Helper
 Template.pagesContact.helpers({
-
+    'userEmail': function() {
+        var user = Meteor.user();
+        console.log(user);
+        if (user && user.emails) {
+            return user.emails[0].address;
+        }
+    }
 });
 
 // Events

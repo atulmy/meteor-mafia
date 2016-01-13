@@ -10,6 +10,9 @@ AccountsTemplates.configureRoute('signUp');
 Router.plugin('ensureSignedIn', {
     except: ['splash', 'how', 'about', 'contact']
 });
+AccountsTemplates.configureRoute('ensureSignedIn', {
+    layoutTemplate: 'accountsWrapper',
+});
 
 // Pages
     // Game
@@ -59,7 +62,10 @@ Router.plugin('ensureSignedIn', {
     // Contact
     Router.route('/contact', {
         name: 'contact',
-        template: 'pagesContact'
+        template: 'pagesContact',
+        waitOn: function() {
+            return Meteor.subscribe('userDetails');
+        }
     });
 
 // User

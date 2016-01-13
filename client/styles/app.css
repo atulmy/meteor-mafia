@@ -159,6 +159,15 @@
         #app-content .slider.fullscreen .btn {
             text-shadow: none;
         }
+    /* accounts */
+        #app-content .accounts-wrapper .at-title .header {
+            text-align: center;
+            font-size: 28px;
+            text-transform: uppercase;
+        }
+        #app-content .accounts-wrapper .at-error {
+            display: none;
+        }
 /* --------------- / App Content --------------- */
 
 /* --------------- App Footer --------------- */
@@ -252,6 +261,7 @@
     .collection .collection-item .title { font-size: 16px; }
     button .preloader-wrapper.small { margin-top: 9px; }
     .row .col.offset-s2 { margin-left: 16.6667% !important; }
+    .row .col.offset-s3 { margin-left: 25% !important; }
     .camera-popup { overflow: hidden; }
     .camera-popup img { width: 100% !important; }
     .rounded {
