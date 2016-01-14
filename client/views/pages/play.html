@@ -2,22 +2,26 @@
 
 <!-- Page Content -->
     <div class="container-fluid display-none animate-fade-in content-split-vertically">
-        <div class="col col-50 s12 center-align">
+        <div class="col col-30 s12 center-align">
             <h5 class="mt5 tx-uppercase tx-lg">Mafia in {{ game.city.name }}</h5>
 
             <div class="divider divider-dark"></div>
 
-            <p class="tx-lg">Code: {{ game.city.code }}</p>
+            <p class="tx-lg mt10 mb10">Code: {{ game.city.code }}</p>
 
             <p class="center-align">{{>commonLoadingAction active="active" }}</p>
             <p class="center-align">waiting for players...</p>
 
             <div class="divider divider-dark"></div>
-
-            <p class="tx-lg center-align mb0">Players joined: 1/{{ game.players }}</p>
         </div>
 
-        <div class="col col-40 s12">
+        <div class="col col-10 s12 center-align vertical-align">
+            <div class="clearfix vertical-align-child">
+                <p class="tx-lg center-align mb0 mt5">Players joined: 1/{{ game.players }}</p>
+            </div>
+        </div>
+
+        <div class="col col-50 s12">
             <ul class="collection m0">
                 <li class="collection-item avatar">
                     <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
@@ -93,9 +97,10 @@
 
         <div class="col col-10 s12 center-align vertical-align">
             <div class="clearfix vertical-align-child">
-                <button class="btn waves-effect waves-light red accent-2"><i class="material-icons left">group_add</i> Invite</button>
-
-                <button class="btn waves-effect waves-light ml10" disabled="disabled">Start <i class="material-icons right">navigate_next</i></button>
+                {{# if canInvite }}
+                    <button class="btn waves-effect waves-light red accent-2 mr10" id="game-invite"><i class="material-icons left">group_add</i> Invite</button>
+                {{/ if }}
+                <button class="btn waves-effect waves-light" disabled="disabled">Start <i class="material-icons right">navigate_next</i></button>
             </div>
         </div>
     </div>

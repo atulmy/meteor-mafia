@@ -1,0 +1,27 @@
+<template name="layoutsAccounts">
+
+    <div id="app-wrapper">
+        <div id="app-header">
+            <nav class="brown darken-2" role="navigation">
+                <div class="nav-wrapper container">
+                    <a id="logo-container" href="{{ pathFor route='home' }}" class="brand-logo tx-uppercase tx-lighter">
+                        Mafia!
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <div id="app-content">
+            <div class="row accounts-wrapper">
+                <div class="col s12 m8">
+                    {{> atForm}}
+                </div>
+            </div>
+        </div>
+
+        <div id="app-footer">
+            {{> commonFooter }}
+        </div>
+    </div>
+
+</template>

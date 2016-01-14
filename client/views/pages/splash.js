@@ -17,9 +17,9 @@ Template.pagesSplash.rendered = function () {
     $( function() {
         App.Materialize.Init.slider();
 
-        // Redirect to Getaways
+        // Redirect to Home
         Meteor.setTimeout(function(){
-            //Router.go('home');
+            Router.go('home');
         }, 18000);
     });
 };

@@ -1,4 +1,4 @@
 .idea
 .meteor/local
-server/startup/accounts.js
+server/startup/config.js
 mobile-config.js

@@ -1,0 +1,13 @@
+<template name="layoutsFull">
+
+    <div id="app-wrapper">
+        <div id="app-full-content">
+            {{> yield }}
+        </div>
+    </div>
+
+    <div id="app-modals">
+        {{> yield 'modals' }}
+    </div>
+
+</template>

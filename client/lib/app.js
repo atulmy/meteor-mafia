@@ -20,6 +20,21 @@ App = {
         $('.animate-fade-in').fadeIn();
     },
 
+    Layouts: {
+        default: function() {
+            var heightApp = parseInt($(document).height());
+            $('#app-wrapper').height(heightApp);
+            var heightAppHeader = $('#app-header').height();
+            var heightAppFooter = $('#app-footer').height();
+            $('#app-content').height(heightApp - (heightAppHeader + heightAppFooter));
+        },
+
+        full: function() {
+            var heightApp = $(window).height();
+            $('#app-wrapper').height(heightApp);
+        }
+    },
+
     Materialize: {
         Init: {
             sideNav: function() {

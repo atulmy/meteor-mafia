@@ -11,7 +11,7 @@ Router.plugin('ensureSignedIn', {
     except: ['splash', 'how', 'about', 'contact']
 });
 AccountsTemplates.configureRoute('ensureSignedIn', {
-    layoutTemplate: 'accountsWrapper',
+    layoutTemplate: 'layoutsAccounts',
 });
 
 // Pages
@@ -30,7 +30,7 @@ AccountsTemplates.configureRoute('ensureSignedIn', {
         Router.route('/play/:gameId', {
             name: 'play',
             template: 'pagesPlay',
-            layoutTemplate: 'layoutsGame',
+            layoutTemplate: 'layoutsFull',
             waitOn: function() {
                 return Meteor.subscribe('game', this.params.gameId);
             },
@@ -47,7 +47,8 @@ AccountsTemplates.configureRoute('ensureSignedIn', {
     // Splash
     Router.route('/', {
         name: 'splash',
-        template: 'pagesSplash'
+        template: 'pagesSplash',
+        layoutTemplate: 'layoutsFull',
     });
     // How
     Router.route('/how-to-play', {
