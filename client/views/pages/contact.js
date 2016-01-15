@@ -36,9 +36,9 @@ Template.pagesContact.events({
                 App.Helpers.actionLoading('#form-contact-submit', 'after');
 
                 if (error) {
-                    Materialize.toast('There was some error', 4000);
+                    Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
                 } else {
-                    Materialize.toast(response.message, 4000);
+                    Materialize.toast(response.message, App.Defaults.toastTime);
 
                     if (response.success) {
                         template.$('#contact-name').val('');
@@ -50,7 +50,7 @@ Template.pagesContact.events({
         } else {
             App.Helpers.actionLoading('#form-contact-submit', 'after');
 
-            Materialize.toast('Please provide all the required inputs.', 4000);
+            Materialize.toast('Please provide all the required inputs.', App.Defaults.toastTime);
         }
     }
 });

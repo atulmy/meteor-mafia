@@ -13,6 +13,12 @@ Router.plugin('ensureSignedIn', {
 AccountsTemplates.configureRoute('ensureSignedIn', {
     layoutTemplate: 'layoutsAccounts',
 });
+AccountsTemplates.configure({
+    onLogoutHook: function(){
+        //example redirect after logout
+        Router.go('splash');
+    }
+});
 
 // Pages
     // Game
@@ -24,7 +30,10 @@ AccountsTemplates.configureRoute('ensureSignedIn', {
         // Join
         Router.route('/join', {
             name: 'join',
-            template: 'pagesJoin'
+            template: 'pagesJoin',
+            waitOn: function() {
+                return Meteor.subscribe('gamesRecent');
+            }
         });
         // Play
         Router.route('/play/:gameId', {

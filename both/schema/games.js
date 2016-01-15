@@ -9,6 +9,24 @@ var userInfo = new SimpleSchema({
     },
     image: {
         type: String
+    },
+    character: {
+        type: Number
+    },
+    ready: {
+        type: Boolean
+    }
+});
+
+var players = new SimpleSchema({
+    expected: {
+        type: Number
+    },
+    joined: {
+        type: Number
+    },
+    list: {
+        type: [userInfo]
     }
 });
 
@@ -21,25 +39,31 @@ var city = new SimpleSchema({
     }
 });
 
-Games.attachSchema(new SimpleSchema({
-    players: {
-        type: Number
+var is = new SimpleSchema({
+    moneyGame: {
+        type: Boolean
     },
 
-    by: {
-        type: userInfo
+    publicGame: {
+        type: Boolean
+    },
+
+    finished: {
+        type: Boolean
+    }
+});
+
+Games.attachSchema(new SimpleSchema({
+    players: {
+        type: players
     },
 
     city: {
         type: city
     },
 
-    isMoneyGame: {
-        type: Boolean
-    },
-
-    isPublic: {
-        type: Boolean
+    is: {
+        type: is
     },
 
     createdAt: {

@@ -20,9 +20,9 @@ Template.pagesHome.events({
     'input #game-players': function(event, template) {
         event.preventDefault();
 
-        console.log('E - input #game-players');
+        console.log('E - input #game-expected');
 
-        template.$('#game-players-text').html(template.$(event.currentTarget).val())
+        template.$('#game-expected-text').html(template.$(event.currentTarget).val());
     },
 
     'submit #form-create-game': function(event, template) {
@@ -35,7 +35,7 @@ Template.pagesHome.events({
 
         // Get Inputs
         var input = {};
-        input.players = parseInt(template.$('#game-players').val());
+        input.expected = parseInt(template.$('#game-expected').val());
         input.city = template.$('#game-city').val();
         if(input.city == 'Random') {
             input.city = App.Defaults.cities[App.Helpers.randomNumber(0, (App.Defaults.cities.length - 1))];
@@ -52,9 +52,9 @@ Template.pagesHome.events({
                 App.Helpers.actionLoading('#form-create-game-submit', 'after');
 
                 if (error) {
-                    Materialize.toast('There was some error', 4000);
+                    Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
                 } else {
-                    Materialize.toast(response.message, 4000);
+                    Materialize.toast(response.message, App.Defaults.toastTime);
 
                     if (response.success) {
                         // Game created, redirect to play screen
@@ -63,7 +63,7 @@ Template.pagesHome.events({
                 }
             });
         } else {
-            Materialize.toast('Please provide all the required data.', 4000);
+            Materialize.toast('Please provide all the required data.', App.Defaults.toastTime);
 
             App.Helpers.actionLoading('#form-create-game-submit', 'after');
         }

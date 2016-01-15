@@ -2,96 +2,71 @@
 
 <!-- Page Content -->
     <div class="container-fluid display-none animate-fade-in content-split-vertically">
-        <div class="col col-30 s12 center-align">
-            <h5 class="mt5 tx-uppercase tx-lg">Mafia in {{ game.city.name }}</h5>
-
-            <div class="divider divider-dark"></div>
-
-            <p class="tx-lg mt10 mb10">Code: {{ game.city.code }}</p>
-
-            <p class="center-align">{{>commonLoadingAction active="active" }}</p>
-            <p class="center-align">waiting for players...</p>
+        <div class="col col-10 s12 center-align">
+            <h5 class="mt10 mb10 tx-uppercase tx-lg">Mafia in {{ game.city.name }}</h5>
 
             <div class="divider divider-dark"></div>
         </div>
 
+        <div class="col col-20 s12 center-align vertical-align-child">
+            <div class="clearfix vertical-align-child">
+                {{# if equalTo game.players.joined game.players.expected }}
+                    <p class="tx-md p10">All players joined! Click on START to begin the game.</p>
+                {{ else }}
+                    <p class="tx-lg mt5 mb5">Code: {{ game.city.code }}</p>
+                    <p class="center-align mt5 mb5">{{> commonLoadingAction active="active" }}</p>
+                    <p class="center-align mt5 mb5">waiting for players...</p>
+                {{/ if }}
+            </div>
+        </div>
+
         <div class="col col-10 s12 center-align vertical-align">
             <div class="clearfix vertical-align-child">
-                <p class="tx-lg center-align mb0 mt5">Players joined: 1/{{ game.players }}</p>
+                <div class="divider divider-dark"></div>
+
+                <p class="tx-lg center-align mt10 mb5">Players joined: {{ game.players.joined }}/{{ game.players.expected }}</p>
             </div>
         </div>
 
         <div class="col col-50 s12">
             <ul class="collection m0">
-                <li class="collection-item avatar">
-                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
-                    <span class="title">{{ currentUser.profile.name }}</span>
-                    <p class="grey-text">Ready</p>
-                    <a href="#" class="secondary-content"><i class="material-icons">done</i></a>
-                </li>
+                {{# each arrayReverse game.players.list }}
+                    <li class="collection-item avatar">
+                        <img src="{{ image }}" alt="{{ name }}" class="circle">
+                        <span class="title">{{ name }}</span>
 
-                <li class="collection-item avatar">
-                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
-                    <span class="title">{{ currentUser.profile.name }}</span>
-                    <p class="grey-text">Not ready</p>
-                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
-                </li>
 
-                <li class="collection-item avatar">
-                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
-                    <span class="title">{{ currentUser.profile.name }}</span>
-                    <p class="grey-text">Not ready</p>
-                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
-                </li>
-
-                <li class="collection-item avatar">
-                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
-                    <span class="title">{{ currentUser.profile.name }}</span>
-                    <p class="grey-text">Not ready</p>
-                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
-                </li>
-
-                <li class="collection-item avatar">
-                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
-                    <span class="title">{{ currentUser.profile.name }}</span>
-                    <p class="grey-text">Not ready</p>
-                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
-                </li>
-
-                <li class="collection-item avatar">
-                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
-                    <span class="title">{{ currentUser.profile.name }}</span>
-                    <p class="grey-text">Not ready</p>
-                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
-                </li>
-
-                <li class="collection-item avatar">
-                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
-                    <span class="title">{{ currentUser.profile.name }}</span>
-                    <p class="grey-text">Not ready</p>
-                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
-                </li>
-
-                <li class="collection-item avatar">
-                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
-                    <span class="title">{{ currentUser.profile.name }}</span>
-                    <p class="grey-text">Not ready</p>
-                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
-                </li>
-
-                <li class="collection-item avatar">
-                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
-                    <span class="title">{{ currentUser.profile.name }}</span>
-                    <p class="grey-text">Not ready</p>
-                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
-                </li>
-
-                <li class="collection-item avatar">
-                    <img src="{{ currentUser.profile.picture }}" alt="{{ currentUser.profile.name }}" class="circle">
-                    <span class="title">{{ currentUser.profile.name }}</span>
-                    <p class="grey-text">Not ready</p>
-                    <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
-                </li>
+                        {{# if equalTo id currentUser._id }}
+                            <p class="grey-text">
+                                {{# if ready }}
+                                    Ready
+                                {{ else }}
+                                    Not ready
+                                {{/ if }}
+                            </p>
+                            <div class="secondary-content">
+                                <div class="switch">
+                                    <label>
+                                        {{# if ready }}
+                                            <input type="checkbox" id="game-ready" checked="checked" />
+                                        {{ else }}
+                                            <input type="checkbox" id="game-ready"/>
+                                        {{/ if }}
+                                        <span class="lever m0"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        {{ else }}
+                            {{# if ready }}
+                                <p class="grey-text">Ready</p>
+                                <a href="#" class="secondary-content"><i class="material-icons">done</i></a>
+                            {{ else }}
+                                <p class="grey-text">Not ready</p>
+                                <a href="#" class="secondary-content"><i class="material-icons">timer</i></a>
+                            {{/ if }}
+                        {{/ if }}
+                    </li>
+                {{/ each }}
             </ul>
         </div>
 
@@ -100,7 +75,12 @@
                 {{# if canInvite }}
                     <button class="btn waves-effect waves-light red accent-2 mr10" id="game-invite"><i class="material-icons left">group_add</i> Invite</button>
                 {{/ if }}
-                <button class="btn waves-effect waves-light" disabled="disabled">Start <i class="material-icons right">navigate_next</i></button>
+
+                {{# if canStart }}
+                    <button class="btn waves-effect waves-light">Start <i class="material-icons right">navigate_next</i></button>
+                {{ else }}
+                    <button class="btn waves-effect waves-light" disabled="disabled">Start <i class="material-icons right">navigate_next</i></button>
+                {{/ if }}
             </div>
         </div>
     </div>

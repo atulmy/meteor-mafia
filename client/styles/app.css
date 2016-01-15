@@ -58,8 +58,9 @@
     .mb5 { margin-bottom: 5px; }
     .mb10 { margin-bottom: 10px; }
     /* all */
-    .m0 { margin: 0px; }
-    .p0 { padding: 0px; }
+    .m0 { margin: 0px !important; }
+    .p0 { padding: 0px !important; }
+    .p10 { padding: 10px; }
 /* --------------- / Margins and Padding --------------- */
 
 /* --------------- Content --------------- */
@@ -82,6 +83,12 @@
         .content-split-vertically .col-30 {
             padding: 0px;
             height: 30%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .content-split-vertically .col-20 {
+            padding: 0px;
+            height: 20%;
             overflow-x: hidden;
             overflow-y: auto;
         }
@@ -264,9 +271,6 @@
     #app-full-content .container-fluid {
         height: 100%;
     }
-    #app-full-content .btn {
-        border-radius: 18px;
-    }
     #app-full-content .collection {
         border: 1px solid #000;
     }
@@ -283,9 +287,10 @@
 /* --------------- / App Game Content --------------- */
 
 /* --------------- MaterialzeCSS Overrides --------------- */
+    .btn { border-radius: 18px; }
+    .btn-block { border-radius: 30px; display: block !important; width: 100%; }
     form .row { margin-top: 0px; margin-bottom: 0px }
     .slider .indicators .indicator-item.active { background-color: #FF5252; }
-    .btn-block { display: block!important; width: 100%; }
     .input-field label, .input-field label.active, .select-wrapper + label { font-size: 1rem; }
     input[type="range"], input[type="range"]:focus { border: none; outline: none; }
     .collection .collection-item .title { font-size: 16px; }
@@ -309,6 +314,7 @@
         min-width: 100%;
         min-height: 100%;
     }
+    .toast { justify-content: unset; word-break: normal; }
 /* --------------- / MaterialzeCSS Overrides --------------- */
 
 /* --------------- Responsive --------------- */

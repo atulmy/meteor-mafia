@@ -19,6 +19,7 @@
 # Database
     aldeed:collection2
     check
+    msavin:mongol
 
 # Routing
     iron:router

@@ -1,6 +1,9 @@
 App = {
     Defaults: {
         toastTime: 4000,
+        messages: {
+            'error': '<i class="material-icons left">error_outline</i> There was some error. Please try again'
+        },
         cities: [
             'London',
             'New York',

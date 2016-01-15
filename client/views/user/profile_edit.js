@@ -47,7 +47,7 @@ Template.userProfileEdit.events({
                 App.Helpers.actionLoading('#form-user-profile-submit', 'after');
 
                 if (error) {
-                    Materialize.toast('There was some error, please try again', App.Defaults.toastTime);
+                    Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
                 } else {
                     Materialize.toast(response.message, App.Defaults.toastTime);
 

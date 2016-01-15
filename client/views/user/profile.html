@@ -30,6 +30,13 @@
                 <div class="divider divider-theme mt10 mb10"></div>
 
                 <h1 class="tx-lg m0">{{ currentUser.profile.name }}</h1>
+
+                <p class="center-align">
+                    <button type="submit" id="profile-logout" class="btn waves-effect waves-light red accent-2">
+                        <span class="action-text"><i class="material-icons left">power_settings_new</i> Logout</span>
+                        <span class="action-loading display-none">{{> commonLoadingAction }}</span>
+                    </button>
+                </p>
             </div>
         </div>
     </div>

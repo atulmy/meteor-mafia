@@ -15,8 +15,11 @@
 
     <!-- Right -->
     {{#contentFor "headerRight"}}
-        <a href="#" class="button-actions waves-effect waves-light">
-            <i class="material-icons">navigate_next</i>
+        <a href="#" data-action-form="#form-game-join" class="header-action button-actions waves-effect waves-light">
+            <i class="material-icons">check</i>
+        </a>
+        <a href="#" class="header-action-loading button-actions waves-effect waves-light display-none">
+            <i class="material-icons">hourglass_empty</i>
         </a>
     {{/contentFor}}
 
@@ -24,17 +27,20 @@
     <div class="container display-none animate-fade-in">
         <div class="row vertical-align">
             <div class="col s12 vertical-align-child">
-                <form>
+                <form id="form-game-join">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="mafia_city_code" type="number" class="validate" value="" placeholder="Eg: 1234" maxlength="4"/>
-                            <label for="mafia_city_code" class="active">Enter "Mafia City Code"</label>
+                            <input id="mafia-city-code" type="number" class="validate" placeholder="Eg: 1234" max="9999"/>
+                            <label for="mafia-city-code" class="active">Enter "Mafia City Code"</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <button type="button" class="waves-effect waves-light btn-large btn-block red accent-2">Join <i class="material-icons right">navigate_next</i></button>
+                            <button type="submit" id="form-game-join-submit" class=" waves-effect waves-light btn-large btn-block red accent-2">
+                                <span class="action-text">Join <i class="material-icons right">navigate_next</i></span>
+                                <span class="action-loading display-none">{{> commonLoadingAction }}</span>
+                            </button>
                         </div>
                     </div>
                 </form>

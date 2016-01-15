@@ -39,7 +39,14 @@
         return !a;
     });
 
+// Date Time
     // Nice time
     Template.registerHelper('niceTime', function (t) {
         return moment(t).fromNow();
+    });
+
+// Array
+    // Reverse
+    Template.registerHelper('arrayReverse', function (a) {
+        return a.reverse();
     });

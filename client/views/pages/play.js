@@ -7,11 +7,43 @@ Template.pagesPlay.helpers({
     },
     canInvite: function() {
         return Meteor.isCordova;
+    },
+    canStart: function() {
+        var game = Games.findOne({_id: Session.get('gameId')});
+
+        var allReady = true;
+        game.players.list.forEach(function(v) {
+            if(v.ready == false) {
+                allReady = false;
+            }
+        });
+
+        return (game.players.joined >= 6) && allReady;
     }
 });
 
 // Events
 Template.pagesPlay.events({
+    'click #game-ready': function(event, template) {
+        console.log('E - click .toggle-ready');
+
+        // Get Inputs
+        var input = {};
+        input.ready = template.$(event.currentTarget).is(':checked');
+        input.gameId = Session.get('gameId');
+        console.log(input);
+
+        Meteor.call('gameToggleReady', input, function (error, response) {
+            console.log('M - gameToggleReady');
+
+            if(error) {
+                Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
+            } else {
+                Materialize.toast(response.message, App.Defaults.toastTime);
+            }
+        });
+    },
+
     'click #game-invite': function(event, template) {
         event.preventDefault();
 
