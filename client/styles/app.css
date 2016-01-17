@@ -19,8 +19,9 @@
     .border-all-game { border: 3px solid rgba(0, 0, 0, 0.8); }
     .bg-game-header { background-color: rgba(38, 166, 154, 0.5); }
     .bg-game-dark { background-color: rgba(0, 0, 0, 0.5); }
-    .bg-game-player-alive { background-color: rgba(56, 142, 60, 0.5); }
-    .bg-game-player-dead { background-color: rgba(255, 82, 82, 0.5); }
+    .bg-game-player-alive { background-color: rgba(56, 142, 60, 0.3); }
+    .bg-game-player-dead { background-color: rgba(255, 82, 82, 0.3); }
+    .bg-transparent { background: transparent !important; }
 /* --------------- / Common --------------- */
 
 /* --------------- Typography --------------- */
@@ -35,6 +36,7 @@
         .tx-lg { font-size: 22px; }
         .tx-xl { font-size: 28px; }
         .tx-xxl { font-size: 32px; }
+        .tx-xxxl { font-size: 38px; }
     /* thickness */
         .tx-thin { font-weight: 100; }
         .tx-light { font-weight: 200; }
@@ -309,12 +311,20 @@
     #app-full-content .collection .collection-item {
         background-color: rgba(0, 0, 0, 0.5);
         border-bottom: 1px solid #000000;
+        overflow: hidden;
     }
     #app-full-content .collection .collection-item:last-child {
         border-bottom: none;
     }
     #app-full-content .collection .collection-item.avatar {
         min-height: auto;
+    }
+    #app-full-content .game-header-action {
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        padding-top: 5px;
+        color: #aaa;
     }
 /* --------------- / App Game Content --------------- */
 
@@ -327,22 +337,33 @@
     input[type="range"], input[type="range"]:focus { border: none; outline: none; }
     .collection .collection-item .title { font-size: 16px; }
     button .preloader-wrapper.small { margin-top: 9px; }
+    #form-game-discussion-submit .preloader-wrapper { margin-top: 4px; }
     .row .col.offset-s2 { margin-left: 16.6667% !important; }
     .row .col.offset-s3 { margin-left: 25% !important; }
     .camera-popup { overflow: hidden; }
     .camera-popup img { width: 100% !important; }
-    .rounded {
+    .rounded, .rounded-small {
         border-radius: 50%;
         overflow: hidden;
         width: 200px;
+        height: 200px;
         margin: 0 auto;
+    }
+    .rounded-small {
+        width: 90px !important;
+        height: 90px !important;
     }
     img.rounded, .rounded img {
         display: block;
         width: 100%;
+        height: 100%;
         min-width: 100%;
     }
     .toast { justify-content: unset; word-break: normal; }
+    img.responsive-img, video.responsive-video { width: 100%; }
+    .tabs .indicator { background-color: #FF5252; }
+    .tabs .tab a { color: #fff; }
+    .tabs .tab a.active { color: #FF5252; }
 /* --------------- / MaterialzeCSS Overrides --------------- */
 
 /* --------------- Responsive --------------- */

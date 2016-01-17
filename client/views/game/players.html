@@ -5,29 +5,13 @@
         <div class="col col-8 s12 center-align vertical-align border-bottom-game">
             <div class="clearfix vertical-align-child bg-game-header">
                 <h1 class="m0 tx-uppercase tx-lg">Mafia in {{ stringCrop game.city.name 12 }}</h1>
-            </div>
-        </div>
 
-        <div class="col col-24 s12 center-align vertical-align-child">
-            <div class="clearfix vertical-align-child">
-                {{# if not started }}
-                    {{# if equalTo game.players.joined game.players.expected }}
-                        <p class="tx-md p10">All players joined! Click on START to begin the game.</p>
-                    {{ else }}
-                        <p class="tx-lg mt5 mb5">Code: {{ game.city.code }}</p>
-                        <p class="center-align mt5 mb5">{{> commonLoadingAction active="active" }}</p>
-                        <p class="center-align mt5 mb5">waiting for players...</p>
-                    {{/ if }}
-                {{ else }}
-                    <button class="btn waves-effect waves-light red accent-2 mr10" id="game-started">Play <i class="material-icons left">navigate_next</i></button>
-                {{/ if }}
+                <a href="#modal-game-quit" class="game-header-action waves-effect waves-light modal-trigger"><i class="material-icons">exit_to_app</i></a>
             </div>
         </div>
 
         <div class="col col-10 s12 center-align vertical-align">
             <div class="clearfix vertical-align-child">
-                <div class="divider divider-game"></div>
-
                 <p class="tx-lg center-align mt10 mb5">Players joined: {{ game.players.joined }}/{{ game.players.expected }}</p>
             </div>
         </div>
@@ -73,6 +57,22 @@
             </ul>
         </div>
 
+        <div class="col col-24 s12 center-align vertical-align">
+            <div class="clearfix vertical-align-child">
+                {{# if not started }}
+                    {{# if equalTo game.players.joined game.players.expected }}
+                        <p class="tx-md p10">All players joined! Click on START to begin the game.</p>
+                    {{ else }}
+                        <p class="tx-lg mt5 mb5">Code: {{ game.city.code }}</p>
+                        <p class="center-align mt5 mb5">{{> commonLoadingAction active="active" }}</p>
+                        <p class="center-align mt5 mb5">waiting for players...</p>
+                    {{/ if }}
+                {{ else }}
+                    <button class="btn waves-effect waves-light red accent-2 mr10" id="game-started">Play <i class="material-icons left">navigate_next</i></button>
+                {{/ if }}
+            </div>
+        </div>
+
         <div class="col col-8 s12 center-align vertical-align">
             <div class="clearfix vertical-align-child">
                 {{# if canInvite }}
@@ -87,5 +87,21 @@
             </div>
         </div>
     </div>
+
+<!-- Modals -->
+    {{#contentFor "modals"}}
+        <!-- Quit -->
+        <div id="modal-game-quit" class="modal">
+            <div class="modal-content">
+                <h4 class="tx-light tx-uppercase tx-md">Quit this game?</h4>
+
+                <p>Are you sure you want to quit this game?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="{{ pathFor route='home' }}" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+                <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+            </div>
+        </div>
+    {{/contentFor}}
 
 </template>

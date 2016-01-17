@@ -12,15 +12,15 @@ App = {
             'Singapore',
             'Barcelona',
             'Bangkok',
-            'Kuala Lumpur',
+            'Rome',
             'Dubai',
             'Istanbul'
         ],
         characters: [
-            'Citizen',  // 0
-            'Mafia',    // 1
-            'Doctor',   // 2
-            'Detective' // 3
+            {title: 'Citizen', 'icon': '<i class="material-icons left mr5 deep-orange-text text-darken-2">people</i>'},  // 0
+            {title: 'Mafia', 'icon': '<img src="/images/logo.png" alt="Mafia" class="circle responsive-img left mr5" style="width: 24px;">'},  // 1
+            {title: 'Doctor', 'icon': '<i class="material-icons left mr5 green-text text-darken-2">add_circle</i>'},  // 2
+            {title: 'Detective', 'icon': '<i class="material-icons left mr5 indigo-text text-darken-2">search</i>'},  // 3
         ]
     },
 
@@ -62,6 +62,10 @@ App = {
 
             slider: function() {
                 $('.slider').slider({full_width: true});
+            },
+
+            tabs: function() {
+                $('ul.tabs').tabs();
             }
         }
     },

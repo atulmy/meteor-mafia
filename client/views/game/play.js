@@ -5,21 +5,35 @@ Template.gamePlay.helpers({
     game: function() {
         return Games.findOne({_id: Session.get('gameId')});
     },
-    currentPlayer: function() {
-        var game = Games.findOne({_id: Session.get('gameId')});
 
-        var currentPlayer = {};
-        game.players.list.forEach(function(p) {
-            if(p.id == Meteor.userId()) {
-                currentPlayer = p;
-            }
-        });
+    // Current Player
+        currentPlayer: function() {
+            var game = Games.findOne({_id: Session.get('gameId')});
 
-        return currentPlayer;
-    },
-    currentPlayerCharacter: function(c) {
-        return App.Defaults.characters[c];
-    }
+            var currentPlayer = {};
+            game.players.list.forEach(function(p) {
+                if(p.id == Meteor.userId()) {
+                    currentPlayer = p;
+                }
+            });
+
+            return currentPlayer;
+        },
+
+        currentPlayerCharacterText: function(c) {
+            return App.Defaults.characters[c].icon+' '+App.Defaults.characters[c].title;
+        },
+
+        currentPlayerAliveOrDeadText: function(aliveOrDead) {
+            var alive = '<i class="material-icons left mr5 green-text text-darken-2">mood</i> Alive';
+            var dead = '<i class="material-icons left mr5 red-text text-darken-2">mood_bad</i> Dead';
+            return (aliveOrDead) ? alive : dead;
+        },
+
+    // Players
+        playerAliveOrDead: function(aliveOrDead) {
+            return (aliveOrDead) ? 'bg-game-player-alive' : 'bg-game-player-dead';
+        }
 });
 
 // Events
@@ -69,7 +83,43 @@ Template.gamePlay.events({
                 link
             );
         }
-    }
+    },
+
+    'submit #form-game-discussion': function(event, template) {
+        event.preventDefault();
+
+        console.log('E - submit #form-game-discussion');
+
+        // Show action loading
+        App.Helpers.actionLoading('#form-game-discussion-submit', 'before');
+
+        // Get Inputs
+        var input = {};
+        input.message = template.$('#form-game-discussion-message').val();
+        input.gameId = Session.get('gameId');
+        console.log(input);
+
+        // Validate
+        if(input.message != '') {
+            Meteor.call('gameDiscussion', input, function (error, response) {
+                console.log('M - gameDiscussion');
+
+                App.Helpers.actionLoading('#form-game-discussion-submit', 'after');
+
+                if (error) {
+                    Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
+                } else {
+                    if (response.success) {
+                        template.$('#form-game-discussion-message').val('');
+                    }
+                }
+            });
+        } else {
+            App.Helpers.actionLoading('#form-game-discussion-submit', 'after');
+
+            Materialize.toast('Please provide message.', App.Defaults.toastTime);
+        }
+    },
 });
 
 // On Render
@@ -81,5 +131,7 @@ Template.gamePlay.rendered = function() {
 
     $( function() {
         App.init();
+        App.Materialize.Init.modal();
+        App.Materialize.Init.tabs();
     });
 };

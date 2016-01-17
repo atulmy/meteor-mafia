@@ -23,21 +23,25 @@ Meteor.methods({
             id: Meteor.userId(),
             name: Meteor.user().profile.name,
             image: Meteor.user().profile.picture,
+            ready: true,
             character: 0,
-            ready: true
+            alive: true
         };
 
         // create game document
         var game = {
+            city: {
+                name: input.city,
+                code: input.code
+            },
             players: {
                 expected: input.expected,
                 joined: 1,
                 list: [player]
             },
-            city: {
-                name: input.city,
-                code: input.code
-            },
+            rounds: [{mafia: false}],
+            activities: [{text: 'Game created'}],
+            discussions: [{name: ':)', message: 'Start discussing here!'}],
             is: {
                 moneyGame: input.isMoneyGame,
                 publicGame: false,
@@ -92,14 +96,22 @@ Meteor.methods({
                         id: Meteor.userId(),
                         name: Meteor.user().profile.name,
                         image: Meteor.user().profile.picture,
+                        ready: true,
                         character: 0,
-                        ready: true
+                        alive: true
                     };
                     var players = game.players;
                     console.log(players);
                     players.joined++;
                     players.list.push(player);
-                    var result = Games.update(game._id, {$set: {players: players}});
+
+                    var activities = game.activities;
+                    activities.push({text: Meteor.user().profile.name+' has joined the game!'});
+
+                    var result = Games.update(game._id, {$set: {
+                        players: players,
+                        activities: activities
+                    }});
                     if (result) {
                         response.success = true;
                         response.message = '<i class="material-icons left">person_add</i> You have joined the game!';
@@ -204,9 +216,14 @@ Meteor.methods({
                         game.players.list[j].character = characters[j];
                     }
 
-                    console.log(game.players.list);
+                    var activities = game.activities;
+                    activities.push({text: 'Game has started!'});
 
-                    var result = Games.update(game._id, {$set: {"is.started": input.value, "players.list": game.players.list}});
+                    var result = Games.update(game._id, {$set: {
+                        "is.started": input.value,
+                        "players.list": game.players.list,
+                        activities: activities
+                    }});
                     if (result) {
                         response.success = true;
                         response.message = '<i class="material-icons left">notifications_active</i> The game has begin!';
@@ -221,7 +238,7 @@ Meteor.methods({
         return response;
     },
 
-    gameUpdateIs: function(input) {
+    gameDiscussion: function(input) {
         var response = {
             success: false,
             message: '<i class="material-icons left">error_outline</i> There was some server error. Please try again',
@@ -233,26 +250,19 @@ Meteor.methods({
 
         // validate data
         check(input.gameId, String);
-        check(input.key, String);
-        check(input.value, Boolean);
+        check(input.message, String);
 
 
         var game = Games.findOne(input.gameId);
         if(game) {
-            var setData = {};
-            if(input.key == 'started') {
-                setData = {"is.started": input.value};
-            } else if(input.key == 'finished') {
-                setData = {"is.started": input.value};
-            }
-            var result = false; // Games.update(game._id, {$set: setData});
+            var discussions = game.discussions;
+            discussions.push({name: Meteor.user().profile.name, message: input.message});
+
+            var result = Games.update(game._id, {$set: {discussions: discussions}});
+
             if(result) {
                 response.success = true;
-                if(input.key == 'started') {
-                    response.message = '<i class="material-icons left">notifications_active</i> The game has begin!';
-                } else if(input.key == 'finished') {
-                    response.message = '<i class="material-icons left">notifications_active</i> The game has finished!';
-                }
+                response.message = 'Sent!';
             }
         }
 

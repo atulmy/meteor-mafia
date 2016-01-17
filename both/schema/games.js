@@ -1,6 +1,15 @@
 // Schema for games collection
 
-var userInfo = new SimpleSchema({
+var city = new SimpleSchema({
+    name: {
+        type: String
+    },
+    code: {
+        type: String
+    }
+});
+
+var player = new SimpleSchema({
     id: {
         type: String
     },
@@ -10,10 +19,13 @@ var userInfo = new SimpleSchema({
     image: {
         type: String
     },
+    ready: {
+        type: Boolean
+    },
     character: {
         type: Number
     },
-    ready: {
+    alive: {
         type: Boolean
     }
 });
@@ -26,16 +38,7 @@ var players = new SimpleSchema({
         type: Number
     },
     list: {
-        type: [userInfo]
-    }
-});
-
-var city = new SimpleSchema({
-    name: {
-        type: String
-    },
-    code: {
-        type: String
+        type: [player]
     }
 });
 
@@ -57,13 +60,52 @@ var is = new SimpleSchema({
     }
 });
 
+var round = new SimpleSchema({
+    mafia: {
+        type: Boolean
+    }
+});
+
+var activity = new SimpleSchema({
+    text: {
+        type: String
+    },
+    when: {
+        type: Date,
+        autoValue: function() {
+            return new Date()
+        }
+    }
+});
+
+var discussion = new SimpleSchema({
+    name: {
+        type: String
+    },
+    message: {
+        type: String
+    }
+});
+
 Games.attachSchema(new SimpleSchema({
+    city: {
+        type: city
+    },
+
     players: {
         type: players
     },
 
-    city: {
-        type: city
+    rounds: {
+        type: [round]
+    },
+
+    activities: {
+        type: [activity]
+    },
+
+    discussions: {
+        type: [discussion]
     },
 
     is: {

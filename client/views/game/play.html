@@ -2,47 +2,109 @@
 
 <!-- Page Content -->
     <div class="container-fluid display-none animate-fade-in content-split-vertically">
+        <!-- Header -->
         <div class="col col-8 s12 center-align vertical-align border-bottom-game">
             <div class="clearfix vertical-align-child bg-game-header">
                 <h1 class="m0 tx-uppercase tx-lg">Mafia in {{ stringCrop game.city.name 10 }}</h1>
+
+                <a href="#modal-game-quit" class="game-header-action waves-effect waves-light modal-trigger"><i class="material-icons">exit_to_app</i></a>
             </div>
         </div>
 
-        <div class="col col-34 s12 border-bottom-game">
+        <!-- Current Player Info -->
+        <div class="col col-34 s12">
             <div class="row vertical-align">
                 <div class="col s6 vertical-align-child center-align">
-                    <img src="{{ currentPlayer.image }}" alt="{{ currentPlayer.name }}" class="responsive-img rounded"/>
+                    <img src="{{ currentPlayer.image }}" alt="{{ currentPlayer.name }}" class="responsive-img"/>
                 </div>
                 <div class="col s6 vertical-align-child">
                     <p class="tx-sm center-align">{{ currentPlayer.name }}</p>
                     <div class="divider divider-dark"></div>
 
-                    <p class="tx-sm"><i class="material-icons left mr5">add_circle</i> {{ currentPlayerCharacter currentPlayer.character }}</p>
+                    <p class="tx-sm tx-uppercase">
+                        {{{ currentPlayerCharacterText currentPlayer.character }}}
+                    </p>
                     <div class="divider divider-dark"></div>
 
-                    <p class="tx-sm"><i class="material-icons left mr5 green-text text-darken-2">mood</i> You are Alive</p>
+                    <p class="tx-sm tx-uppercase">
+                        {{{ currentPlayerAliveOrDeadText currentPlayer.alive }}}
+                    </p>
                     <div class="divider divider-dark"></div>
                 </div>
             </div>
         </div>
 
-        <div class="col col-50 s12 border-bottom-game ">
-            <div class="row mb0 bg-game-dark vertical-align">
+        <!-- Tabs -->
+        <div class="col col-8 s12 center-align vertical-align bg-game-dark">
+            <div class="clearfix vertical-align-child">
+                <ul class="tabs bg-transparent">
+                    <li class="tab col s3"><a href="#tab-player" class="active">Players</a></li>
+                    <li class="tab col s3"><a href="#tab-activities">Activities</a></li>
+                    <li class="tab col s3"><a href="#tab-discussion">Discussion</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col col-50 s12 bg-game-dark">
+            <!-- Tab Players List -->
+            <div class="row mb0" id="tab-player">
                 {{# each arrayReverse game.players.list }}
                     {{# if notEqualTo id currentUser._id }}
-                        <div class="col s4 left bg-game-player-alive border-all-game vertical-align-child">
-                            <p class="mt10 mb0"><img src="{{ image }}" alt="{{ name }}" class="responsive-img rounded"/></p>
+                        <div class="col s4 left {{ playerAliveOrDead alive }} border-all-game">
+                            <p class="mt10 mb5 center-align"><img src="{{ image }}" alt="{{ name }}" class="responsive-img rounded rounded-small"/></p>
                             <p class="mt5 mb5 center-align">{{ stringCrop name 10 }}</p>
                         </div>
                     {{/ if }}
                 {{/ each }}
             </div>
-        </div>
 
-        <div class="col col-8 s12 center-align vertical-align">
-            <div class="clearfix vertical-align-child">
+            <!-- Tab Activities -->
+            <div class="row mb0 display-none" id="tab-activities">
+                <ul class="collection mt0 mb0">
+                    {{# each arrayReverse game.activities }}
+                        <li class="collection-item">{{ text }} <span class="grey-text right">{{ niceTime when }}</span></li>
+                    {{/ each }}
+                </ul>
+            </div>
+
+            <!-- Tab Discussion -->
+            <div class="row mb0 display-none" id="tab-discussion">
+                <ul class="collection mt0 mb0" style="margin-bottom: 55px;">
+                    {{# each arrayReverse game.discussions }}
+                        <li class="collection-item">{{ message }} <span class="grey-text right">{{ name }}</span></li>
+                    {{/ each }}
+                </ul>
+                <div class="row m0" style="position: absolute; bottom: 0; width: 100%;height: 55px;background: #000;padding: 5px;">
+                    <form id="form-game-discussion">
+                        <div class="col s9 p0">
+                            <input type="text" class="m0" id="form-game-discussion-message" placeholder="enter your message..."/>
+                        </div>
+                        <div class="col s3 p0">
+                            <button class="btn waves-effect waves-light btn-block" id="form-game-discussion-submit" style="height: 43px;">
+                                <span class="action-text"><i class="material-icons">send</i></span>
+                                <span class="action-loading display-none">{{> commonLoadingAction }}</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+
+<!-- Modals -->
+    {{#contentFor "modals"}}
+        <!-- Quit -->
+        <div id="modal-game-quit" class="modal">
+            <div class="modal-content">
+                <h4 class="tx-light tx-uppercase tx-md">Quit this game?</h4>
+
+                <p>Are you sure you want to quit this game?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="{{ pathFor route='home' }}" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+                <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+            </div>
+        </div>
+    {{/contentFor}}
 
 </template>

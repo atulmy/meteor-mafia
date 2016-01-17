@@ -7,7 +7,13 @@ Template.pagesSplash.helpers({
 
 // Events
 Template.pagesSplash.events({
+    'click .splash-start': function(event, template) {
+        event.preventDefault();
 
+        console.log('M - click .splash-start');
+
+        Router.go('home');
+    }
 });
 
 // On Render
@@ -19,7 +25,7 @@ Template.pagesSplash.rendered = function () {
 
         // Redirect to Home
         Meteor.setTimeout(function(){
-            Router.go('home');
+            // Router.go('home');
         }, 18000);
     });
 };

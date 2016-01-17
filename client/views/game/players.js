@@ -119,5 +119,6 @@ Template.gamePlayers.rendered = function() {
 
     $( function() {
         App.init();
+        App.Materialize.Init.modal();
     });
 };
