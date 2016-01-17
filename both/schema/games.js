@@ -48,6 +48,10 @@ var is = new SimpleSchema({
         type: Boolean
     },
 
+    started: {
+        type: Boolean
+    },
+
     finished: {
         type: Boolean
     }

@@ -15,6 +15,12 @@ App = {
             'Kuala Lumpur',
             'Dubai',
             'Istanbul'
+        ],
+        characters: [
+            'Citizen',  // 0
+            'Mafia',    // 1
+            'Doctor',   // 2
+            'Detective' // 3
         ]
     },
 

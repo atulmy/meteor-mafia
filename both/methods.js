@@ -5,7 +5,7 @@ Meteor.methods({
     'userProfileUpdate': function(input) {
         var response = {
             success: false,
-            message: 'There was some error. Please try again.',
+            message: '<i class="material-icons left">error_outline</i> There was some error. Please try again.',
             data: ''
         };
 
@@ -23,7 +23,7 @@ Meteor.methods({
         var check = Meteor.users.update(Meteor.userId(), {$set: {profile: profile}});
         if(check) {
             response.success = true;
-            response.message = 'Your profile has been updated successfully.';
+            response.message = '<i class="material-icons left">check_circle</i> Your profile has been updated successfully.';
         }
 
         return response;
@@ -32,7 +32,7 @@ Meteor.methods({
     emailContact: function(input) {
         var response = {
             success: false,
-            message: 'There was some error. Please try again.',
+            message: '<i class="material-icons left">error_outline</i> There was some error. Please try again.',
             data: ''
         };
 
@@ -48,7 +48,7 @@ Meteor.methods({
             console.log(emailResponse);
 
             response.success = true;
-            response.message = 'Thank you for contacting us. We will get back to soon as we can.';
+            response.message = '<i class="material-icons left">email</i> Thank you for contacting us. We will get back to soon as we can.';
         }
 
         return response;

@@ -35,10 +35,27 @@ AccountsTemplates.configure({
                 return Meteor.subscribe('gamesRecent');
             }
         });
+        // Players
+        Router.route('/game/:gameId', {
+            name: 'game',
+            template: 'gamePlayers',
+            layoutTemplate: 'layoutsFull',
+            waitOn: function() {
+                return Meteor.subscribe('game', this.params.gameId);
+            },
+            onBeforeAction: function() {
+                Session.set('gameId', this.params.gameId);
+                this.next();
+            },
+            onStop: function() {
+                // Clear game id in session
+                Session.set('gameId', '');
+            }
+        });
         // Play
-        Router.route('/play/:gameId', {
-            name: 'play',
-            template: 'pagesPlay',
+        Router.route('/game/:gameId/play', {
+            name: 'gamePlay',
+            template: 'gamePlay',
             layoutTemplate: 'layoutsFull',
             waitOn: function() {
                 return Meteor.subscribe('game', this.params.gameId);

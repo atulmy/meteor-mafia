@@ -17,7 +17,7 @@ Template.pagesHome.events({
         $('#modal-game-city-selection').openModal();
     },
 
-    'input #game-players': function(event, template) {
+    'input #game-expected': function(event, template) {
         event.preventDefault();
 
         console.log('E - input #game-expected');
@@ -58,7 +58,7 @@ Template.pagesHome.events({
 
                     if (response.success) {
                         // Game created, redirect to play screen
-                        Router.go('play', {gameId: response.data});
+                        Router.go('game', {gameId: response.data});
                     }
                 }
             });

@@ -50,3 +50,10 @@
     Template.registerHelper('arrayReverse', function (a) {
         return a.reverse();
     });
+
+// String
+    // Crop
+    Template.registerHelper('stringCrop', function (string, length) {
+        length = (typeof length != 'undefined') ? length : 12;
+        return string.substr(0, length);
+    });

@@ -1,7 +1,7 @@
-// Pages Play
+// Game Players
 
 // Helper
-Template.pagesPlay.helpers({
+Template.gamePlayers.helpers({
     game: function() {
         return Games.findOne({_id: Session.get('gameId')});
     },
@@ -19,13 +19,54 @@ Template.pagesPlay.helpers({
         });
 
         return (game.players.joined >= 6) && allReady;
+    },
+    started: function() {
+        var game = Games.findOne({_id: Session.get('gameId')});
+
+        if(game.is.started) {
+            Router.go('gamePlay', {gameId: game._id});
+        }
+
+        return false;
     }
 });
 
 // Events
-Template.pagesPlay.events({
+Template.gamePlayers.events({
+    'click #game-start': function(event, template) {
+        console.log('E - click #game-start');
+
+        var game = Games.findOne({_id: Session.get('gameId')});
+        if(game) {
+            var input = {key: "started", value: true, gameId: game._id};
+            Meteor.call('gameStart', input, function (error, response) {
+                console.log('M - gameStart');
+
+                if(error) {
+                    Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
+                } else {
+                    Materialize.toast(response.message, App.Defaults.toastTime);
+
+                    if(response.success) {
+                        Router.go('gamePlay', {gameId: game._id});
+                    }
+                }
+            });
+        }
+    },
+
+    'click #game-started': function(event, template) {
+        console.log('E - click #game-started');
+
+        var game = Games.findOne({_id: Session.get('gameId')});
+
+        if(game.is.started) {
+            Router.go('gamePlay', {gameId: game._id});
+        }
+    },
+
     'click #game-ready': function(event, template) {
-        console.log('E - click .toggle-ready');
+        console.log('E - click #game-ready');
 
         // Get Inputs
         var input = {};
@@ -67,8 +108,14 @@ Template.pagesPlay.events({
 });
 
 // On Render
-Template.pagesPlay.rendered = function() {
-    console.log('R - Template.pagesPlay.rendered');
+Template.gamePlayers.rendered = function() {
+    console.log('R - Template.gamePlayers.rendered');
+
+    var game = Games.findOne({_id: Session.get('gameId')});
+
+    if(game.is.started) {
+        Router.go('home');
+    }
 
     $( function() {
         App.init();

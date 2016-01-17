@@ -43,8 +43,8 @@ Template.pagesJoin.events({
                     Materialize.toast(response.message, App.Defaults.toastTime);
 
                     if (response.success) {
-                        // Game joined, redirect to play screen
-                        Router.go('play', {gameId: response.data});
+                        // Game joined, redirect to game screen
+                        Router.go('game', {gameId: response.data});
                     }
                 }
             });

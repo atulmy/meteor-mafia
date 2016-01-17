@@ -1,0 +1,48 @@
+<template name="gamePlay">
+
+<!-- Page Content -->
+    <div class="container-fluid display-none animate-fade-in content-split-vertically">
+        <div class="col col-8 s12 center-align vertical-align border-bottom-game">
+            <div class="clearfix vertical-align-child bg-game-header">
+                <h1 class="m0 tx-uppercase tx-lg">Mafia in {{ stringCrop game.city.name 10 }}</h1>
+            </div>
+        </div>
+
+        <div class="col col-34 s12 border-bottom-game">
+            <div class="row vertical-align">
+                <div class="col s6 vertical-align-child center-align">
+                    <img src="{{ currentPlayer.image }}" alt="{{ currentPlayer.name }}" class="responsive-img rounded"/>
+                </div>
+                <div class="col s6 vertical-align-child">
+                    <p class="tx-sm center-align">{{ currentPlayer.name }}</p>
+                    <div class="divider divider-dark"></div>
+
+                    <p class="tx-sm"><i class="material-icons left mr5">add_circle</i> {{ currentPlayerCharacter currentPlayer.character }}</p>
+                    <div class="divider divider-dark"></div>
+
+                    <p class="tx-sm"><i class="material-icons left mr5 green-text text-darken-2">mood</i> You are Alive</p>
+                    <div class="divider divider-dark"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col col-50 s12 border-bottom-game ">
+            <div class="row mb0 bg-game-dark vertical-align">
+                {{# each arrayReverse game.players.list }}
+                    {{# if notEqualTo id currentUser._id }}
+                        <div class="col s4 left bg-game-player-alive border-all-game vertical-align-child">
+                            <p class="mt10 mb0"><img src="{{ image }}" alt="{{ name }}" class="responsive-img rounded"/></p>
+                            <p class="mt5 mb5 center-align">{{ stringCrop name 10 }}</p>
+                        </div>
+                    {{/ if }}
+                {{/ each }}
+            </div>
+        </div>
+
+        <div class="col col-8 s12 center-align vertical-align">
+            <div class="clearfix vertical-align-child">
+            </div>
+        </div>
+    </div>
+
+</template>
