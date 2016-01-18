@@ -46,23 +46,66 @@ var is = new SimpleSchema({
     moneyGame: {
         type: Boolean
     },
-
     publicGame: {
         type: Boolean
     },
-
     started: {
         type: Boolean
     },
-
     finished: {
         type: Boolean
     }
 });
 
 var round = new SimpleSchema({
+    votes: {
+        type: [new SimpleSchema({
+            against: {
+                type: Number
+            },
+            done: {
+                type: Boolean
+            }
+        })]
+    },
+    doctor: {
+        type: new SimpleSchema({
+            against: {
+                type: Number
+            },
+            done: {
+                type: Boolean
+            },
+            saved: {
+                type: Boolean
+            }
+        })
+    },
+    detective: {
+        type: new SimpleSchema({
+            against: {
+                type: Number
+            },
+            done: {
+                type: Boolean
+            },
+            guessed: {
+                type: Boolean
+            }
+        })
+    },
     mafia: {
-        type: Boolean
+        type: new SimpleSchema({
+            against: {
+                type: Number
+            },
+            done: {
+                type: Boolean
+            },
+            killed: {
+                type: Boolean
+            }
+        })
     }
 });
 

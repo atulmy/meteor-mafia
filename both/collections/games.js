@@ -39,7 +39,14 @@ Meteor.methods({
                 joined: 1,
                 list: [player]
             },
-            rounds: [{mafia: false}],
+            rounds: [
+                {
+                    votes: [{against: -1, done: false}],
+                    doctor: {against: -1, done: false, saved: false},
+                    detective: {against: -1, done: false, guessed: false},
+                    mafia: {against: -1, done: false, killed: false}
+                }
+            ],
             activities: [{text: 'Game created'}],
             discussions: {
                 user: [{name: '^_^', message: 'Lets catch the mafia, shall we?'}],
@@ -109,12 +116,16 @@ Meteor.methods({
                     players.joined++;
                     players.list.push(player);
 
+                    var rounds = game.rounds;
+                    rounds[rounds.length - 1].votes.push({against: -1, done: false});
+
                     var activities = game.activities;
                     activities.push({text: Meteor.user().profile.name+' has joined the game!'});
 
                     var result = Games.update(game._id, {$set: {
                         players: players,
-                        activities: activities
+                        activities: activities,
+                        rounds: rounds
                     }});
                     if (result) {
                         response.success = true;

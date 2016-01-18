@@ -15,6 +15,20 @@ Template.gamePlay.helpers({
             return 1;
         },
 
+        gameCurrentRound: function() {
+            var game = Games.findOne({_id: Session.get('gameId')});
+            if(game) {
+                return game.rounds[game.rounds.length - 1];
+            }
+        },
+
+        gameCurrentRoundVotingDone: function() {
+            var game = Games.findOne({_id: Session.get('gameId')});
+            if(game) {
+                return game.rounds[game.rounds.length - 1];
+            }
+        },
+
     // Current Player
         currentPlayer: function() {
             var game = Games.findOne({_id: Session.get('gameId')});
