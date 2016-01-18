@@ -22,6 +22,7 @@
     .bg-game-player-alive { background-color: rgba(56, 142, 60, 0.3); }
     .bg-game-player-dead { background-color: rgba(255, 82, 82, 0.3); }
     .bg-transparent { background: transparent !important; }
+    .position-relative { position: relative; }
 /* --------------- / Common --------------- */
 
 /* --------------- Typography --------------- */
@@ -52,10 +53,14 @@
     /* left */
     .ml0 { margin-left: 0px; }
     .ml10 { margin-left: 10px; }
+    .pl0 { padding-left: 0px !important; }
+    .pl5 { padding-left: 5px !important; }
     /* right */
     .mr0 { margin-right: 0px; }
     .mr5 { margin-right: 5px !important; }
     .mr10 { margin-right: 10px; }
+    .pr0 { padding-right: 0px !important; }
+    .pr5 { padding-right: 5px !important; }
     /* top */
     .mt0 { margin-top: 0px; }
     .mt5 { margin-top: 5px; }
@@ -322,10 +327,35 @@
     #app-full-content .game-header-action {
         position: absolute;
         right: 10px;
-        top: 5px;
-        padding-top: 5px;
         color: #aaa;
     }
+    /* notify */
+        #app-full-content .notify {
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.95);
+        }
+        #app-full-content .notify .pulse {
+            animation: fontbulger 5s infinite;
+        }
+        #app-full-content i.medium {
+            font-size: 2rem;
+            line-height: 3.5rem;
+        }
+        #app-full-content .game-vote, #app-full-content .game-kill {
+            border-radius: 0px;
+            width: 100%;
+            padding: 0px;
+            height: 30px;
+            font-size: 24px;
+            line-height: 18px;
+            box-shadow: none;
+            background: transparent !important;
+        }
 /* --------------- / App Game Content --------------- */
 
 /* --------------- MaterialzeCSS Overrides --------------- */
@@ -352,6 +382,7 @@
     .rounded-small {
         width: 90px !important;
         height: 90px !important;
+        min-width: auto !important;
     }
     img.rounded, .rounded img {
         display: block;
@@ -365,6 +396,17 @@
     .tabs .tab a { color: #fff; }
     .tabs .tab a.active { color: #FF5252; }
 /* --------------- / MaterialzeCSS Overrides --------------- */
+
+/* --------------- Animations --------------- */
+    @keyframes fontbulger {
+        0%, 100% {
+            font-size: 26px;
+        }
+        50% {
+            font-size: 42px;
+        }
+    }
+/* --------------- / Animations --------------- */
 
 /* --------------- Responsive --------------- */
     @media(max-width: 600px) {

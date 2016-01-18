@@ -2,9 +2,18 @@
 
 // Helper
 Template.gamePlay.helpers({
-    game: function() {
-        return Games.findOne({_id: Session.get('gameId')});
-    },
+    // Game
+        game: function() {
+            return Games.findOne({_id: Session.get('gameId')});
+        },
+
+        gameRoundNumber: function() {
+            var game = Games.findOne({_id: Session.get('gameId')});
+            if(game) {
+                return game.rounds.length;
+            }
+            return 1;
+        },
 
     // Current Player
         currentPlayer: function() {
@@ -20,6 +29,10 @@ Template.gamePlay.helpers({
             return currentPlayer;
         },
 
+        currentPlayerIsMafia: function(c) {
+            return (c == 1) ? true : false;
+        },
+
         currentPlayerCharacterText: function(c) {
             return App.Defaults.characters[c].icon+' '+App.Defaults.characters[c].title;
         },
@@ -31,8 +44,18 @@ Template.gamePlay.helpers({
         },
 
     // Players
-        playerAliveOrDead: function(aliveOrDead) {
+        playerAliveOrDeadBg: function(aliveOrDead) {
             return (aliveOrDead) ? 'bg-game-player-alive' : 'bg-game-player-dead';
+        },
+
+        playerAliveOrDeadBtn: function(aliveOrDead) {
+            return (aliveOrDead) ? '' : 'disabled';
+        },
+
+    // Notify
+        notifyRound: function() {
+
+            return true;
         }
 });
 
@@ -97,6 +120,7 @@ Template.gamePlay.events({
         var input = {};
         input.message = template.$('#form-game-discussion-message').val();
         input.gameId = Session.get('gameId');
+        input.type = 'user';
         console.log(input);
 
         // Validate
@@ -117,9 +141,46 @@ Template.gamePlay.events({
         } else {
             App.Helpers.actionLoading('#form-game-discussion-submit', 'after');
 
-            Materialize.toast('Please provide message.', App.Defaults.toastTime);
+            Materialize.toast('You did not enter any text.', App.Defaults.toastTime);
         }
     },
+
+    'submit #form-game-discussion-mafia': function(event, template) {
+        event.preventDefault();
+
+        console.log('E - submit #form-game-discussion-mafia');
+
+        // Show action loading
+        App.Helpers.actionLoading('#form-game-discussion-mafia-submit', 'before');
+
+        // Get Inputs
+        var input = {};
+        input.message = template.$('#form-game-discussion-mafia-message').val();
+        input.gameId = Session.get('gameId');
+        input.type = 'mafia';
+        console.log(input);
+
+        // Validate
+        if(input.message != '') {
+            Meteor.call('gameDiscussion', input, function (error, response) {
+                console.log('M - gameDiscussion');
+
+                App.Helpers.actionLoading('#form-game-discussion-mafia-submit', 'after');
+
+                if (error) {
+                    Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
+                } else {
+                    if (response.success) {
+                        template.$('#form-game-discussion-mafia-message').val('');
+                    }
+                }
+            });
+        } else {
+            App.Helpers.actionLoading('#form-game-discussion-mafia-submit', 'after');
+
+            Materialize.toast('You did not enter any text.', App.Defaults.toastTime);
+        }
+    }
 });
 
 // On Render

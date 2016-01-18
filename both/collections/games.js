@@ -41,7 +41,11 @@ Meteor.methods({
             },
             rounds: [{mafia: false}],
             activities: [{text: 'Game created'}],
-            discussions: [{name: ':)', message: 'Start discussing here!'}],
+            discussions: {
+                user: [{name: '^_^', message: 'Lets catch the mafia, shall we?'}],
+                mafia: [{name: '^_^', message: 'You must be feeling lucky, don\'t you?'}]
+            },
+            notify: {round: false, killed: false, discussion: false},
             is: {
                 moneyGame: input.isMoneyGame,
                 publicGame: false,
@@ -251,14 +255,21 @@ Meteor.methods({
         // validate data
         check(input.gameId, String);
         check(input.message, String);
-
+        check(input.type, String);
 
         var game = Games.findOne(input.gameId);
         if(game) {
-            var discussions = game.discussions;
-            discussions.push({name: Meteor.user().profile.name, message: input.message});
-
-            var result = Games.update(game._id, {$set: {discussions: discussions}});
+            var discussions = '';
+            var result = false;
+            if(input.type == 'mafia') {
+                discussions = game.discussions.mafia;
+                discussions.push({name: Meteor.user().profile.name, message: input.message});
+                result = Games.update(game._id, {$set: {"discussions.mafia": discussions}});
+            } else {
+                discussions = game.discussions.user;
+                discussions.push({name: Meteor.user().profile.name, message: input.message});
+                result = Games.update(game._id, {$set: {"discussions.user": discussions}});
+            }
 
             if(result) {
                 response.success = true;

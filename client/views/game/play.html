@@ -1,13 +1,15 @@
 <template name="gamePlay">
 
 <!-- Page Content -->
-    <div class="container-fluid display-none animate-fade-in content-split-vertically">
+    <div class="container-fluid display-none animate-fade-in content-split-vertically position-relative">
         <!-- Header -->
         <div class="col col-8 s12 center-align vertical-align border-bottom-game">
             <div class="clearfix vertical-align-child bg-game-header">
-                <h1 class="m0 tx-uppercase tx-lg">Mafia in {{ stringCrop game.city.name 10 }}</h1>
+                <h1 class="m0 tx-uppercase tx-lg position-relative">
+                    Mafia in {{ stringCrop game.city.name 10 }}
 
-                <a href="#modal-game-quit" class="game-header-action waves-effect waves-light modal-trigger"><i class="material-icons">exit_to_app</i></a>
+                    <a href="#modal-game-quit" class="game-header-action waves-effect waves-light modal-trigger"><i class="material-icons">exit_to_app</i></a>
+                </h1>
             </div>
         </div>
 
@@ -39,24 +41,95 @@
             <div class="clearfix vertical-align-child">
                 <ul class="tabs bg-transparent">
                     <li class="tab col s3"><a href="#tab-player" class="active">Players</a></li>
+                    <li class="tab col s3"><a href="#tab-discussion">Discuss</a></li>
+                    {{# if currentPlayerIsMafia currentPlayer.character }}
+                        <li class="tab col s3"><a href="#tab-discussion-mafia">Mafia</a></li>
+                    {{/ if }}
                     <li class="tab col s3"><a href="#tab-activities">Activities</a></li>
-                    <li class="tab col s3"><a href="#tab-discussion">Discussion</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="col col-50 s12 bg-game-dark">
+
             <!-- Tab Players List -->
             <div class="row mb0" id="tab-player">
                 {{# each arrayReverse game.players.list }}
                     {{# if notEqualTo id currentUser._id }}
-                        <div class="col s4 left {{ playerAliveOrDead alive }} border-all-game">
-                            <p class="mt10 mb5 center-align"><img src="{{ image }}" alt="{{ name }}" class="responsive-img rounded rounded-small"/></p>
-                            <p class="mt5 mb5 center-align">{{ stringCrop name 10 }}</p>
+                        <div class="col s4 left {{ playerAliveOrDeadBg alive }} border-all-game p0">
+                            <p class="mt10 mb5 center-align">
+                                <img src="{{ image }}" alt="{{ name }}" class="responsive-img rounded rounded-small"/>
+                            </p>
+                            <p class="mt5 mb0 center-align">{{ stringCrop name 10 }}</p>
+
+                            <div class="row mb0">
+                                {{# if currentPlayerIsMafia currentPlayer.character }}
+                                    <div class="col s6 p0">
+                                        <button class="btn game-kill waves-effect waves-light" {{ playerAliveOrDeadBtn alive }}><i class="material-icons small">cancel</i></button>
+                                    </div>
+                                    <div class="col s6 p0">
+                                        <button class="btn game-vote waves-effect waves-light" {{ playerAliveOrDeadBtn alive }}><i class="material-icons small">exposure_plus_1</i></button>
+                                    </div>
+                                {{ else }}
+                                    <div class="col s12 p0">
+                                        <button class="btn game-vote waves-effect waves-light" {{ playerAliveOrDeadBtn alive }}><i class="material-icons small">exposure_plus_1</i></button>
+                                    </div>
+                                {{/ if }}
+                            </div>
                         </div>
                     {{/ if }}
                 {{/ each }}
             </div>
+
+            <!-- Tab Discussion -->
+            <div class="row mb0 display-none" id="tab-discussion">
+                <ul class="collection mt0 mb0" style="margin-bottom: 55px;">
+                    {{# each arrayReverse game.discussions.user }}
+                        <li class="collection-item">{{ message }} <span class="grey-text right">{{ name }}</span></li>
+                    {{/ each }}
+                </ul>
+
+                <div class="row m0" style="position: absolute; bottom: 0; width: 100%;height: 55px;background: #000;padding: 5px;">
+                    <form id="form-game-discussion">
+                        <div class="col s8 pr0">
+                            <input type="text" class="m0" id="form-game-discussion-message" placeholder="Say something..." autocomplete="off"/>
+                        </div>
+
+                        <div class="col s4 pl0">
+                            <button class="btn-flat white-text waves-effect waves-light btn-block" id="form-game-discussion-submit" style="height: 43px;">
+                                <span class="action-text">Send</span>
+                                <span class="action-loading display-none">{{> commonLoadingAction }}</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            {{# if currentPlayerIsMafia currentPlayer.character }}
+                <!-- Tab Discussion Mafia -->
+                <div class="row mb0 display-none" id="tab-discussion-mafia">
+                    <ul class="collection mt0 mb0" style="margin-bottom: 55px;">
+                        {{# each arrayReverse game.discussions.mafia }}
+                            <li class="collection-item">{{ message }} <span class="grey-text right">{{ name }}</span></li>
+                        {{/ each }}
+                    </ul>
+
+                    <div class="row m0" style="position: absolute; bottom: 0; width: 100%;height: 55px;background: #000;padding: 5px;">
+                        <form id="form-game-discussion-mafia">
+                            <div class="col s8 pr0">
+                                <input type="text" class="m0" id="form-game-discussion-mafia-message" placeholder="Say something to other mafia..." autocomplete="off"/>
+                            </div>
+
+                            <div class="col s4 pl0">
+                                <button class="btn-flat white-text waves-effect waves-light btn-block" id="form-game-discussion-mafia-submit" style="height: 43px;">
+                                    <span class="action-text">Send</span>
+                                    <span class="action-loading display-none">{{> commonLoadingAction }}</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {{/ if }}
 
             <!-- Tab Activities -->
             <div class="row mb0 display-none" id="tab-activities">
@@ -66,26 +139,13 @@
                     {{/ each }}
                 </ul>
             </div>
+        </div>
 
-            <!-- Tab Discussion -->
-            <div class="row mb0 display-none" id="tab-discussion">
-                <ul class="collection mt0 mb0" style="margin-bottom: 55px;">
-                    {{# each arrayReverse game.discussions }}
-                        <li class="collection-item">{{ message }} <span class="grey-text right">{{ name }}</span></li>
-                    {{/ each }}
-                </ul>
-                <div class="row m0" style="position: absolute; bottom: 0; width: 100%;height: 55px;background: #000;padding: 5px;">
-                    <form id="form-game-discussion">
-                        <div class="col s9 p0">
-                            <input type="text" class="m0" id="form-game-discussion-message" placeholder="enter your message..."/>
-                        </div>
-                        <div class="col s3 p0">
-                            <button class="btn waves-effect waves-light btn-block" id="form-game-discussion-submit" style="height: 43px;">
-                                <span class="action-text"><i class="material-icons">send</i></span>
-                                <span class="action-loading display-none">{{> commonLoadingAction }}</span>
-                            </button>
-                        </div>
-                    </form>
+        <!-- Notify -->
+        <div id="notify" class="display-none">
+            <div class="notify vertical-align">
+                <div class="notify-message vertical-align-child center-align">
+                    <p class="tx-light tx-uppercase white-text"><span class="pulse">Round {{ gameRoundNumber }}</span></p>
                 </div>
             </div>
         </div>
@@ -102,6 +162,7 @@
             </div>
             <div class="modal-footer">
                 <a href="{{ pathFor route='home' }}" class="modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+
                 <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
             </div>
         </div>

@@ -87,6 +87,18 @@ var discussion = new SimpleSchema({
     }
 });
 
+var notify = new SimpleSchema({
+    round: {
+        type: Boolean
+    },
+    killed: {
+        type: Boolean
+    },
+    discussion: {
+        type: Boolean
+    }
+});
+
 Games.attachSchema(new SimpleSchema({
     city: {
         type: city
@@ -105,7 +117,18 @@ Games.attachSchema(new SimpleSchema({
     },
 
     discussions: {
-        type: [discussion]
+        type: new SimpleSchema({
+            user: {
+                type: [discussion]
+            },
+            mafia: {
+                type: [discussion]
+            }
+        })
+    },
+
+    notify: {
+        type: notify
     },
 
     is: {
