@@ -122,3 +122,25 @@ Template.gamePlayers.rendered = function() {
         App.Materialize.Init.modal();
     });
 };
+
+// On Create
+Template.gamePlayers.onCreated(function () {
+    console.log('R - Template.gamePlayers.created');
+
+    var self = this;
+    self.autorun(function () {
+        // Notifications
+        var notifications = Notifications.find();
+        notifications.observeChanges({
+            added: function(id, obj) {
+                if(obj.type == 'overlay') {
+                    App.Overlay.show(obj.text, 'pulse', App.Defaults.overlayTime);
+                } else {
+                    if(obj.by != Meteor.userId()) {
+                        Materialize.toast(obj.text, App.Defaults.toastTime);
+                    }
+                }
+            }
+        });
+    });
+});

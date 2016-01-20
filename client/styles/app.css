@@ -16,13 +16,14 @@
     .divider-game { background-color: rgba(0, 0, 0, 0.5); height: 5px; }
     .cursor-pointer { cursor: pointer; }
     .border-bottom-game { border-bottom: 5px solid rgba(0, 0, 0, 0.5); }
-    .border-all-game { border: 3px solid rgba(0, 0, 0, 0.8); }
+    .border-all-game { border: 1px solid rgba(0, 0, 0, 0.8); }
     .bg-game-header { background-color: rgba(38, 166, 154, 0.5); }
     .bg-game-dark { background-color: rgba(0, 0, 0, 0.5); }
     .bg-game-player-alive { background-color: rgba(56, 142, 60, 0.3); }
     .bg-game-player-dead { background-color: rgba(255, 82, 82, 0.3); }
     .bg-transparent { background: transparent !important; }
     .position-relative { position: relative; }
+    .transitions-all { transition: all .3s linear; }
 /* --------------- / Common --------------- */
 
 /* --------------- Typography --------------- */
@@ -68,6 +69,7 @@
     .mt20 { margin-top: 20px; }
     .mt30 { margin-top: 30px; }
     .mt15p { margin-top: 15%; }
+    .pt5 { padding-top: 5px !important; }
     /* bottom */
     .mb0 { margin-bottom: 0px; }
     .mb5 { margin-bottom: 5px; }
@@ -113,6 +115,12 @@
             overflow-x: hidden;
             overflow-y: auto;
         }
+        .content-split-vertically .col-28 {
+            padding: 0px;
+            height: 28%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
         .content-split-vertically .col-24 {
             padding: 0px;
             height: 24%;
@@ -134,6 +142,12 @@
         .content-split-vertically .col-8 {
             padding: 0px;
             height: 8%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .content-split-vertically .col-6 {
+            padding: 0px;
+            height: 6%;
             overflow-x: hidden;
             overflow-y: auto;
         }
@@ -311,10 +325,10 @@
         height: 100%;
     }
     #app-full-content .collection {
-        border: 1px solid #000;
+        border: none;
     }
     #app-full-content .collection .collection-item {
-        background-color: rgba(0, 0, 0, 0.5);
+        background: transparent;
         border-bottom: 1px solid #000000;
         overflow: hidden;
     }
@@ -324,11 +338,44 @@
     #app-full-content .collection .collection-item.avatar {
         min-height: auto;
     }
-    #app-full-content .game-header-action {
-        position: absolute;
-        right: 10px;
-        color: #aaa;
-    }
+    /* Game */
+        #app-full-content .game-header-action-left {
+            position: absolute;
+            left: 10px;
+            color: #aaa;
+        }
+        #app-full-content .game-header-action-right {
+            position: absolute;
+            right: 10px;
+            color: #aaa;
+        }
+        #app-full-content .game-info-text {
+            color: #aaa;
+            text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.95);
+        }
+        #app-full-content #game-shield-overlay {
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+            overflow: hidden;
+            background-color: #000;
+            z-index: 1000;
+        }
+        #app-full-content .player-vote-count {
+            position: absolute;
+            top: 0px;
+            right: 5px;
+            background: #FF5252;
+            border-radius: 20px;
+            height: 30px;
+            width: 30px;
+            font-size: 20px;
+            line-height: 30px;
+            box-shadow: 0px 0px 5px #000;
+            text-align: center;
+        }
     /* notify */
         #app-full-content .notify {
             position: absolute;
@@ -338,6 +385,7 @@
             bottom: 0px;
             overflow: hidden;
             background-color: rgba(0, 0, 0, 0.95);
+            z-index: 999;
         }
         #app-full-content .notify .pulse {
             animation: fontbulger 5s infinite;

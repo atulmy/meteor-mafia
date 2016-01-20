@@ -15,17 +15,85 @@ Template.gamePlay.helpers({
             return 1;
         },
 
-        gameCurrentRound: function() {
+        gameVotesAgainstPlayerShow: function(playerKey) {
             var game = Games.findOne({_id: Session.get('gameId')});
             if(game) {
-                return game.rounds[game.rounds.length - 1];
+                return game.rounds[game.rounds.length - 1].votes[playerKey].self > 0;
             }
         },
 
-        gameCurrentRoundVotingDone: function() {
+        gameVotesAgainstPlayer: function(playerKey) {
             var game = Games.findOne({_id: Session.get('gameId')});
             if(game) {
-                return game.rounds[game.rounds.length - 1];
+                return game.rounds[game.rounds.length - 1].votes[playerKey].self;
+            }
+        },
+
+
+    // Game Actions
+        gameActionKillDisable: function() {
+            var game = Games.findOne({_id: Session.get('gameId')});
+            if(game) {
+                return (game.rounds[game.rounds.length - 1].mafia.done) ? 'disabled' : '';
+            }
+        },
+
+        gameActionKillText: function() {
+            var game = Games.findOne({_id: Session.get('gameId')});
+            if(game) {
+                return (game.rounds[game.rounds.length - 1].mafia.done) ? '' : ' &bull; Kill Someone';
+            }
+        },
+
+        gameActionSaveDisable: function() {
+            var game = Games.findOne({_id: Session.get('gameId')});
+            if(game) {
+                return (game.rounds[game.rounds.length - 1].doctor.done) ? 'disabled' : '';
+            }
+        },
+
+        gameActionSaveText: function() {
+            var game = Games.findOne({_id: Session.get('gameId')});
+            if(game) {
+                return (game.rounds[game.rounds.length - 1].doctor.done) ? '' : ' &bull; Save Someone';
+            }
+        },
+
+        gameActionInvestigateDisable: function() {
+            var game = Games.findOne({_id: Session.get('gameId')});
+            if(game) {
+                return (game.rounds[game.rounds.length - 1].detective.done) ? 'disabled' : '';
+            }
+        },
+
+        gameActionInvestigateText: function() {
+            var game = Games.findOne({_id: Session.get('gameId')});
+            if(game) {
+                return (game.rounds[game.rounds.length - 1].detective.done) ? '' : ' &bull; Investigate Someone';
+            }
+        },
+
+        gameActionVoteDisable: function() {
+            var game = Games.findOne({_id: Session.get('gameId')});
+            if(game) {
+                return (game.rounds[game.rounds.length - 1].votesEnabled) ? '' : 'disabled';
+            }
+        },
+
+        gameActionVoteText: function(currentPlayerKey) {
+            var game = Games.findOne({_id: Session.get('gameId')});
+            if(game) {
+                if(game.rounds[game.rounds.length - 1].votes[currentPlayerKey].done) {
+                    return ' &bull; Voted';
+                }
+                return (game.rounds[game.rounds.length - 1].votesEnabled) ? ' &bull; Discuss &amp; Vote for Mafia' : '';
+            }
+        },
+
+        gameActionVoteDoneDisable: function(currentPlayerKey) {
+            var game = Games.findOne({_id: Session.get('gameId')});
+            if(game) {
+                return (game.rounds[game.rounds.length - 1].votes[currentPlayerKey].done) ? 'disabled' : '';
             }
         },
 
@@ -34,17 +102,30 @@ Template.gamePlay.helpers({
             var game = Games.findOne({_id: Session.get('gameId')});
 
             var currentPlayer = {};
-            game.players.list.forEach(function(p) {
+            game.players.list.forEach(function(p, index) {
                 if(p.id == Meteor.userId()) {
                     currentPlayer = p;
+                    currentPlayer.key = index;
                 }
             });
 
             return currentPlayer;
         },
 
+        currentPlayerIsCitizen: function(c) {
+            return (c == 0) ? true : false;
+        },
+
         currentPlayerIsMafia: function(c) {
             return (c == 1) ? true : false;
+        },
+
+        currentPlayerIsDoctor: function(c) {
+            return (c == 2) ? true : false;
+        },
+
+        currentPlayerIsDetective: function(c) {
+            return (c == 3) ? true : false;
         },
 
         currentPlayerCharacterText: function(c) {
@@ -75,50 +156,13 @@ Template.gamePlay.helpers({
 
 // Events
 Template.gamePlay.events({
-    'click #game-started': function(event, template) {
-        console.log('E - click .toggle-ready');
+    'click #game-shield': function(event, template) {
+        console.log('E - click #game-shield');
 
-        var game = Games.findOne({_id: Session.get('gameId')});
-    },
-
-    'click #game-ready': function(event, template) {
-        console.log('E - click .toggle-ready');
-
-        // Get Inputs
-        var input = {};
-        input.ready = template.$(event.currentTarget).is(':checked');
-        input.gameId = Session.get('gameId');
-        console.log(input);
-
-        Meteor.call('gameToggleReady', input, function (error, response) {
-            console.log('M - gameToggleReady');
-
-            if(error) {
-                Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
-            } else {
-                Materialize.toast(response.message, App.Defaults.toastTime);
-            }
-        });
-    },
-
-    'click #game-invite': function(event, template) {
-        event.preventDefault();
-
-        console.log('E - click #game-invite');
-
-        var game = Games.findOne({_id: Session.get('gameId')});
-
-        if(Meteor.isCordova) {
-            var message = 'Join us in the game of Mafia!';
-            var subject = 'Mafia in'+game.city.name+'. Code is '+game.city.code;
-            var image = 'http://www.clker.com/cliparts/2/4/r/8/g/9/deep-fried-man-portrait-real-name-daniel-friedman-south-african-comedian-md.png';
-            var link = 'http://app.mafia.atulmy.com/play/'+Session.get('gameId');
-            window.plugins.socialsharing.share(
-                message,
-                subject,
-                image,
-                link
-            );
+        if(template.$('#game-shield-overlay').is(':visible')) {
+            template.$('#game-shield-overlay').fadeOut();
+        } else {
+            template.$('#game-shield-overlay').show();
         }
     },
 
@@ -194,7 +238,137 @@ Template.gamePlay.events({
 
             Materialize.toast('You did not enter any text.', App.Defaults.toastTime);
         }
-    }
+    },
+
+    // Game Actions
+        // All - Vote
+        'click .game-action-vote': function(event, template) {
+            event.preventDefault();
+
+            console.log('E - click .game-action-vote');
+
+            var input = {};
+            input.data = parseInt(template.$(event.currentTarget).attr('data'));
+            input.dataPlayerKey = parseInt(template.$(event.currentTarget).attr('data-current-player'));
+            input.gameId = Session.get('gameId');
+            console.log(input);
+
+            if(input.gameId != '') {
+                App.Helpers.actionDisable(template.$(event.currentTarget), 'before');
+
+                Meteor.call('gameActionVote', input, function (error, response) {
+                    console.log('M - gameActionVote');
+
+                    if (error) {
+                        App.Helpers.actionDisable(template.$(event.currentTarget), 'after');
+
+                        Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
+                    } else {
+                        Materialize.toast(response.message, App.Defaults.toastTime);
+                    }
+                });
+            } else {
+                App.Helpers.actionDisable(template.$(event.currentTarget), 'after');
+
+                Materialize.toast('Some issue with the input.', App.Defaults.toastTime);
+            }
+        },
+
+        // Mafia - Kill
+        'click .game-action-kill': function(event, template) {
+            event.preventDefault();
+
+            console.log('E - click .game-action-kill');
+
+            var input = {};
+            input.data = parseInt(template.$(event.currentTarget).attr('data'));
+            input.gameId = Session.get('gameId');
+            console.log(input);
+
+            if(input.gameId != '') {
+                App.Helpers.actionDisable(template.$(event.currentTarget), 'before');
+
+                Meteor.call('gameActionKill', input, function (error, response) {
+                    console.log('M - gameActionKill');
+
+                    if (error) {
+                        App.Helpers.actionDisable(template.$(event.currentTarget), 'after');
+
+                        Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
+                    } else {
+                        Materialize.toast(response.message, App.Defaults.toastTime);
+                    }
+                });
+            } else {
+                App.Helpers.actionDisable(template.$(event.currentTarget), 'after');
+
+                Materialize.toast('Some issue with the input.', App.Defaults.toastTime);
+            }
+        },
+
+        // Doctor - Save
+        'click .game-action-save': function(event, template) {
+            event.preventDefault();
+
+            console.log('E - click .game-action-save');
+
+            var input = {};
+            input.data = parseInt(template.$(event.currentTarget).attr('data'));
+            input.gameId = Session.get('gameId');
+            console.log(input);
+
+            if(input.gameId != '') {
+                App.Helpers.actionDisable(template.$(event.currentTarget), 'before');
+
+                Meteor.call('gameActionSave', input, function (error, response) {
+                    console.log('M - gameActionSave');
+
+                    if (error) {
+                        App.Helpers.actionDisable(template.$(event.currentTarget), 'after');
+
+                        Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
+                    } else {
+                        Materialize.toast(response.message, App.Defaults.toastTime);
+                    }
+                });
+            } else {
+                App.Helpers.actionDisable(template.$(event.currentTarget), 'after');
+
+                Materialize.toast('Some issue with the input.', App.Defaults.toastTime);
+            }
+        },
+
+        // Detective - Investigate
+        'click .game-action-investigate': function(event, template) {
+            event.preventDefault();
+
+            console.log('E - click .game-action-investigate');
+
+            var input = {};
+            input.data = parseInt(template.$(event.currentTarget).attr('data'));
+            input.gameId = Session.get('gameId');
+            console.log(input);
+
+            if(input.gameId != '') {
+                App.Helpers.actionDisable(template.$(event.currentTarget), 'before');
+
+                Meteor.call('gameActionInvestigate', input, function (error, response) {
+                    console.log('M - gameActionInvestigate');
+
+                    if (error) {
+                        App.Helpers.actionDisable(template.$(event.currentTarget), 'after');
+
+                        Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
+                    } else {
+                        Materialize.toast(response.message, App.Defaults.toastTime);
+                    }
+                });
+            } else {
+                App.Helpers.actionDisable(template.$(event.currentTarget), 'after');
+
+                Materialize.toast('Some issue with the input.', App.Defaults.toastTime);
+            }
+        }
 });
 
 // On Render
@@ -210,3 +384,25 @@ Template.gamePlay.rendered = function() {
         App.Materialize.Init.tabs();
     });
 };
+
+// On Create
+Template.gamePlay.onCreated(function () {
+    console.log('R - Template.gamePlay.created');
+
+    var self = this;
+    self.autorun(function () {
+        // Notifications
+        var notifications = Notifications.find();
+        notifications.observeChanges({
+            added: function(id, obj) {
+                if(obj.type == 'overlay') {
+                    App.Overlay.show(obj.text, 'pulse', App.Defaults.overlayTime);
+                } else {
+                    if(obj.by != Meteor.userId()) {
+                        Materialize.toast(obj.text, App.Defaults.toastTime);
+                    }
+                }
+            }
+        });
+    });
+});

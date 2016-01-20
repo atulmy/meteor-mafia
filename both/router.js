@@ -41,7 +41,7 @@ AccountsTemplates.configure({
             template: 'gamePlayers',
             layoutTemplate: 'layoutsFull',
             waitOn: function() {
-                return Meteor.subscribe('game', this.params.gameId);
+                return [Meteor.subscribe('game', this.params.gameId), Meteor.subscribe('notificationsGame', this.params.gameId)];
             },
             onBeforeAction: function() {
                 Session.set('gameId', this.params.gameId);
@@ -58,7 +58,7 @@ AccountsTemplates.configure({
             template: 'gamePlay',
             layoutTemplate: 'layoutsFull',
             waitOn: function() {
-                return Meteor.subscribe('game', this.params.gameId);
+                return [Meteor.subscribe('game', this.params.gameId), Meteor.subscribe('notificationsGame', this.params.gameId)];
             },
             onBeforeAction: function() {
                 Session.set('gameId', this.params.gameId);

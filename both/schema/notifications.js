@@ -9,6 +9,15 @@ Notifications.attachSchema(new SimpleSchema({
         type: String
     },
 
+    type: {
+        type: String
+    },
+
+    by: {
+        type: String,
+        optional: true
+    },
+
     createdAt: {
         type: Date,
         autoValue: function() {

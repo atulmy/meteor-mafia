@@ -1,6 +1,7 @@
 App = {
     Defaults: {
         toastTime: 4000,
+        overlayTime: 4000,
         messages: {
             'error': '<i class="material-icons left">error_outline</i> There was some error. Please try again'
         },
@@ -70,25 +71,49 @@ App = {
         }
     },
 
+    Overlay: {
+        show: function(text, display, time) {
+            $('#notify .notify-message p .normal').html('').hide();
+            $('#notify .notify-message p .pulse').html('').hide();
+
+            $('#notify .notify-message p .'+display).html(text).show();
+            $('#notify').fadeIn();
+
+            Meteor.setTimeout(function() {
+                App.Overlay.hide();
+            }, time, text);
+        },
+        hide: function() {
+            $('#notify').fadeOut();
+        }
+    },
+
     Helpers: {
         randomNumber: function(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         },
         actionLoading: function(button, isBeforeAfter) {
             if(isBeforeAfter == 'before') {
-                $(button).attr('disabled', 'disabled')
+                $(button).prop('disabled', true);
                 $(button).find('.action-text').hide();
                 $(button).find('.action-loading').fadeIn();
                 $(button).find('.action-loading .preloader-wrapper').addClass('active');
                 $('.header-action').hide();
                 $('.header-action-loading').fadeIn();
             } else {
-                $(button).removeAttr('disabled');
+                $(button).prop('disabled', false);
                 $(button).find('.action-loading .preloader-wrapper').removeClass('active');
                 $(button).find('.action-loading').hide();
                 $(button).find('.action-text').fadeIn();
                 $('.header-action-loading').hide();
                 $('.header-action').fadeIn();
+            }
+        },
+        actionDisable: function(button, isBeforeAfter) {
+            if(isBeforeAfter == 'before') {
+                $(button).prop('disabled', true);
+            } else {
+                $(button).prop('disabled', false);
             }
         }
     }

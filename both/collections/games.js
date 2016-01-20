@@ -42,6 +42,7 @@ Meteor.methods({
             rounds: [
                 {
                     votes: [{against: -1, done: false}],
+                    votesEnabled: false,
                     doctor: {against: -1, done: false, saved: false},
                     detective: {against: -1, done: false, guessed: false},
                     mafia: {against: -1, done: false, killed: false}
@@ -119,9 +120,16 @@ Meteor.methods({
                     var rounds = game.rounds;
                     rounds[rounds.length - 1].votes.push({against: -1, done: false});
 
-                    var activities = game.activities;
-                    activities.push({text: Meteor.user().profile.name+' has joined the game!'});
+                    var text = Meteor.user().profile.name+' has joined the game!';
 
+                    // Activities
+                    var activities = game.activities;
+                    activities.push({text: text});
+
+                    // Notifications
+                    Notifications.insert({gameId: game._id, type: 'toast', text: '<i class="material-icons left">person_add</i> '+text, by: Meteor.userId()});
+
+                    // Update game
                     var result = Games.update(game._id, {$set: {
                         players: players,
                         activities: activities,
@@ -214,6 +222,7 @@ Meteor.methods({
                     } else if(game.players.joined > 16) {
                         mafias = 4;
                     }
+                    mafias = 1; // @TEMP
 
                     console.log(mafias);
 
@@ -231,8 +240,14 @@ Meteor.methods({
                         game.players.list[j].character = characters[j];
                     }
 
+                    var text = 'The game has started!';
+
+                    // Activities
                     var activities = game.activities;
-                    activities.push({text: 'Game has started!'});
+                    activities.push({text: text});
+
+                    // Notifications
+                    Notifications.insert({gameId: game._id, type: 'toast', text: '<i class="material-icons left">play_arrow</i> '+text, by: Meteor.userId()});
 
                     var result = Games.update(game._id, {$set: {
                         "is.started": input.value,
@@ -240,6 +255,11 @@ Meteor.methods({
                         activities: activities
                     }});
                     if (result) {
+                        // Notifications - Round 1
+                        Meteor.setTimeout(function() {
+                            Notifications.insert({gameId: game._id, type: 'overlay', text: 'Round 1'});
+                        }, 2000);
+
                         response.success = true;
                         response.message = '<i class="material-icons left">notifications_active</i> The game has begin!';
                     }
@@ -289,6 +309,233 @@ Meteor.methods({
         }
 
         return response;
-    }
+    },
 
+    gameActionVote: function(input) {
+        var response = {
+            success: false,
+            message: '<i class="material-icons left">error_outline</i> There was some server error. Please try again',
+            data: ''
+        };
+
+        console.log(input);
+
+        // check user signed in
+        check(Meteor.userId(), String);
+
+        // validate data
+        check(input.gameId, String);
+        check(input.data, Number);
+        check(input.dataPlayerKey, Number);
+
+        var game = Games.findOne(input.gameId);
+        if(game) {
+            var voteAgainst = game.players.list[input.data];
+            var rounds = game.rounds;
+            var round = game.rounds[game.rounds.length - 1];
+
+            round.votes[input.dataPlayerKey].against = input.data;
+            round.votes[input.dataPlayerKey].done = true;
+            round.votes[input.data].self++;
+
+            var text = Meteor.user().profile.name+' voted against '+voteAgainst.name;
+
+            // Activities
+            var activities = game.activities;
+            activities.push({text: text});
+
+            // Notifications
+            Notifications.insert({gameId: game._id, type: 'toast', text: '<i class="material-icons left">exposure_plus_1</i> '+text, by: Meteor.userId()});
+
+            var result = Games.update(game._id, {$set: {
+                rounds: rounds,
+                activities: activities
+            }});
+            if (result) {
+                response.success = true;
+                response.message = '<i class="material-icons left">check</i> Voted!';
+            }
+        }
+
+        return response;
+    },
+
+    gameActionInvestigate: function(input) {
+        var response = {
+            success: false,
+            message: '<i class="material-icons left">error_outline</i> There was some server error. Please try again',
+            data: ''
+        };
+
+        // check user signed in
+        check(Meteor.userId(), String);
+
+        // validate data
+        check(input.gameId, String);
+        check(input.data, Number);
+
+
+        var game = Games.findOne(input.gameId);
+        if(game) {
+            var message = '';
+            var investigateOn = game.players.list[input.data];
+            var rounds = game.rounds;
+            var round = game.rounds[game.rounds.length - 1];
+
+            round.detective.against = input.data;
+            round.detective.done = true;
+
+            if(investigateOn.character == 1) {
+                message = '<i class="material-icons left">check</i> Yes, '+investigateOn.name+' is a mafia.';
+                round.detective.guessed = true;
+            } else {
+                message = '<i class="material-icons left">close</i> No, '+investigateOn.name+' is not a mafia.';
+                round.detective.guessed = false;
+            }
+            rounds[game.rounds.length - 1] = round;
+            console.log(game);
+
+            var result = Games.update(game._id, {$set: {
+                rounds: rounds
+            }});
+            if (result) {
+                Meteor.call('gameEnableVoting', input);
+
+                response.success = true;
+                response.message = message;
+            }
+        }
+
+        return response;
+    },
+
+    gameActionSave: function(input) {
+        var response = {
+            success: false,
+            message: '<i class="material-icons left">error_outline</i> There was some server error. Please try again',
+            data: ''
+        };
+
+        // check user signed in
+        check(Meteor.userId(), String);
+
+        // validate data
+        check(input.gameId, String);
+        check(input.data, Number);
+
+
+        var game = Games.findOne(input.gameId);
+        if(game) {
+            var save = game.players.list[input.data];
+            var rounds = game.rounds;
+            var round = game.rounds[game.rounds.length - 1];
+
+            round.doctor.against = input.data;
+            round.doctor.done = true;
+            round.doctor.saved = false; // not yet known
+
+            rounds[game.rounds.length - 1] = round;
+            console.log(game);
+
+            var result = Games.update(game._id, {$set: {
+                rounds: rounds
+            }});
+            if (result) {
+                Meteor.call('gameEnableVoting', input);
+
+                response.success = true;
+                response.message = '<i class="material-icons left">check</i> '+save.name+' will be safe for this round.';
+            }
+        }
+
+        return response;
+    },
+
+    gameActionKill: function(input) {
+        var response = {
+            success: false,
+            message: '<i class="material-icons left">error_outline</i> There was some server error. Please try again',
+            data: ''
+        };
+
+        // check user signed in
+        check(Meteor.userId(), String);
+
+        // validate data
+        check(input.gameId, String);
+        check(input.data, Number);
+
+
+        var game = Games.findOne(input.gameId);
+        if(game) {
+            var save = game.players.list[input.data];
+            var rounds = game.rounds;
+            var round = game.rounds[game.rounds.length - 1];
+
+            round.mafia.against = input.data;
+            round.mafia.done = true;
+            round.mafia.killed = false; // not yet known
+
+            rounds[game.rounds.length - 1] = round;
+            console.log(game);
+
+            var result = Games.update(game._id, {$set: {
+                rounds: rounds
+            }});
+            if (result) {
+                Meteor.call('gameEnableVoting', input);
+
+                response.success = true;
+                response.message = '<i class="material-icons left">check</i> '+save.name+' will be killed if the doctor is unable to save.';
+            }
+        }
+
+        return response;
+    },
+
+    // Private Function
+    gameEnableVoting: function(input) {
+        var response = {
+            success: false,
+            message: 'Error',
+            data: ''
+        };
+
+        // check user signed in
+        check(Meteor.userId(), String);
+
+        // validate data
+        check(input.gameId, String);
+
+
+        var game = Games.findOne(input.gameId);
+        if(game) {
+            var rounds = game.rounds;
+            var round = game.rounds[game.rounds.length - 1];
+
+            if(round.mafia.done == true && round.doctor.done == true && round.detective.done == true) {
+                round.votesEnabled = true;
+
+                var text = 'Vote for the mafia!';
+
+                // Activities
+                var activities = game.activities;
+                activities.push({text: text});
+
+                // Notifications
+                Notifications.insert({gameId: game._id, type: 'toast', text: '<i class="material-icons left">notifications_active</i> '+text, by: Meteor.userId()});
+
+                var result = Games.update(game._id, {$set: {
+                    rounds: rounds,
+                    activities: activities
+                }});
+                if (result) {
+                    response.success = true;
+                    response.message = 'Done';
+                }
+            }
+        }
+
+        return response;
+    }
 });

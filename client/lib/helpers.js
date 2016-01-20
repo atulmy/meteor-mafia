@@ -50,6 +50,13 @@
     Template.registerHelper('arrayReverse', function (a) {
         return a.reverse();
     });
+    Template.registerHelper("arrayKeyValue", function(obj){
+        var result = [];
+        for (var key in obj){
+            result.push({key:key,value:obj[key]});
+        }
+        return result;
+    });
 
 // String
     // Crop

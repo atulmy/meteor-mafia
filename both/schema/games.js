@@ -63,10 +63,16 @@ var round = new SimpleSchema({
             against: {
                 type: Number
             },
+            self: {
+                type: Number
+            },
             done: {
                 type: Boolean
             }
         })]
+    },
+    votesEnabled: {
+        type: Boolean
     },
     doctor: {
         type: new SimpleSchema({
