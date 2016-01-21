@@ -67,7 +67,10 @@
             <div class="clearfix vertical-align-child">
                 {{# if not started }}
                     {{# if equalTo game.players.joined game.players.expected }}
-                        <p class="tx-md p10">All players joined! Click on START to begin the game.</p>
+                        <div class="clearfix p10">
+                            <p class="tx-md">All players joined!</p>
+                            <p class="tx-md">Click on START to begin the game.</p>
+                        </div>
                     {{ else }}
                         <p class="tx-lg mt5 mb5">Code: {{ game.city.code }}</p>
                         <p class="center-align mt5 mb5">{{> commonLoadingAction active="active" }}</p>

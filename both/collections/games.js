@@ -616,7 +616,24 @@ Meteor.methods({
                 var rounds = game.rounds;
                 var round = game.rounds[game.rounds.length - 1];
 
-                if(round.mafia.done == true && round.doctor.done == true && round.detective.done == true) {
+                var mafiaIsAlive = true;
+                var doctorIsAlive = true;
+                var detectiveIsAlive = true;
+                game.players.list.forEach(function(p) {
+                    if(p.character == 1) {
+                        mafiaIsAlive = p.alive;
+                    } else if(p.character == 2) {
+                        doctorIsAlive = p.alive;
+                    } else if(p.character == 3) {
+                        detectiveIsAlive = p.alive;
+                    }
+                });
+
+                if( // either ((the player should be alive and voted) || player is dead) then its fine
+                    ((mafiaIsAlive && round.mafia.done == true) || !mafiaIsAlive) &&
+                    ((doctorIsAlive && round.doctor.done == true) || !doctorIsAlive) &&
+                    ((detectiveIsAlive && round.detective.done == true) || !detectiveIsAlive)
+                ) {
                     round.votingEnabled = true;
 
                     var text = 'Vote for the mafia!';
