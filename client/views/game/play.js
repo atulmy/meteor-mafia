@@ -76,7 +76,7 @@ Template.gamePlay.helpers({
         gameActionVoteDisable: function() {
             var game = Games.findOne({_id: Session.get('gameId')});
             if(game) {
-                return (game.rounds[game.rounds.length - 1].votesEnabled) ? '' : 'disabled';
+                return (game.rounds[game.rounds.length - 1].votingEnabled) ? '' : 'disabled';
             }
         },
 
@@ -86,7 +86,7 @@ Template.gamePlay.helpers({
                 if(game.rounds[game.rounds.length - 1].votes[currentPlayerKey].done) {
                     return ' &bull; Voted';
                 }
-                return (game.rounds[game.rounds.length - 1].votesEnabled) ? ' &bull; Discuss &amp; Vote for Mafia' : '';
+                return (game.rounds[game.rounds.length - 1].votingEnabled) ? ' &bull; Discuss &amp; Vote for Mafia' : '';
             }
         },
 
@@ -157,6 +157,8 @@ Template.gamePlay.helpers({
 // Events
 Template.gamePlay.events({
     'click #game-shield': function(event, template) {
+        event.preventDefault();
+
         console.log('E - click #game-shield');
 
         if(template.$('#game-shield-overlay').is(':visible')) {
@@ -164,6 +166,40 @@ Template.gamePlay.events({
         } else {
             template.$('#game-shield-overlay').show();
         }
+    },
+
+    'click .game-paused': function(event, template) {
+        event.preventDefault();
+
+        console.log('E - click .game-paused');
+
+        var input = {};
+        input.pause = (parseInt(template.$(event.currentTarget).attr('pause'))) ? true : false;
+        input.gameId = Session.get('gameId');
+
+        Meteor.call('gameSettingsPause', input, function (error, response) {
+            console.log('M - gameSettingsPause');
+        });
+    },
+
+    'click #game-sound-toggle': function(event, template) {
+        event.preventDefault();
+
+        console.log('E - click #game-sound-toggle');
+
+        var input = {};
+        input.data = parseInt(template.$(event.currentTarget).attr('data'));
+        input.gameId = Session.get('gameId');
+
+        Meteor.call('gameSettingsSoundToggle', input, function (error, response) {
+            console.log('M - gameSettingsSoundToggle');
+
+            if (error) {
+                Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
+            } else {
+                Materialize.toast(response.message, App.Defaults.toastTime);
+            }
+        });
     },
 
     'submit #form-game-discussion': function(event, template) {
@@ -382,6 +418,7 @@ Template.gamePlay.rendered = function() {
         App.init();
         App.Materialize.Init.modal();
         App.Materialize.Init.tabs();
+        App.Materialize.Init.dropdown();
     });
 };
 

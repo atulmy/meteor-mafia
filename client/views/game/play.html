@@ -10,7 +10,21 @@
 
                     Mafia in {{ stringCrop game.city.name 10 }}
 
-                    <a href="#modal-game-quit" class="game-header-action-right waves-effect waves-light modal-trigger"><i class="material-icons">exit_to_app</i></a>
+                    <a href="#game-menu" class="game-header-action-right waves-effect waves-light dropdown-button" data-activates="game-menu"><i class="material-icons" >more_vert</i></a>
+                    <ul id="game-menu" class="dropdown-content" style="min-width: 145px;">
+                        <li><a href="#" class="tx-uppercase game-paused" pause="1"><i class="material-icons left mr5">pause_circle_filled</i> Pause</a></li>
+                        <li>
+                            <a href="#" class="tx-uppercase" id="game-sound-toggle" data="{{ currentPlayer.key }}">
+                                {{# if currentPlayer.settings.sounds }}
+                                    <i class="material-icons left mr5">volume_up</i> Sounds On
+                                {{ else }}
+                                    <i class="material-icons left mr5">volume_off</i> Sounds Off
+                                {{/ if }}
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#modal-game-quit" class="tx-uppercase modal-trigger"><i class="material-icons left mr5">exit_to_app</i> Quit Game</a></li>
+                    </ul>
                 </h1>
             </div>
         </div>
@@ -18,19 +32,23 @@
         <!-- Current Player Info -->
         <div class="col col-28 s12 bg-game-dark">
             <div class="row vertical-align">
-                <div class="col s6 vertical-align-child center-align">
+                <div class="col s6 vertical-align-child center-align position-relative">
                     <img src="{{ currentPlayer.image }}" alt="{{ currentPlayer.name }}" class="responsive-img"/>
+
+                    {{# if gameVotesAgainstPlayerShow currentPlayer.key }}
+                        <span class="player-vote-count" style="top: 15px; right: 20px;">{{ gameVotesAgainstPlayer currentPlayer.key }}</span>
+                    {{/ if }}
                 </div>
                 <div class="col s6 vertical-align-child">
-                    <p class="tx-sm center-align mb5 mt5">{{ currentPlayer.name }}</p>
+                    <p class="tx-sm center-align mb5 mt5 tx-lh-25">{{ currentPlayer.name }}</p>
                     <div class="divider divider-dark"></div>
 
-                    <p class="tx-sm tx-uppercase mb5 mt5">
+                    <p class="tx-sm tx-uppercase mb5 mt5 tx-lh-25">
                         {{{ currentPlayerCharacterText currentPlayer.character }}}
                     </p>
                     <div class="divider divider-dark"></div>
 
-                    <p class="tx-sm tx-uppercase mb5 mt5">
+                    <p class="tx-sm tx-uppercase mb5 mt5 tx-lh-25">
                         {{{ currentPlayerAliveOrDeadText currentPlayer.alive }}}
                     </p>
                     <div class="divider divider-dark"></div>
@@ -66,8 +84,8 @@
             <div class="clearfix vertical-align-child">
                 <ul class="tabs bg-transparent">
                     <li class="tab col s3"><a href="#tab-player" class="active">Players</a></li>
-                    <li class="tab col s3"><a href="#tab-activities">Activities</a></li>
-                    <li class="tab col s3"><a href="#tab-discussion">Discuss</a></li>
+                    <li class="tab col s3"><a href="#tab-activities">Activities ({{ game.activities.length }})</a></li>
+                    <li class="tab col s3"><a href="#tab-discussion">Discuss ({{ game.discussions.user.length }})</a></li>
                     {{# if currentPlayerIsMafia currentPlayer.character }}
                         <li class="tab col s3" style="display: none;"><a href="#tab-discussion-mafia">Mafia</a></li>
                     {{/ if }}
@@ -94,24 +112,24 @@
                             <div class="row mb0">
                                 {{# if currentPlayerIsCitizen currentPlayer.character }}
                                     <div class="col s12 p0">
-                                        <button class="btn game-vote waves-effect waves-light game-action-vote" data="{{ key }}" data-current-player="{{ currentPlayer.key }}" {{ gameActionVoteDisable }} {{ gameActionVoteDoneDisable currentPlayer.key }} {{ playerAliveOrDeadBtn value.alive }}><i class="material-icons small">exposure_plus_1</i></button>
+                                        <button class="btn game-vote waves-effect waves-light game-action-vote" data="{{ key }}" data-current-player="{{ currentPlayer.key }}" {{ gameActionVoteDisable }} {{ gameActionVoteDoneDisable currentPlayer.key }} {{ playerAliveOrDeadBtn value.alive }} {{ playerAliveOrDeadBtn currentPlayer.alive }}><i class="material-icons small">exposure_plus_1</i></button>
                                     </div>
                                 {{ else }}
                                     <div class="col s6 p0">
                                         {{# if currentPlayerIsMafia currentPlayer.character }}
-                                            <button class="btn game-kill waves-effect waves-light game-action-kill" data="{{ key }}" {{ gameActionKillDisable }} {{ playerAliveOrDeadBtn value.alive }}><i class="material-icons small">cancel</i></button>
+                                            <button class="btn game-kill waves-effect waves-light game-action-kill" data="{{ key }}" {{ gameActionKillDisable }} {{ playerAliveOrDeadBtn value.alive }} {{ playerAliveOrDeadBtn currentPlayer.alive }}><i class="material-icons small">cancel</i></button>
                                         {{/ if }}
 
                                         {{# if currentPlayerIsDoctor currentPlayer.character }}
-                                            <button class="btn game-vote waves-effect waves-light game-action-save" data="{{ key }}" {{ gameActionSaveDisable }} {{ playerAliveOrDeadBtn value.alive }}><i class="material-icons small">add_circle</i></button>
+                                            <button class="btn game-vote waves-effect waves-light game-action-save" data="{{ key }}" {{ gameActionSaveDisable }} {{ playerAliveOrDeadBtn value.alive }} {{ playerAliveOrDeadBtn currentPlayer.alive }}><i class="material-icons small">add_circle</i></button>
                                         {{/ if }}
 
                                         {{# if currentPlayerIsDetective currentPlayer.character }}
-                                            <button class="btn game-vote waves-effect waves-light game-action-investigate" data="{{ key }}" {{ gameActionInvestigateDisable }} {{ playerAliveOrDeadBtn value.alive }}><i class="material-icons small">search</i></button>
+                                            <button class="btn game-vote waves-effect waves-light game-action-investigate" data="{{ key }}" {{ gameActionInvestigateDisable }} {{ playerAliveOrDeadBtn value.alive }} {{ playerAliveOrDeadBtn currentPlayer.alive }}><i class="material-icons small">search</i></button>
                                         {{/ if }}
                                     </div>
                                     <div class="col s6 p0">
-                                        <button class="btn game-vote waves-effect waves-light game-action-vote" data="{{ key }}" data-current-player="{{ currentPlayer.key }}" {{ gameActionVoteDisable }} {{ gameActionVoteDoneDisable currentPlayer.key }} {{ playerAliveOrDeadBtn value.alive }}><i class="material-icons small">exposure_plus_1</i></button>
+                                        <button class="btn game-vote waves-effect waves-light game-action-vote" data="{{ key }}" data-current-player="{{ currentPlayer.key }}" {{ gameActionVoteDisable }} {{ gameActionVoteDoneDisable currentPlayer.key }} {{ playerAliveOrDeadBtn value.alive }} {{ playerAliveOrDeadBtn currentPlayer.alive }}><i class="material-icons small">exposure_plus_1</i></button>
                                     </div>
                                 {{/ if }}
                             </div>
@@ -205,6 +223,18 @@
         </div>
 
         <div id="game-shield-overlay" class="display-none"></div>
+
+        {{# if game.settings.paused }}
+            <div id="game-paused-overlay" class="vertical-align">
+                <div class="clearfix vertical-align-child center-align">
+                    <p class="tx-light tx-uppercase white-text tx-lg">Game has been paused</p>
+
+                    <button class="btn waves-effect waves-light game-paused" pause="0">
+                        Continue <i class="material-icons right">play_circle_filled</i>
+                    </button>
+                </div>
+            </div>
+        {{/ if }}
     </div>
 
 <!-- Modals -->

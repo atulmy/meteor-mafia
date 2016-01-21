@@ -39,6 +39,8 @@
         .tx-xl { font-size: 28px; }
         .tx-xxl { font-size: 32px; }
         .tx-xxxl { font-size: 38px; }
+    /* line heights */
+        .tx-lh-25 { line-height: 25px; }
     /* thickness */
         .tx-thin { font-weight: 100; }
         .tx-light { font-weight: 200; }
@@ -363,10 +365,20 @@
             background-color: #000;
             z-index: 1000;
         }
+        #app-full-content #game-paused-overlay {
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: 0px;
+            bottom: 0px;
+            overflow: hidden;
+            background-color: #000;
+            z-index: 1002;
+        }
         #app-full-content .player-vote-count {
             position: absolute;
             top: 0px;
-            right: 5px;
+            right: 10px;
             background: #FF5252;
             border-radius: 20px;
             height: 30px;
@@ -428,8 +440,8 @@
         margin: 0 auto;
     }
     .rounded-small {
-        width: 90px !important;
-        height: 90px !important;
+        width: 85px !important;
+        height: 85px !important;
         min-width: auto !important;
     }
     img.rounded, .rounded img {
@@ -443,6 +455,14 @@
     .tabs .indicator { background-color: #FF5252; }
     .tabs .tab a { color: #fff; }
     .tabs .tab a.active { color: #FF5252; }
+    .dropdown-content li {
+        min-height: 34px;
+    }
+    .dropdown-content li > a, .dropdown-content li > span {
+        line-height: 14px;
+        padding: 12px;
+        font-size: 14px;
+    }
 /* --------------- / MaterialzeCSS Overrides --------------- */
 
 /* --------------- Animations --------------- */
@@ -451,7 +471,7 @@
             font-size: 26px;
         }
         50% {
-            font-size: 42px;
+            font-size: 32px;
         }
     }
 /* --------------- / Animations --------------- */

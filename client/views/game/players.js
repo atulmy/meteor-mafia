@@ -48,6 +48,11 @@ Template.gamePlayers.events({
                     Materialize.toast(response.message, App.Defaults.toastTime);
 
                     if(response.success) {
+
+                        // Notifications - Round 1
+                        Meteor.setTimeout(function() {
+                        }, 2000);
+
                         Router.go('gamePlay', {gameId: game._id});
                     }
                 }

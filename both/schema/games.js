@@ -27,6 +27,13 @@ var player = new SimpleSchema({
     },
     alive: {
         type: Boolean
+    },
+    settings: {
+        type: new SimpleSchema({
+            sounds: {
+                type: Boolean
+            }
+        })
     }
 });
 
@@ -71,7 +78,10 @@ var round = new SimpleSchema({
             }
         })]
     },
-    votesEnabled: {
+    votingEnabled: {
+        type: Boolean
+    },
+    votingDone: {
         type: Boolean
     },
     doctor: {
@@ -178,6 +188,14 @@ Games.attachSchema(new SimpleSchema({
 
     notify: {
         type: notify
+    },
+
+    settings: {
+        type: new SimpleSchema({
+            paused: {
+                type: Boolean
+            }
+        })
     },
 
     is: {

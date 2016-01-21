@@ -67,6 +67,10 @@ App = {
 
             tabs: function() {
                 $('ul.tabs').tabs();
+            },
+
+            dropdown: function() {
+                $('.dropdown-button').dropdown();
             }
         }
     },
@@ -79,7 +83,7 @@ App = {
             $('#notify .notify-message p .'+display).html(text).show();
             $('#notify').fadeIn();
 
-            Meteor.setTimeout(function() {
+            setTimeout(function() {
                 App.Overlay.hide();
             }, time, text);
         },
