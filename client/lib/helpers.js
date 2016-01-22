@@ -40,9 +40,13 @@
     });
 
 // Date Time
-    // Nice time
-    Template.registerHelper('niceTime', function (t) {
+    // Nice
+    Template.registerHelper('momentNice', function (t) {
         return moment(t).fromNow();
+    });
+    // Only time
+    Template.registerHelper('momentTime', function (t) {
+        return moment(t).format('h:mm');
     });
 
 // Array

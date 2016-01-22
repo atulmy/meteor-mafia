@@ -60,20 +60,28 @@
         <div class="col-6 vertical-align">
             <div class="clearfix vertical-align-child">
                 <p class="tx-md tx-uppercase mt5 mb0 center-align game-info-text">
-                    Round {{{ gameRoundNumber }}}
+                    {{# if game.is.finished }}
+                         Game Finished &bull; {{ gameFinishedText }}
+                    {{ else }}
+                        Round {{{ gameRoundNumber }}}
 
-                    {{{ gameActionVoteText currentPlayer.key }}}
+                        {{# if currentPlayer.alive }}
+                            {{{ gameActionVoteText currentPlayer.key }}}
 
-                    {{# if currentPlayerIsMafia currentPlayer.character }}
-                        {{{ gameActionKillText }}}
-                    {{/ if }}
+                            {{# if currentPlayerIsMafia currentPlayer.character }}
+                                {{{ gameActionKillText }}}
+                            {{/ if }}
 
-                    {{# if currentPlayerIsDoctor currentPlayer.character }}
-                        {{{ gameActionSaveText }}}
-                    {{/ if }}
+                            {{# if currentPlayerIsDoctor currentPlayer.character }}
+                                {{{ gameActionSaveText }}}
+                            {{/ if }}
 
-                    {{# if currentPlayerIsDetective currentPlayer.character }}
-                        {{{ gameActionInvestigateText }}}
+                            {{# if currentPlayerIsDetective currentPlayer.character }}
+                                {{{ gameActionInvestigateText }}}
+                            {{/ if }}
+                        {{ else }}
+                            &bull; Spectate
+                        {{/ if }}
                     {{/ if }}
                 </p>
             </div>
@@ -107,7 +115,7 @@
                                     <span class="player-vote-count">{{ gameVotesAgainstPlayer key }}</span>
                                 {{/ if }}
                             </p>
-                            <p class="mt5 mb0 center-align">{{ stringCrop value.name 10 }}</p>
+                            <p class="mt5 mb0 center-align">{{ stringCrop value.name 12 }}</p>
 
                             <div class="row mb0">
                                 {{# if currentPlayerIsCitizen currentPlayer.character }}
@@ -142,7 +150,7 @@
             <div class="row mb0 display-none" id="tab-activities">
                 <ul class="collection mt0 mb0">
                     {{# each arrayReverse game.activities }}
-                        <li class="collection-item">{{{ text }}} <span class="grey-text right tx-xs">{{ niceTime when }}</span></li>
+                        <li class="collection-item">{{{ text }}} <span class="grey-text right tx-xs">{{ momentNice when }}</span></li>
                     {{/ each }}
                 </ul>
             </div>

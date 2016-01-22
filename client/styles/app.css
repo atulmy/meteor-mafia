@@ -399,6 +399,9 @@
             background-color: rgba(0, 0, 0, 0.95);
             z-index: 999;
         }
+        #app-full-content .notify .notify-message {
+            padding: 10px 50px;
+        }
         #app-full-content .notify .pulse {
             animation: fontbulger 5s infinite;
         }

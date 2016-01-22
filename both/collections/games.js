@@ -52,7 +52,7 @@ Meteor.methods({
                     mafia: {against: -1, done: false, killed: false}
                 }
             ],
-            activities: [{text: 'Game created'}],
+            activities: [{text: 'Game created', when: new Date()}],
             discussions: {
                 user: [{name: '^_^', message: 'Lets catch the mafia, shall we?'}],
                 mafia: [{name: '^_^', message: 'You must be feeling lucky, don\'t you?'}]
@@ -135,7 +135,7 @@ Meteor.methods({
 
                     // Activities
                     var activities = game.activities;
-                    activities.push({text: text});
+                    activities.push({text: text, when: new Date()});
 
                     // Notifications
                     Notifications.insert({gameId: game._id, type: 'toast', text: '<i class="material-icons left">person_add</i> '+text, by: Meteor.userId()});
@@ -255,8 +255,8 @@ Meteor.methods({
 
                     // Activities
                     var activities = game.activities;
-                    activities.push({text: text});
-                    activities.push({text: 'Round 1 - Begins'});
+                    activities.push({text: text, when: new Date()});
+                    activities.push({text: 'Round 1 - Begins', when: new Date()});
 
                     var result = Games.update(game._id, {$set: {
                         "is.started": input.value,
@@ -267,7 +267,7 @@ Meteor.methods({
                         // Notifications
                         Meteor.setTimeout(function() {
                             Notifications.insert({gameId: game._id, type: 'overlay', text: 'Game Started <br/> Round 1'});
-                        }, 3000, game);
+                        }, 3000);
 
                         response.success = true;
                         response.message = '<i class="material-icons left">notifications_active</i> The game has begin!';
@@ -425,7 +425,9 @@ Meteor.methods({
                     rounds: rounds
                 }});
                 if (result) {
-                    Meteor.call('gameRoundPreVoting', input);
+                    Meteor.call('gameRoundPreVoting', input, function (error, response) {
+                        console.log('M - gameRoundPreVoting');
+                    });
 
                     response.success = true;
                     response.message = '<i class="material-icons left">check</i> '+save.name+' will be killed if the doctor is unable to save.';
@@ -468,7 +470,9 @@ Meteor.methods({
                     rounds: rounds
                 }});
                 if (result) {
-                    Meteor.call('gameRoundPreVoting', input);
+                    Meteor.call('gameRoundPreVoting', input, function (error, response) {
+                        console.log('M - gameRoundPreVoting');
+                    });
 
                     response.success = true;
                     response.message = '<i class="material-icons left">check</i> '+save.name+' will be safe for this round.';
@@ -518,7 +522,9 @@ Meteor.methods({
                     rounds: rounds
                 }});
                 if (result) {
-                    Meteor.call('gameRoundPreVoting', input);
+                    Meteor.call('gameRoundPreVoting', input, function (error, response) {
+                        console.log('M - gameRoundPreVoting');
+                    });
 
                     response.success = true;
                     response.message = message;
@@ -547,8 +553,23 @@ Meteor.methods({
                 var rounds = game.rounds;
                 var round = game.rounds[game.rounds.length - 1];
 
-                if(round.mafia.done == true && round.doctor.done == true && round.detective.done == true) {
-
+                var mafiaIsAlive = true;
+                var doctorIsAlive = true;
+                var detectiveIsAlive = true;
+                game.players.list.forEach(function(p) {
+                    if(p.character == 1) {
+                        mafiaIsAlive = p.alive;
+                    } else if(p.character == 2) {
+                        doctorIsAlive = p.alive;
+                    } else if(p.character == 3) {
+                        detectiveIsAlive = p.alive;
+                    }
+                });
+                if( // either ((the player should be alive and has taken action) || player is dead) then its fine
+                    ((mafiaIsAlive && round.mafia.done == true) || !mafiaIsAlive) &&
+                    ((doctorIsAlive && round.doctor.done == true) || !doctorIsAlive) &&
+                    ((detectiveIsAlive && round.detective.done == true) || !detectiveIsAlive)
+                ) {
                     var killPlayer = round.mafia.against;
                     if(round.doctor.against == killPlayer) {
                         // Player saved
@@ -559,7 +580,7 @@ Meteor.methods({
 
                         // Activities
                         var activities = game.activities;
-                        activities.push({text: text});
+                        activities.push({text: text, when: new Date()});
 
                         // Notifications
                         Notifications.insert({gameId: game._id, type: 'overlay', text: text});
@@ -574,7 +595,7 @@ Meteor.methods({
 
                         // Activities
                         var activities = game.activities;
-                        activities.push({text: text});
+                        activities.push({text: text, when: new Date()});
 
                         // Notifications
                         Notifications.insert({gameId: game._id, type: 'overlay', text: text});
@@ -586,9 +607,11 @@ Meteor.methods({
                         activities: activities
                     }});
                     if (result) {
-                        Meteor.call('gameEnableVoting', input);
+                        Meteor.call('gameEnableVoting', input, function (error, response) {
+                            console.log('M - gameEnableVoting');
+                        });
 
-                        response.success = true;
+                            response.success = true;
                         response.message = 'Done';
                     }
                 }
@@ -616,45 +639,26 @@ Meteor.methods({
                 var rounds = game.rounds;
                 var round = game.rounds[game.rounds.length - 1];
 
-                var mafiaIsAlive = true;
-                var doctorIsAlive = true;
-                var detectiveIsAlive = true;
-                game.players.list.forEach(function(p) {
-                    if(p.character == 1) {
-                        mafiaIsAlive = p.alive;
-                    } else if(p.character == 2) {
-                        doctorIsAlive = p.alive;
-                    } else if(p.character == 3) {
-                        detectiveIsAlive = p.alive;
-                    }
-                });
+                round.votingEnabled = true;
 
-                if( // either ((the player should be alive and voted) || player is dead) then its fine
-                    ((mafiaIsAlive && round.mafia.done == true) || !mafiaIsAlive) &&
-                    ((doctorIsAlive && round.doctor.done == true) || !doctorIsAlive) &&
-                    ((detectiveIsAlive && round.detective.done == true) || !detectiveIsAlive)
-                ) {
-                    round.votingEnabled = true;
+                var text = 'Vote for the mafia!';
 
-                    var text = 'Vote for the mafia!';
+                // Activities
+                var activities = game.activities;
+                activities.push({text: text, when: new Date()});
 
-                    // Activities
-                    var activities = game.activities;
-                    activities.push({text: text});
+                Meteor.setTimeout(function() {
+                    // Notifications
+                    Notifications.insert({gameId: game._id, type: 'overlay', text: text});
+                }, 5000);
 
-                    Meteor.setTimeout(function() {
-                        // Notifications
-                        Notifications.insert({gameId: game._id, type: 'overlay', text: text});
-                    }, 5000, game);
-
-                    var result = Games.update(game._id, {$set: {
-                        rounds: rounds,
-                        activities: activities
-                    }});
-                    if (result) {
-                        response.success = true;
-                        response.message = 'Done';
-                    }
+                var result = Games.update(game._id, {$set: {
+                    rounds: rounds,
+                    activities: activities
+                }});
+                if (result) {
+                    response.success = true;
+                    response.message = 'Done';
                 }
             }
 
@@ -695,7 +699,7 @@ Meteor.methods({
 
                 // Activities
                 var activities = game.activities;
-                activities.push({text: text});
+                activities.push({text: text, when: new Date()});
 
                 // Notifications
                 Notifications.insert({gameId: game._id, type: 'toast', text: '<i class="material-icons left">exposure_plus_1</i> '+text, by: Meteor.userId()});
@@ -733,38 +737,74 @@ Meteor.methods({
             if(game) {
                 var votingDone = true;
                 var rounds = game.rounds;
-                var round = game.rounds[game.rounds.length - 1];
+                var round = rounds[rounds.length - 1];
 
-                round.votes.forEach(function(v, index) {
+                round.votes.forEach(function (v, index) {
                     console.log(index);
-                    if(!v.done && game.players.list[index].alive) {
+                    if (!v.done && game.players.list[index].alive) {
                         votingDone = false;
                     }
                 });
 
-                console.log(votingDone);
+                if (votingDone) {
+                    // Check for a tie
+                    var tie = false;
+                    var highestVoteAgainst = {player: -1, votes: 0};
+                    round.votes.forEach(function (v, index) {
+                        if (v.self > 0 && v.self > highestVoteAgainst.votes) {
+                            highestVoteAgainst.player = index;
+                            highestVoteAgainst.votes = v.self;
+                        } else if (v.self > 0 && v.self == highestVoteAgainst.votes) {
+                            tie = true;
+                        }
+                    });
 
-                if(votingDone) {
-                    round.votingDone = true;
+                    if (tie) {
+                        var voteEmpty = {against: -1, self: 0, done: false};
+                        round.votes.forEach(function (v, index) {
+                            round.votes[index] = voteEmpty;
+                        });
+                        rounds[rounds.length - 1] = round;
 
-                    var text = 'Voting finished!';
+                        var text = 'Its a tie! Re-vote';
 
-                    // Activities
-                    var activities = game.activities;
-                    activities.push({text: text});
+                        // Activities
+                        var activities = game.activities;
+                        activities.push({text: text, when: new Date()});
 
-                    // Notifications
-                    Notifications.insert({gameId: game._id, type: 'overlay', text: text});
+                        // Notifications
+                        Notifications.insert({gameId: game._id, type: 'overlay', text: text});
 
-                    var result = Games.update(game._id, {$set: {
-                        rounds: rounds,
-                        activities: activities
-                    }});
-                    if (result) {
-                        Meteor.call('gameRoundPostVoting', input);
+                        var result = Games.update(game._id, {
+                            $set: {
+                                rounds: rounds,
+                                activities: activities
+                            }
+                        });
+                    } else {
+                        round.votingDone = true;
 
-                        response.success = true;
-                        response.message = 'Done';
+                        var text = 'Voting finished!';
+
+                        // Activities
+                        var activities = game.activities;
+                        activities.push({text: text, when: new Date()});
+
+                        // Notifications
+                        Notifications.insert({gameId: game._id, type: 'overlay', text: text});
+
+                        var result = Games.update(game._id, {
+                            $set: {
+                                rounds: rounds,
+                                activities: activities
+                            }
+                        });
+                        if (result) {
+                            Meteor.call('gameRoundPostVoting', input);
+
+                            response.success = true;
+                            response.message = 'Done';
+                        }
                     }
                 }
             }
@@ -788,36 +828,154 @@ Meteor.methods({
 
             var game = Games.findOne(input.gameId);
             if(game) {
+                var players = game.players;
                 var rounds = game.rounds;
-                var round = {
-                    votes: new Array(game.players.joined).fill({against: -1, self: 0, done: false}),
-                    votingEnabled: false,
-                    votingDone: false,
-                    doctor: {against: -1, done: false, saved: false},
-                    detective: {against: -1, done: false, guessed: false},
-                    mafia: {against: -1, done: false, killed: false}
-                };
-                rounds.push(round);
+                var round = game.rounds[game.rounds.length - 1];
 
-                // Activities
-                var text = 'Round '+(rounds.length - 1)+' - Ends';
-                var activities = game.activities;
-                activities.push({text: text});
-                text = 'Round '+rounds.length+' - Begins';
-                activities.push({text: text});
+                // 1. Check votes and decide if mafia is caught
+                var highestVoteAgainst = {player: -1, votes: 0};
+                round.votes.forEach(function(v, index) {
+                    if(v.self > highestVoteAgainst.votes) {
+                        highestVoteAgainst.player = index;
+                        highestVoteAgainst.votes = v.self;
+                    }
+                });
 
-                var result = Games.update(game._id, {$set: {
-                    rounds: rounds,
-                    activities: activities
-                }});
-                if (result) {
-                    Meteor.setTimeout(function() {
+                var playerMafia = -1;
+                players.list.forEach(function(p, index) {
+                    if(p.character == 1) {
+                        playerMafia = index;
+                    }
+                });
+
+                var mafiaIsAlive = true;
+                if(playerMafia == highestVoteAgainst.player) {
+                    // Mafia is caught
+                    mafiaIsAlive = false;
+                }
+
+                if(!mafiaIsAlive) {
+                    // 2. Mafia is caught game finishes and citizens wins
+                    players.list[highestVoteAgainst.player].alive = false;
+                    var is = game.is;
+                    is.finished = true;
+
+                    // Activities
+                    var text = 'Round ' + (rounds.length) + ' - Ends';
+                    var activities = game.activities;
+                    activities.push({text: text, when: new Date()});
+                    text = 'Game finished! Citizens Won';
+                    activities.push({text: text, when: new Date()});
+
+                    var result = Games.update(game._id, {$set: {
+                        players: players,
+                        activities: activities,
+                        is: is
+                    }});
+
+                    if (result) {
                         // Notifications
-                        Notifications.insert({gameId: game._id, type: 'overlay', text: text});
-                    }, 6000, game);
+                        Meteor.setTimeout(function() {
+                            // Notifications
+                            Notifications.insert({gameId: game._id, type: 'overlay', text: text});
+                        }, 5000);
 
-                    response.success = true;
-                    response.message = 'Done';
+                        response.success = true;
+                        response.message = 'Done';
+                    }
+                } else {
+                    // 3. Mafia not caught, the voted citizen dies, game continues with new round
+                    players.list[highestVoteAgainst.player].alive = false;
+
+                    // Check how many players alive
+                    var totalAlive = 0;
+                    players.list.forEach(function(p){
+                        if(p.alive) {
+                            totalAlive++;
+                        }
+                    });
+
+                    if(totalAlive <= 2) {
+                        // The game ends, not enough citizen alive to
+
+                        // Kill remaining player
+                        players.list.forEach(function(p, index){
+                            if(index != playerMafia) {
+                                players.list[index].alive = false;
+                            }
+                        });
+
+                        var is = game.is;
+                        is.finished = true;
+
+                        // Activities
+                        var text = 'Round ' + (rounds.length) + ' - Ends';
+                        var activities = game.activities;
+                        activities.push({text: text, when: new Date()});
+                        text = 'Game finished! Mafia Won';
+                        activities.push({text: text, when: new Date()});
+
+                        var result = Games.update(game._id, {$set: {
+                            players: players,
+                            activities: activities,
+                            is: is
+                        }});
+
+                        if (result) {
+                            // Notifications
+                            Meteor.setTimeout(function() {
+                                // Notifications
+                                Notifications.insert({gameId: game._id, type: 'overlay', text: text});
+                            }, 5000);
+
+                            response.success = true;
+                            response.message = 'Done';
+                        }
+                    } else {
+                        // The game continues
+                        var round = {
+                            votes: new Array(game.players.joined).fill({against: -1, self: 0, done: false}),
+                            votingEnabled: false,
+                            votingDone: false,
+                            doctor: {against: -1, done: false, saved: false},
+                            detective: {against: -1, done: false, guessed: false},
+                            mafia: {against: -1, done: false, killed: false}
+                        };
+                        rounds.push(round);
+
+                        // Activities
+                        var activities = game.activities;
+                        var textVoteOut = players.list[highestVoteAgainst.player].name + ' was voted out';
+                        activities.push({text: textVoteOut, when: new Date()});
+
+                        // Notifications
+                        Meteor.setTimeout(function () {
+                            // Notifications
+                            Notifications.insert({gameId: game._id, type: 'overlay', text: textVoteOut});
+                        }, 5000);
+
+                        text = 'Round ' + (rounds.length - 1) + ' - Ends';
+                        activities.push({text: text, when: new Date()});
+                        text = 'Round ' + rounds.length + ' - Begins';
+                        activities.push({text: text, when: new Date()});
+
+                        var result = Games.update(game._id, {$set: {
+                            players: players,
+                            rounds: rounds,
+                            activities: activities
+                        }});
+
+                        if (result) {
+                            // Notifications
+                            Meteor.setTimeout(function () {
+                                // Notifications
+                                Notifications.insert({gameId: game._id, type: 'overlay', text: text});
+                            }, 10000);
+
+                            response.success = true;
+                            response.message = 'Done';
+                        }
+                    }
                 }
             }
 

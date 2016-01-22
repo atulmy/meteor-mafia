@@ -29,6 +29,21 @@ Template.gamePlay.helpers({
             }
         },
 
+        gameFinishedText: function() {
+            var game = Games.findOne({_id: Session.get('gameId')});
+            if(game) {
+                var text = 'Citizens Won';
+
+                game.players.list.forEach(function(p) {
+                    if(p.character == 1 && p.alive) { // Mafia
+                        text = 'Mafia Won';
+                    }
+                });
+
+                return text;
+            }
+        },
+
 
     // Game Actions
         gameActionKillDisable: function() {

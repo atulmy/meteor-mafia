@@ -130,10 +130,7 @@ var activity = new SimpleSchema({
         type: String
     },
     when: {
-        type: Date,
-        autoValue: function() {
-            return new Date()
-        }
+        type: Date
     }
 });
 
