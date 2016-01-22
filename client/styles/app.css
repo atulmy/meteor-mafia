@@ -338,7 +338,7 @@
         border-bottom: none;
     }
     #app-full-content .collection .collection-item.avatar {
-        min-height: auto;
+        min-height: 65px;
     }
     /* Game */
         #app-full-content .game-header-action-left {
@@ -403,7 +403,8 @@
             padding: 10px 50px;
         }
         #app-full-content .notify .pulse {
-            animation: fontbulger 5s infinite;
+            /* animation: fontbulger 5s infinite; */
+            font-size: 32px;
         }
         #app-full-content i.medium {
             font-size: 2rem;
@@ -463,7 +464,7 @@
     }
     .dropdown-content li > a, .dropdown-content li > span {
         line-height: 14px;
-        padding: 12px;
+        padding: 15px;
         font-size: 14px;
     }
 /* --------------- / MaterialzeCSS Overrides --------------- */

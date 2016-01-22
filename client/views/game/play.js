@@ -2,6 +2,10 @@
 
 // Helper
 Template.gamePlay.helpers({
+    canExit: function() {
+        return Meteor.isCordova;
+    },
+
     // Game
         game: function() {
             return Games.findOne({_id: Session.get('gameId')});
@@ -64,6 +68,13 @@ Template.gamePlay.helpers({
             var game = Games.findOne({_id: Session.get('gameId')});
             if(game) {
                 return (game.rounds[game.rounds.length - 1].doctor.done) ? 'disabled' : '';
+            }
+        },
+
+        gameActionCanSave: function() {
+            var game = Games.findOne({_id: Session.get('gameId')});
+            if(game) {
+                return !(game.rounds[game.rounds.length - 1].doctor.done);
             }
         },
 
@@ -419,7 +430,17 @@ Template.gamePlay.events({
 
                 Materialize.toast('Some issue with the input.', App.Defaults.toastTime);
             }
+        },
+
+    'click .action-exit-app': function(event) {
+        console.log('E - click .action-exit-app');
+
+        if(Meteor.isCordova) {
+            event.preventDefault();
+
+            navigator.app.exitApp();
         }
+    }
 });
 
 // On Render

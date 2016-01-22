@@ -18,7 +18,7 @@ Template.gamePlayers.helpers({
             }
         });
 
-        return (game.players.joined >= 6) && allReady;
+        return (game.players.joined >= 4) && allReady;
     },
     started: function() {
         var game = Games.findOne({_id: Session.get('gameId')});

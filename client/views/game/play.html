@@ -10,21 +10,28 @@
 
                     Mafia in {{ stringCrop game.city.name 10 }}
 
-                    <a href="#game-menu" class="game-header-action-right waves-effect waves-light dropdown-button" data-activates="game-menu"><i class="material-icons" >more_vert</i></a>
-                    <ul id="game-menu" class="dropdown-content" style="min-width: 145px;">
-                        <li><a href="#" class="tx-uppercase game-paused" pause="1"><i class="material-icons left mr5">pause_circle_filled</i> Pause</a></li>
-                        <li>
-                            <a href="#" class="tx-uppercase" id="game-sound-toggle" data="{{ currentPlayer.key }}">
-                                {{# if currentPlayer.settings.sounds }}
-                                    <i class="material-icons left mr5">volume_up</i> Sounds On
-                                {{ else }}
-                                    <i class="material-icons left mr5">volume_off</i> Sounds Off
-                                {{/ if }}
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="#modal-game-quit" class="tx-uppercase modal-trigger"><i class="material-icons left mr5">exit_to_app</i> Quit Game</a></li>
-                    </ul>
+                    {{# if game.is.finished }}
+                        <a href="{{ pathFor route='home' }}" class="game-header-action-right waves-effect waves-light"><i class="material-icons" >home</i></a>
+                    {{ else }}
+                        <a href="#game-menu" class="game-header-action-right waves-effect waves-light dropdown-button" data-activates="game-menu"><i class="material-icons" >more_vert</i></a>
+                        <ul id="game-menu" class="dropdown-content" style="min-width: 145px;">
+                            <li><a href="#" class="tx-uppercase game-paused" pause="1"><i class="material-icons left mr5">pause_circle_filled</i> Pause</a></li>
+                            <li class="display-none">
+                                <a href="#" class="tx-uppercase" id="game-sound-toggle" data="{{ currentPlayer.key }}">
+                                    {{# if currentPlayer.settings.sounds }}
+                                        <i class="material-icons left mr5">volume_up</i> Sounds On
+                                    {{ else }}
+                                        <i class="material-icons left mr5">volume_off</i> Sounds Off
+                                    {{/ if }}
+                                </a>
+                            </li>
+                            <li><a href="#modal-game-quit" class="tx-uppercase modal-trigger"><i class="material-icons left mr5">home</i> Quit Game</a></li>
+                            <li class="divider"></li>
+                            {{# if canExit }}
+                                <li><a href="#" class="tx-uppercase action-exit-app"><i class="material-icons left mr5">exit_to_app</i> Exit App</a></li>
+                            {{/ if }}
+                        </ul>
+                    {{/ if }}
                 </h1>
             </div>
         </div>
@@ -35,8 +42,10 @@
                 <div class="col s6 vertical-align-child center-align position-relative">
                     <img src="{{ currentPlayer.image }}" alt="{{ currentPlayer.name }}" class="responsive-img"/>
 
-                    {{# if gameVotesAgainstPlayerShow currentPlayer.key }}
-                        <span class="player-vote-count" style="top: 15px; right: 20px;">{{ gameVotesAgainstPlayer currentPlayer.key }}</span>
+                    {{# if not game.is.finished }}
+                        {{# if gameVotesAgainstPlayerShow currentPlayer.key }}
+                            <span class="player-vote-count" style="top: 15px; right: 20px;">{{ gameVotesAgainstPlayer currentPlayer.key }}</span>
+                        {{/ if }}
                     {{/ if }}
                 </div>
                 <div class="col s6 vertical-align-child">
@@ -52,6 +61,17 @@
                         {{{ currentPlayerAliveOrDeadText currentPlayer.alive }}}
                     </p>
                     <div class="divider divider-dark"></div>
+
+                    {{# if currentPlayerIsDoctor currentPlayer.character }}
+                        {{# if currentPlayer.alive }}
+                            {{# if gameActionCanSave }}
+                                <p class="waves-effect waves-light game-action-save tx-sm tx-uppercase mb5 mt5 tx-lh-25" data="{{ currentPlayer.key }}">
+                                    <i class="material-icons left mr5 white-text text-darken-2">add_circle</i> Save Yourself
+                                </p>
+                                <div class="divider divider-dark"></div>
+                            {{/ if }}
+                        {{/ if }}
+                    {{/ if }}
                 </div>
             </div>
         </div>
@@ -109,10 +129,20 @@
                     {{# if notEqualTo value.id currentUser._id }}
                         <div class="col s4 left {{ playerAliveOrDeadBg value.alive }} border-all-game p0 transitions-all">
                             <p class="mt10 mb5 center-align position-relative">
-                                <img src="{{ value.image }}" alt="{{ value.name }}" class="responsive-img rounded rounded-small"/>
+                                {{# if game.is.finished }}
+                                    {{# if currentPlayerIsMafia value.character }}
+                                        <img src="/images/logo.png"  alt="mafia" class="responsive-img rounded rounded-small"/>
+                                    {{ else }}
+                                        <img src="{{ value.image }}" alt="{{ value.name }}" class="responsive-img rounded rounded-small"/>
+                                    {{/ if }}
+                                {{ else }}
+                                    <img src="{{ value.image }}" alt="{{ value.name }}" class="responsive-img rounded rounded-small"/>
+                                {{/ if }}
 
-                                {{# if gameVotesAgainstPlayerShow key }}
-                                    <span class="player-vote-count">{{ gameVotesAgainstPlayer key }}</span>
+                                {{# if not game.is.finished }}
+                                    {{# if gameVotesAgainstPlayerShow key }}
+                                        <span class="player-vote-count">{{ gameVotesAgainstPlayer key }}</span>
+                                    {{/ if }}
                                 {{/ if }}
                             </p>
                             <p class="mt5 mb0 center-align">{{ stringCrop value.name 12 }}</p>

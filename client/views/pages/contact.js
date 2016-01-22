@@ -30,23 +30,25 @@ Template.pagesContact.events({
 
         // Validate
         if(input.name != '' && input.email != '') {
-            Meteor.call('emailContact', input, function (error, response) {
-                console.log('M - emailContact');
+            setTimeout(function() {
+                Meteor.call('emailContact', input, function (error, response) {
+                    console.log('M - emailContact');
 
-                App.Helpers.actionLoading('#form-contact-submit', 'after');
+                    App.Helpers.actionLoading('#form-contact-submit', 'after');
 
-                if (error) {
-                    Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
-                } else {
-                    Materialize.toast(response.message, App.Defaults.toastTime);
+                    if (error) {
+                        Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
+                    } else {
+                        Materialize.toast(response.message, App.Defaults.toastTime);
 
-                    if (response.success) {
-                        template.$('#contact-name').val('');
-                        template.$('#contact-email').val('');
-                        template.$('#contact-message').val('');
+                        if (response.success) {
+                            template.$('#contact-name').val('');
+                            template.$('#contact-email').val('');
+                            template.$('#contact-message').val('');
+                        }
                     }
-                }
-            });
+                });
+            }, 500);
         } else {
             App.Helpers.actionLoading('#form-contact-submit', 'after');
 

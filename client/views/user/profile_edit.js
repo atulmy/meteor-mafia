@@ -40,22 +40,23 @@ Template.userProfileEdit.events({
 
         // Validate
         if(input.name != '') {
+            setTimeout(function() {
+                Meteor.call('userProfileUpdate', input, function (error, response) {
+                    console.log('M - userProfileUpdate');
 
-            Meteor.call('userProfileUpdate', input, function (error, response) {
-                console.log('M - userProfileUpdate');
+                    App.Helpers.actionLoading('#form-user-profile-submit', 'after');
 
-                App.Helpers.actionLoading('#form-user-profile-submit', 'after');
+                    if (error) {
+                        Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
+                    } else {
+                        Materialize.toast(response.message, App.Defaults.toastTime);
 
-                if (error) {
-                    Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
-                } else {
-                    Materialize.toast(response.message, App.Defaults.toastTime);
-
-                    if (response.success) {
-                        Router.go('profile');
+                        if (response.success) {
+                            Router.go('profile');
+                        }
                     }
-                }
-            });
+                });
+            }, 500);
         } else {
             Materialize.toast('Please provide all the required data.', App.Defaults.toastTime);
 

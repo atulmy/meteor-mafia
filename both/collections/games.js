@@ -215,16 +215,15 @@ Meteor.methods({
         check(input.key, String);
         check(input.value, Boolean);
 
-
         var game = Games.findOne(input.gameId);
         if(game) {
             if(!game.is.started) {
                 console.log(game);
 
-                if(game.players.list.length >= 6) {
+                if(game.players.list.length >= 4) {
                     // Calculate number of mafias
                     var mafias = 1;
-                    if(game.players.joined == 6) {
+                    if(game.players.joined <= 6) {
                         mafias = 1;
                     } else if(game.players.joined > 6 && game.players.joined <= 10) {
                         mafias = 2;
@@ -636,29 +635,83 @@ Meteor.methods({
 
             var game = Games.findOne(input.gameId);
             if(game) {
+                var players = game.players;
                 var rounds = game.rounds;
                 var round = game.rounds[game.rounds.length - 1];
 
-                round.votingEnabled = true;
+                // Check how many players alive
+                var totalAlive = 0;
+                players.list.forEach(function(p){
+                    if(p.alive) {
+                        totalAlive++;
+                    }
+                });
 
-                var text = 'Vote for the mafia!';
+                if(totalAlive <= 2) {
+                    // The game ends, not enough citizen alive to
 
-                // Activities
-                var activities = game.activities;
-                activities.push({text: text, when: new Date()});
+                    // Kill remaining player
+                    var playerMafia = -1;
+                    players.list.forEach(function(p, index) {
+                        if(p.character == 1) {
+                            playerMafia = index;
+                        }
+                    });
 
-                Meteor.setTimeout(function() {
-                    // Notifications
-                    Notifications.insert({gameId: game._id, type: 'overlay', text: text});
-                }, 5000);
+                    players.list.forEach(function(p, index){
+                        if(index != playerMafia) {
+                            players.list[index].alive = false;
+                        }
+                    });
 
-                var result = Games.update(game._id, {$set: {
-                    rounds: rounds,
-                    activities: activities
-                }});
-                if (result) {
-                    response.success = true;
-                    response.message = 'Done';
+                    var is = game.is;
+                    is.finished = true;
+
+                    // Activities
+                    var text = 'Round ' + (rounds.length) + ' - Ends';
+                    var activities = game.activities;
+                    activities.push({text: text, when: new Date()});
+                    text = 'Game finished! Mafia Won';
+                    activities.push({text: text, when: new Date()});
+
+                    var result = Games.update(game._id, {$set: {
+                        players: players,
+                        activities: activities,
+                        is: is
+                    }});
+
+                    if (result) {
+                        // Notifications
+                        Meteor.setTimeout(function() {
+                            // Notifications
+                            Notifications.insert({gameId: game._id, type: 'overlay', text: text});
+                        }, 5000);
+
+                        response.success = true;
+                        response.message = 'Done';
+                    }
+                } else {
+                    round.votingEnabled = true;
+
+                    var text = 'Vote for the mafia!';
+
+                    // Activities
+                    var activities = game.activities;
+                    activities.push({text: text, when: new Date()});
+
+                    Meteor.setTimeout(function() {
+                        // Notifications
+                        Notifications.insert({gameId: game._id, type: 'overlay', text: text});
+                    }, 5000);
+
+                    var result = Games.update(game._id, {$set: {
+                        rounds: rounds,
+                        activities: activities
+                    }});
+                    if (result) {
+                        response.success = true;
+                        response.message = 'Done';
+                    }
                 }
             }
 
