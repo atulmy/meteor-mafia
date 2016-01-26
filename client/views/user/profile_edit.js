@@ -17,6 +17,15 @@ Template.userProfileEdit.events({
                 template.$('#user-profile-picture').val(data);
                 template.$('#user-profile-picture-preview').attr('src', data);
 
+                Cloudinary._upload_file(data, {folder: 'user'}, function(error, response) {
+                    console.log(error);
+                    console.log(response);
+                    if(!error) {
+                        response.public_id;
+                        response.url;
+                    }
+                });
+
                 Materialize.toast('Looking good!', App.Defaults.toastTime);
             } else {
                 Materialize.toast('Please allow the camera permission.', App.Defaults.toastTime);

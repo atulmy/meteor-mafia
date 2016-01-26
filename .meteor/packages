@@ -45,3 +45,4 @@
 # Helpers
     zimme:active-route
     momentjs:moment
+    lepozepo:cloudinary #Image upload and manipulation

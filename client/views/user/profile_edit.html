@@ -33,7 +33,7 @@
                     <div class="row">
                         <div class="col s12 center-align" style="position: relative;">
                             <div class="rounded">
-                                <img src="{{ currentUser.profile.picture }}" id="user-profile-picture-preview" class="responsive-img" />
+                                <img src="{{ c.url currentUser.profile.picture.id width=200 height=200 crop="fill" }}" id="user-profile-picture-preview" class="responsive-img" />
                             </div>
                             <a href="#" id="user-profile-image" style="position: absolute; left: 0px; right: 0px; bottom: 10px; text-shadow: 0px 0px 10px #666;" class="white-text"><i class="material-icons medium">photo_camera</i></a>
                             <input id="user-profile-picture" type="hidden" value="{{ currentUser.profile.picture }}" />
