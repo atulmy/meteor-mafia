@@ -25,7 +25,7 @@
             <ul class="collection m0">
                 {{# each arrayReverse game.players.list }}
                     <li class="collection-item avatar">
-                        <img src="{{ image }}" alt="{{ name }}" class="circle">
+                        <img src="{{ c.url image width=50 height=50 crop='fill' }}" alt="{{ name }}" class="circle">
                         <span class="title">{{ name }}</span>
 
                         {{# if equalTo id currentUser._id }}

@@ -30,6 +30,29 @@ App = {
         $('.animate-fade-in').fadeIn();
     },
 
+    User: {
+        loginOrCreate: function(uuid) {
+            Meteor.loginWithPassword({username: uuid}, uuid, function (err) {
+                if (err) {
+                    console.log('User - Create');
+
+                    Meteor.call('userCreate', uuid);
+
+                    console.log(Meteor.loginWithPassword({username: uuid}, uuid, function (err) {
+                        if (err) {
+                            console.log('User - Error Logging In');
+                        }
+                        else {
+                            console.log('User - Logged In');
+                        }
+                    }));
+                } else {
+                    console.log('User - Logged In');
+                }
+            });
+        }
+    },
+
     Layouts: {
         default: function() {
             var heightApp = parseInt($(document).height());
@@ -53,6 +76,7 @@ App = {
                     $('.button-collapse').sideNav('hide');
                 });
             },
+
             modal: function() {
                 $('.modal-trigger').leanModal();
             },
@@ -87,6 +111,7 @@ App = {
                 App.Overlay.hide();
             }, time, text);
         },
+
         hide: function() {
             $('#notify').fadeOut();
         }
@@ -96,6 +121,7 @@ App = {
         randomNumber: function(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         },
+
         actionLoading: function(button, isBeforeAfter) {
             if(isBeforeAfter == 'before') {
                 $(button).prop('disabled', true);
@@ -113,17 +139,20 @@ App = {
                 $('.header-action').fadeIn();
             }
         },
+
         actionDisable: function(button, isBeforeAfter) {
             if(isBeforeAfter == 'before') {
                 $(button).prop('disabled', true);
             } else {
                 $(button).prop('disabled', false);
             }
+        },
+
+        uuid: function() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                return v.toString(16);
+            });
         }
     }
 };
-
-$.cloudinary.config({
-    cloud_name: 'atulmy',
-    api_key: '929489619493485'
-});

@@ -21,15 +21,14 @@
 # Database
     aldeed:collection2
     msavin:mongol
+    u2622:persistent-session
 
 # Routing
     iron:router
-    useraccounts:iron-routing
 
 # Accounts
-    accounts-facebook
     accounts-password
-    useraccounts:materialize
+    accounts-facebook
     service-configuration
 
 # UI / Theme

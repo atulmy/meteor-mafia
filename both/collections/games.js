@@ -17,12 +17,11 @@ Meteor.methods({
         check(input.expected, Number);
         check(input.city, String);
         check(input.code, Number);
-        check(input.isMoneyGame, Boolean);
 
         var player = {
             id: Meteor.userId(),
             name: Meteor.user().profile.name,
-            image: Meteor.user().profile.picture,
+            image: Meteor.user().profile.image.id,
             ready: true,
             character: 0,
             alive: true,
@@ -42,16 +41,14 @@ Meteor.methods({
                 joined: 1,
                 list: [player]
             },
-            rounds: [
-                {
-                    votes: [{against: -1, self: 0, done: false}],
-                    votingEnabled: false,
-                    votingDone: false,
-                    doctor: {against: -1, done: false, saved: false},
-                    detective: {against: -1, done: false, guessed: false},
-                    mafia: {against: -1, done: false, killed: false}
-                }
-            ],
+            rounds: [{
+                votes: [{against: -1, self: 0, done: false}],
+                votingEnabled: false,
+                votingDone: false,
+                doctor: {against: -1, done: false, saved: false},
+                detective: {against: -1, done: false, guessed: false},
+                mafia: {against: -1, done: false, killed: false}
+            }],
             activities: [{text: 'Game created', when: new Date()}],
             discussions: {
                 user: [{name: '^_^', message: 'Lets catch the mafia, shall we?'}],
@@ -63,7 +60,6 @@ Meteor.methods({
                 sounds: true
             },
             is: {
-                moneyGame: input.isMoneyGame,
                 publicGame: false,
                 started: false,
                 finished: false
@@ -115,7 +111,7 @@ Meteor.methods({
                     var player = {
                         id: Meteor.userId(),
                         name: Meteor.user().profile.name,
-                        image: Meteor.user().profile.picture,
+                        image: Meteor.user().profile.image.id,
                         ready: true,
                         character: 0,
                         alive: true,

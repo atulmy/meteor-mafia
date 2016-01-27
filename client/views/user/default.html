@@ -1,41 +1,26 @@
-<template name="userProfileEdit">
+<template name="userProfileDefault">
 
-<!-- Header -->
-    <!-- Left -->
-    {{#contentFor "headerLeft"}}
-        <a href="{{ pathFor route='profile' }}" class="button-collapse waves-effect waves-light">
-            <i class="material-icons">navigate_before</i>
-        </a>
-    {{/contentFor}}
+    <!-- Page Content -->
+    <div class="container-fluid display-none animate-fade-in content-split-vertically">
+        <!-- Header -->
+        <div class="col col-8 s12 center-align vertical-align border-bottom-game">
+            <div class="clearfix vertical-align-child bg-game-header">
+                <h1 class="m0 tx-uppercase tx-lg position-relative">
+                    Complete your profile
+                </h1>
+            </div>
+        </div>
 
-    <!-- Center -->
-    {{#contentFor "headerCenter"}}
-        <a id="logo-container" href="{{ pathFor route='profileEdit' }}" class="brand-logo tx-uppercase tx-lighter">
-            Profile Edit
-        </a>
-    {{/contentFor}}
-
-    <!-- Right -->
-    {{#contentFor "headerRight"}}
-        <a href="#" data-action-form="#form-user-profile" class="header-action button-actions waves-effect waves-light">
-            <i class="material-icons">check</i>
-        </a>
-        <a href="#" class="header-action-loading button-actions waves-effect waves-light display-none">
-            <i class="material-icons">hourglass_empty</i>
-        </a>
-    {{/contentFor}}
-
-<!-- Page Content -->
-    <div class="container display-none animate-fade-in">
-        <div class="row vertical-align">
-            <div class="col s12 vertical-align-child">
+        <!-- Players List -->
+        <div class="col col-92 s12 vertical-align">
+            <div class="clearfix vertical-align-child">
                 <form id="form-user-profile">
                     <div class="row">
                         <div class="col s12 center-align" style="position: relative;">
                             <img src="{{ c.url currentUser.profile.image.id width=200 height=200 crop="fill" }}" id="user-profile-image-preview" class="rounded" />
 
                             <a href="#" id="user-profile-image" style="position: absolute; left: 0px; right: 0px; bottom: 10px; text-shadow: 0px 0px 10px #666;" class="white-text">
-                                <span class="action-text"><i class="material-icons medium">photo_camera</i></span>
+                                <span class="action-text"><i class="material-icons large">photo_camera</i></span>
                                 <span class="action-loading display-none">{{> commonLoadingAction }}</span>
                             </a>
                             <input id="user-profile-image-id" type="hidden" value="{{ currentUser.profile.image.id }}" />
@@ -53,7 +38,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <button type="submit" id="form-user-profile-submit" class="waves-effect waves-light btn-large btn-block red accent-2">
-                                <span class="action-text"><i class="material-icons left">check</i> Save</span>
+                                <span class="action-text">Start <i class="material-icons right">navigate_next</i></span>
                                 <span class="action-loading display-none">{{> commonLoadingAction }}</span>
                             </button>
                         </div>
@@ -62,5 +47,4 @@
             </div>
         </div>
     </div>
-
 </template>

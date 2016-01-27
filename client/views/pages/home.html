@@ -41,19 +41,14 @@
                     </div>
 
                     <div class="row">
-                        <div class="input-field col s12">
-                            <input type="text" id="game-city" value="Random" readonly="readonly" class="cursor-pointer black-text"/>
-                            <label class="active">City</label>
-                        </div>
-                    </div>
-
-                    <div class="row display-none">
-                        <div class="input-field col s12">
-                            <select id="game-money">
-                                <option value="0" selected="selected">No</option>
-                                <option value="1">Yes</option>
+                        <div class="input-field col s12 mt10">
+                            <select id="game-city">
+                                <option value="Random" selected="selected">Random</option>
+                                {{#each cities }}
+                                    <option value="{{ this }}">{{ this }}</option>
+                                {{/each }}
                             </select>
-                            <label>Money match?</label>
+                            <label>City</label>
                         </div>
                     </div>
 

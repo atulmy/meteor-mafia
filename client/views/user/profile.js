@@ -7,15 +7,15 @@ Template.userProfile.helpers({
 
 // Events
 Template.userProfile.events({
-    'click #profile-logout': function() {
+    'click #profile-edit': function() {
         event.preventDefault();
 
-        console.log('E - click #profile-logout');
+        console.log('E - click #profile-edit');
 
         // Show action loading
         App.Helpers.actionLoading('#profile-logout', 'before');
 
-        AccountsTemplates.logout();
+        Router.go('profileEdit');
     }
 });
 

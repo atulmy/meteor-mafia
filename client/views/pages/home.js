@@ -36,16 +36,15 @@ Template.pagesHome.events({
         // Get Inputs
         var input = {};
         input.expected = parseInt(template.$('#game-expected').val());
-        input.city = template.$('#game-city').val();
+        input.city = template.$('#game-city').find(':selected').val();
         if(input.city == 'Random') {
             input.city = App.Defaults.cities[App.Helpers.randomNumber(0, (App.Defaults.cities.length - 1))];
         }
         input.code = App.Helpers.randomNumber(1000, 9999);
-        input.isMoneyGame = (parseInt(template.$('#game-money').find(':selected').val()) === 1) ? true : false;
         console.log(input);
 
         // Validate
-        if(input.gamePlayers != '' && input.city != '' && input.code != '' && input.gameMoney != '') {
+        if(input.gamePlayers != '' && input.city != '' && input.code != '') {
             Meteor.call('gameCreate', input, function (error, response) {
                 console.log('M - gameCreate');
 

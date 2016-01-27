@@ -40,7 +40,7 @@
         <div class="col col-28 s12 bg-game-dark">
             <div class="row vertical-align">
                 <div class="col s6 vertical-align-child center-align position-relative">
-                    <img src="{{ currentPlayer.image }}" alt="{{ currentPlayer.name }}" class="responsive-img"/>
+                    <img src="{{ c.url currentPlayer.image width=200 height=200 crop='fill' }}" alt="{{ currentPlayer.name }}" class="responsive-img"/>
 
                     {{# if not game.is.finished }}
                         {{# if gameVotesAgainstPlayerShow currentPlayer.key }}
@@ -128,15 +128,15 @@
                 {{# each arrayKeyValue game.players.list }}
                     {{# if notEqualTo value.id currentUser._id }}
                         <div class="col s4 left {{ playerAliveOrDeadBg value.alive }} border-all-game p0 transitions-all">
-                            <p class="mt10 mb5 center-align position-relative">
+                            <p class="mt10 mb0 pr10 pl10 center-align position-relative">
                                 {{# if game.is.finished }}
                                     {{# if currentPlayerIsMafia value.character }}
-                                        <img src="/images/logo.png"  alt="mafia" class="responsive-img rounded rounded-small"/>
+                                        <img src="/images/logo.png"  alt="mafia" class="responsive-img rounded"/>
                                     {{ else }}
-                                        <img src="{{ value.image }}" alt="{{ value.name }}" class="responsive-img rounded rounded-small"/>
+                                        <img src="{{ c.url value.image width=100 height=100 crop='fill' }}" alt="{{ value.name }}" class="responsive-img rounded"/>
                                     {{/ if }}
                                 {{ else }}
-                                    <img src="{{ value.image }}" alt="{{ value.name }}" class="responsive-img rounded rounded-small"/>
+                                    <img src="{{ c.url value.image width=100 height=100 crop='fill' }}" alt="{{ value.name }}" class="responsive-img rounded"/>
                                 {{/ if }}
 
                                 {{# if not game.is.finished }}

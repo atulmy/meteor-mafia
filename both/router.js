@@ -4,23 +4,48 @@ Router.configure({
     loadingTemplate: 'commonLoading'
 });
 
-// Login / Signup
-AccountsTemplates.configureRoute('signIn');
-AccountsTemplates.configureRoute('signUp');
-Router.plugin('ensureSignedIn', {
-    except: ['splash', 'how', 'about', 'contact']
-});
-AccountsTemplates.configureRoute('ensureSignedIn', {
-    layoutTemplate: 'layoutsAccounts',
-});
-AccountsTemplates.configure({
-    onLogoutHook: function(){
-        //example redirect after logout
-        Router.go('splash');
+// Check authentication for routes or except routes
+var loginCheck = function(){
+    if(!Meteor.user()) {
+        if(Meteor.loggingIn()){
+            this.render("commonLoading");
+        } else {
+            this.render("layoutsAccounts");
+        }
+    } else {
+        this.next();
     }
+};
+
+Router.onBeforeAction(loginCheck, {
+    except: ['splash', 'how', 'about', 'contact']
 });
 
 // Pages
+    // Splash
+    Router.route('/', {
+        name: 'splash',
+        template: 'pagesSplash',
+        layoutTemplate: 'layoutsFull',
+    });
+    // How
+    Router.route('/how-to-play', {
+        name: 'how',
+        template: 'pagesHow'
+    });
+    // About
+    Router.route('/about', {
+        name: 'about',
+        template: 'pagesAbout'
+    });
+    // Contact
+    Router.route('/contact', {
+        name: 'contact',
+        template: 'pagesContact',
+        waitOn: function() {
+            return Meteor.subscribe('userDetails');
+        }
+    });
     // Game
         // Home
         Router.route('/home', {
@@ -70,31 +95,6 @@ AccountsTemplates.configure({
             }
         });
 
-    // Splash
-    Router.route('/', {
-        name: 'splash',
-        template: 'pagesSplash',
-        layoutTemplate: 'layoutsFull',
-    });
-    // How
-    Router.route('/how-to-play', {
-        name: 'how',
-        template: 'pagesHow'
-    });
-    // About
-    Router.route('/about', {
-        name: 'about',
-        template: 'pagesAbout'
-    });
-    // Contact
-    Router.route('/contact', {
-        name: 'contact',
-        template: 'pagesContact',
-        waitOn: function() {
-            return Meteor.subscribe('userDetails');
-        }
-    });
-
 // User
     // Profile
     Router.route('/profile', {
@@ -104,4 +104,9 @@ AccountsTemplates.configure({
     Router.route('/profile/edit', {
         name: 'profileEdit',
         template: 'userProfileEdit'
+    });
+    Router.route('/profile/default', {
+        name: 'profileDefault',
+        template: 'userProfileDefault',
+        layoutTemplate: 'layoutsFull'
     });

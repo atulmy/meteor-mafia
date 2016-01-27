@@ -12,13 +12,19 @@ Template.pagesSplash.events({
 
         console.log('M - click .splash-start');
 
-        Router.go('home');
+        if(Meteor.user().profile.image.id == 'default-user-image') {
+            Router.go('profileDefault');
+        } else {
+            Router.go('home');
+        }
     }
 });
 
 // On Render
 Template.pagesSplash.rendered = function () {
     console.log('R - Template.pagesSplash.rendered');
+
+    Session.setPersistent('splash', 1);
 
     $( function() {
         App.Materialize.Init.slider();

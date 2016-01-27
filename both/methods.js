@@ -15,9 +15,10 @@ Meteor.methods({
         if(typeof input.name != 'undefined') {
             profile.name = input.name;
         }
-        // Picture
-        if(typeof input.picture != 'undefined') {
-            profile.picture = input.picture;
+        // Image
+        if(typeof input.image.id != 'undefined') {
+            profile.image.id = input.image.id;
+            profile.image.url = input.image.url;
         }
 
         var check = Meteor.users.update(Meteor.userId(), {$set: {profile: profile}});

@@ -23,18 +23,15 @@
     <div class="container display-none animate-fade-in">
         <div class="row center vertical-align">
             <div class="col s12 vertical-align-child align-center">
-                <div class="rounded">
-                    <img class=" responsive-img" alt="loading..." src="{{ currentUser.profile.picture }}" style="width: 175px;"/>
-                </div>
+                <img class="rounded" alt="loading..." src="{{ c.url currentUser.profile.image.id width=200 height=200 crop='fill' }}" style="width: 175px;"/>
 
                 <div class="divider divider-theme mt10 mb10"></div>
 
                 <h1 class="tx-lg m0">{{ currentUser.profile.name }}</h1>
 
                 <p class="center-align">
-                    <button type="submit" id="profile-logout" class="btn waves-effect waves-light red accent-2">
-                        <span class="action-text"><i class="material-icons left">power_settings_new</i> Logout</span>
-                        <span class="action-loading display-none">{{> commonLoadingAction }}</span>
+                    <button id="profile-edit" class="btn waves-effect waves-light">
+                        <i class="material-icons left">edit</i> Edit Profile
                     </button>
                 </p>
             </div>

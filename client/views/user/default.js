@@ -1,12 +1,12 @@
 // Pages Profile
 
 // Helper
-Template.userProfileEdit.helpers({
+Template.userProfileDefault.helpers({
 
 });
 
 // Events
-Template.userProfileEdit.events({
+Template.userProfileDefault.events({
     'click #user-profile-image': function(event, template) {
         event.preventDefault();
 
@@ -56,7 +56,7 @@ Template.userProfileEdit.events({
         console.log(input);
 
         // Validate
-        if(input.name != '') {
+        if(input.name != '' && input.name != 'New Player' && input.image.id != '' && input.image.id != 'default-user-image') {
             setTimeout(function() {
                 Meteor.call('userProfileUpdate', input, function (error, response) {
                     console.log('M - userProfileUpdate');
@@ -69,13 +69,13 @@ Template.userProfileEdit.events({
                         Materialize.toast(response.message, App.Defaults.toastTime);
 
                         if (response.success) {
-                            Router.go('profile');
+                            Router.go('home');
                         }
                     }
                 });
             }, 500);
         } else {
-            Materialize.toast('Please provide all the required data.', App.Defaults.toastTime);
+            Materialize.toast('Come on now, put your name and click a nice photo of yours', App.Defaults.toastTime);
 
             App.Helpers.actionLoading('#form-user-profile-submit', 'after');
         }
@@ -83,11 +83,15 @@ Template.userProfileEdit.events({
 });
 
 // On Render
-Template.userProfileEdit.rendered = function() {
-    console.log('R - Template.userProfileEdit.rendered');
+Template.userProfileDefault.rendered = function() {
+    console.log('R - Template.userProfile.rendered');
 
     $( function() {
         App.init();
         App.Materialize.Init.form();
+
+        $('#user-profile-name').on('focus', function() {
+            $(this).select();
+        });
     });
 };

@@ -9,7 +9,7 @@
     .divider-color         { border-color: #B6B6B6; }
 
 /* --------------- Common --------------- */
-    html, body { background-color: #efebe9; padding: 0px; }
+    html, body { background-color: #efebe9; padding: 0px; line-height: normal; }
     .display-none { display: none; }
     .divider-theme { background-color: #B6B6B6; }
     .divider-dark { background-color: #333; }
@@ -58,12 +58,14 @@
     .ml10 { margin-left: 10px; }
     .pl0 { padding-left: 0px !important; }
     .pl5 { padding-left: 5px !important; }
+    .pl10 { padding-left: 10px !important; }
     /* right */
     .mr0 { margin-right: 0px; }
     .mr5 { margin-right: 5px !important; }
     .mr10 { margin-right: 10px; }
     .pr0 { padding-right: 0px !important; }
     .pr5 { padding-right: 5px !important; }
+    .pr10 { padding-right: 10px !important; }
     /* top */
     .mt0 { margin-top: 0px; }
     .mt5 { margin-top: 5px; }
@@ -86,6 +88,12 @@
     /* content split vertically */
         .content-split-vertically {
             margin: 0px;
+        }
+        .content-split-vertically .col-92 {
+            padding: 0px;
+            height: 92%;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
         .content-split-vertically .col-54 {
             padding: 0px;
@@ -288,16 +296,16 @@
         #app-footer .footer-icons .col a {
             color: #5D4037;
             display: block;
-            padding: 11px 0px;
             text-transform: uppercase;
             font-size: 12px;
+            padding: 15px 0px;
         }
         #app-footer .footer-icons .col a.active {
             color: #FF5252;
         }
         #app-footer .footer-icons .col a i {
-            font-size: 31px;
-            height: 31px;
+            font-size: 30px;
+            line-height: 30px;
         }
         #app-footer .footer-icons a p {
             margin: 0px;
@@ -410,6 +418,10 @@
             font-size: 2rem;
             line-height: 3.5rem;
         }
+        #app-full-content i.large {
+            font-size: 3rem;
+            line-height: 4rem;
+        }
         #app-full-content .game-vote, #app-full-content .game-kill {
             border-radius: 0px;
             width: 100%;
@@ -425,6 +437,7 @@
 /* --------------- MaterialzeCSS Overrides --------------- */
     .btn { border-radius: 18px; }
     .btn-block { border-radius: 30px; display: block !important; width: 100%; }
+    .btn-large:disabled { background-color: transparent !important; }
     form .row { margin-top: 0px; margin-bottom: 0px }
     .slider .indicators .indicator-item.active { background-color: #FF5252; }
     .input-field label, .input-field label.active, .select-wrapper + label { font-size: 1rem; }
@@ -436,23 +449,10 @@
     .row .col.offset-s3 { margin-left: 25% !important; }
     .camera-popup { overflow: hidden; }
     .camera-popup img { width: 100% !important; }
-    .rounded, .rounded-small {
+    .rounded {
         border-radius: 50%;
         overflow: hidden;
-        width: 200px;
-        height: 200px;
         margin: 0 auto;
-    }
-    .rounded-small {
-        width: 85px !important;
-        height: 85px !important;
-        min-width: auto !important;
-    }
-    img.rounded, .rounded img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        min-width: 100%;
     }
     .toast { justify-content: unset; word-break: normal; }
     img.responsive-img, video.responsive-video { width: 100%; }
@@ -467,6 +467,7 @@
         padding: 15px;
         font-size: 14px;
     }
+    .select-dropdown { max-height: 175px; }
 /* --------------- / MaterialzeCSS Overrides --------------- */
 
 /* --------------- Animations --------------- */

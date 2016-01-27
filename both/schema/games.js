@@ -50,9 +50,6 @@ var players = new SimpleSchema({
 });
 
 var is = new SimpleSchema({
-    moneyGame: {
-        type: Boolean
-    },
     publicGame: {
         type: Boolean
     },
