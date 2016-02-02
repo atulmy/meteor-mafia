@@ -94,72 +94,84 @@
             height: 92%;
             overflow-x: hidden;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .content-split-vertically .col-54 {
             padding: 0px;
             height: 54%;
             overflow-x: hidden;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .content-split-vertically .col-50 {
             padding: 0px;
             height: 50%;
             overflow-x: hidden;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .content-split-vertically .col-40 {
             padding: 0px;
             height: 40%;
             overflow-x: hidden;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .content-split-vertically .col-34 {
             padding: 0px;
             height: 34%;
             overflow-x: hidden;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .content-split-vertically .col-30 {
             padding: 0px;
             height: 30%;
             overflow-x: hidden;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .content-split-vertically .col-28 {
             padding: 0px;
             height: 28%;
             overflow-x: hidden;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .content-split-vertically .col-24 {
             padding: 0px;
             height: 24%;
             overflow-x: hidden;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .content-split-vertically .col-20 {
             padding: 0px;
             height: 20%;
             overflow-x: hidden;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .content-split-vertically .col-10 {
             padding: 0px;
             height: 10%;
             overflow-x: hidden;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .content-split-vertically .col-8 {
             padding: 0px;
             height: 8%;
             overflow-x: hidden;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .content-split-vertically .col-6 {
             padding: 0px;
             height: 6%;
             overflow-x: hidden;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
     /* vertical align */
         .vertical-align {
@@ -194,10 +206,10 @@
         clear: both;
         height: 50px;
         left: 0;
-        position: absolute;
+        position: fixed;
         right: 0;
         top: 0;
-        z-index: 998;
+        z-index: 3;
     }
     #app-header nav {
         box-shadow: none;
@@ -229,12 +241,13 @@
         top: 50px;
         bottom: 70px;
         left: 0;
+        position: fixed;
+        right: 0;
+        z-index: 1;
+        padding: 0px;
         overflow-x: hidden;
         overflow-y: auto;
-        position: absolute;
-        right: 0;
-        z-index: 996;
-        padding: 0px;
+        -webkit-overflow-scrolling: touch;
     }
     #app-content .container {
         height: 100%;
@@ -278,10 +291,10 @@
         clear: both;
         height: 70px;
         left: 0;
-        position: absolute;
+        position: fixed;
         right: 0;
         bottom: 0;
-        z-index: 997;
+        z-index: 2;
         overflow: hidden;
     }
     /* footer icons */
@@ -298,7 +311,7 @@
             display: block;
             text-transform: uppercase;
             font-size: 12px;
-            padding: 15px 0px;
+            padding: 12px 0px;
         }
         #app-footer .footer-icons .col a.active {
             color: #FF5252;
@@ -309,8 +322,19 @@
         }
         #app-footer .footer-icons a p {
             margin: 0px;
+            font-size: 12px;
+            line-height: 12px;
         }
 /* --------------- / App Footer --------------- */
+
+/* --------------- App Focused --------------- */
+    .focused #app-content {
+        bottom: 0px !important;
+    }
+    .focused #app-footer {
+        display: none !important;
+    }
+/* --------------- / App Focused --------------- */
 
 
 /* --------------- App Game Content --------------- */
@@ -320,7 +344,7 @@
         left: 0;
         overflow-x: hidden;
         overflow-y: auto;
-        position: absolute;
+        position: fixed;
         right: 0;
         top: 0px;
         z-index: 996;
@@ -468,6 +492,7 @@
         font-size: 14px;
     }
     .select-dropdown { max-height: 175px; }
+    #sidenav-overlay { z-index: 2 !important; }
 /* --------------- / MaterialzeCSS Overrides --------------- */
 
 /* --------------- Animations --------------- */

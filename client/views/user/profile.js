@@ -7,13 +7,10 @@ Template.userProfile.helpers({
 
 // Events
 Template.userProfile.events({
-    'click #profile-edit': function() {
+    'click #btn-profile-edit': function() {
         event.preventDefault();
 
-        console.log('E - click #profile-edit');
-
-        // Show action loading
-        App.Helpers.actionLoading('#profile-logout', 'before');
+        console.log('E - click #btn-profile-edit');
 
         Router.go('profileEdit');
     }

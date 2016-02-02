@@ -2,4 +2,7 @@
     <li><a href="{{ pathFor route='home' }}" class="tx-uppercase waves-effect waves-light">Home</a></li>
     <li><a href="{{ pathFor route='about' }}" class="tx-uppercase waves-effect waves-light">About</a></li>
     <li><a href="{{ pathFor route='splash' }}" class="tx-uppercase waves-effect waves-light">Intro</a></li>
+    {{# if canExit }}
+        <li><a href="javascript:void(0);" id="header-exit-app" class="tx-uppercase waves-effect waves-light">Exit App</a></li>
+    {{/ if }}
 </template>

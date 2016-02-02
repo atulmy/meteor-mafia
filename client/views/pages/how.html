@@ -27,9 +27,7 @@
                         <img src="/images/logo.png" alt="Mafia" class="circle">
                         <span class="title">Mafia</span>
                         <p>
-                            There can be one or more Mafia in a game.
-                            Mafia(s) can kill one person each round.
-                            Once the person dies, he/she can come back only if mafia is caught in the discussion.
+                            Mafia can kill one player each round. The player will be eliminated if the doctor is unable to save him/her.
                         </p>
                     </li>
 
@@ -37,8 +35,8 @@
                         <i class="material-icons circle green darken-2">add_circle</i>
                         <span class="title">The Doctor</span>
                         <p>
-                            The doctor can save any one person per round in the game including himself/herself.
-                            If the mafia has selected the same person the doctor has saved, he/she will not be killed and will remain in the game.
+                            The doctor can save any one player per round in the game including himself/herself.
+                            If the mafia has selected the same player the doctor has saved, he/she will not be killed and will remain in the game.
                         </p>
                     </li>
 
@@ -46,8 +44,8 @@
                         <i class="material-icons circle indigo darken-2">search</i>
                         <span class="title">The Detective</span>
                         <p>
-                            The detective can make a guess on any person and will be given the feedback if the guessed person is mafia or not.
-                            The detective then can make more emphasis upon the mafia during the discussion.
+                            The detective can make a guess on any player and will be given the feedback if the guessed player is mafia or not.
+                            The detective then can make more emphasis on voting against the mafia during the discussion.
                         </p>
                     </li>
 
@@ -55,21 +53,71 @@
                         <i class="material-icons circle deep-orange darken-2">people</i>
                         <span class="title">The Citizens</span>
                         <p>
-                            They have to keep an eye on everyone and need to find out the mafia otherwise all will be lost and there will be blood in your city.
+                            They have to keep an eye on everyone and need to find the mafia otherwise all will be lost and you will lose to mafia.
                         </p>
                     </li>
                 </ul>
 
-                <h5 class="header light m0">Rules</h5>
+                <h5 class="header light m0">Gameplay</h5>
+
+                <ul class="collection">
+                    <li class="collection-item">
+                        <span class="title">Create</span>
+                        <p class="mt5 mb0">You can create a game with minimum 4 to maximum of 18 players. To create a game, you need to choose a city or by default, it will be randomly selected. Once the game is created, you will get City Code which you can share with other players who can join this game.</p>
+                    </li>
+
+                    <li class="collection-item">
+                        <span class="title">Join</span>
+                        <p class="mt5 mb0">A player can join the game with a Secret City Code only. You can ask the city code from the player who created a new game.</p>
+                    </li>
+
+                    <li class="collection-item">
+                        <span class="title">Starting A Game</span>
+                        <p class="mt5 mb0">As soon as the minimum number of players are joined which is 4 players, you or anyone who has already joined the game can start the game.</p>
+                    </li>
+
+                    <li class="collection-item">
+                        <span class="title">Characters</span>
+                        <p class="mt5 mb0">As soon as the game starts, each player is assigned with a character which is chosen randomly. There will be always one of each Mafia, Doctor and Detective and the rest of the players will be citizens.</p>
+                    </li>
+
+                    <li class="collection-item">
+                        <span class="title">Rounds</span>
+                        <p class="mt5 mb0">There can be one or more rounds until the game finishes. Game can end if the mafia is caught or the all the citizens are eliminated by the mafia.</p>
+                    </li>
+
+                    <li class="collection-item">
+                        <span class="title">Special Actions</span>
+                        <p class="mt5 mb0">In the beginning of each round, Mafia can chose whom to eliminate, Doctor can save anyone from mafia and the Detective can guess one any one player for finding the mafia.</p>
+                    </li>
+
+                    <li class="collection-item">
+                        <span class="title">Voting</span>
+                        <p class="mt5 mb0">Once the special actions are taken, the voting will begin. During voting, each player can vote against any other player who he/she suspects of being a mafia. Once all the players are done voting, the player with maximum vote will be eliminated. If that player is Mafia, the citizens win and the game finishes. Else, that player will be dead and the game continues with a new round.</p>
+                    </li>
+
+                    <li class="collection-item">
+                        <span class="title">Discussing</span>
+                        <p class="mt5 mb0">During the game, everyone can chat in the Discuss section of the game. Mind that this can be also read by mafia and it is always important to make your character a secret.</p>
+                    </li>
+
+                    <li class="collection-item">
+                        <span class="title">Activities</span>
+                        <p class="mt5 mb0">All the activities in the game are available to view in the Activities section of game. These can be activity like when was game created, who joined, who voted whom, current rounds and more. This is important if you are confused or not sure about any action.</p>
+                    </li>
+
+                    <li class="collection-item">
+                        <span class="title">Finishing</span>
+                        <p class="mt5 mb0">The game will end either when the Mafia is caught by a vote out and the citizen wins or when all the citizens are eliminated and mafia wins the game.</p>
+                    </li>
+                </ul>
+
+                <h5 class="header light m0">Feature or correction?</h5>
 
                 <ul class="collection mb0">
                     <li class="collection-item">
-                        <span class="title">Mafia</span>
-                        <p class="mt0">
-                            There can be one or more Mafia in a game.
-                            Mafia(s) can kill one person each round.
-                            Once the person dies, he/she can come back only if mafia is caught in the discussion.
-                        </p>
+                        <span class="title">Contact me!</span>
+                        <p class="mt5 mb0">You can <a href="{{ pathFor route='contact' }}">contact me</a> if you want any new feature or any correction in the game play.</p>
                     </li>
                 </ul>
             </div>

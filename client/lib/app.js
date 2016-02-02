@@ -28,6 +28,20 @@ App = {
     init: function() {
         // Common Page Animation
         $('.animate-fade-in').fadeIn();
+
+        // Focused
+        $('body').removeClass('focused');
+        var selector = "input[type='text'], textarea, input[type='password'], input[type='email'], input[type='number']";
+        $(selector).focusin(function() {
+            console.log($(this).attr('id'));
+            $('body').addClass('focused');
+        });
+        $(selector).blur(function() {
+            console.log($(this).attr('id'));
+            setTimeout(function() {
+                $('body').removeClass('focused');
+            }, 500);
+        });
     },
 
     User: {
@@ -55,16 +69,18 @@ App = {
 
     Layouts: {
         default: function() {
+            /*
             var heightApp = parseInt($(document).height());
             $('#app-wrapper').height(heightApp);
             var heightAppHeader = $('#app-header').height();
             var heightAppFooter = $('#app-footer').height();
             $('#app-content').height(heightApp - (heightAppHeader + heightAppFooter));
+            */
         },
 
         full: function() {
-            var heightApp = $(window).height();
-            $('#app-wrapper').height(heightApp);
+            //var heightApp = $(window).height();
+            //$('#app-wrapper').height(heightApp);
         }
     },
 

@@ -32,24 +32,22 @@ Template.pagesJoin.events({
 
         // Validate
         if(input.code != '' && input.code.length === 4) {
-            setTimeout(function() {
-                Meteor.call('gameJoin', input, function (error, response) {
-                    console.log('M - gameJoin');
+            Meteor.call('gameJoin', input, function (error, response) {
+                console.log('M - gameJoin');
 
-                    App.Helpers.actionLoading('#form-game-join-submit', 'after');
+                App.Helpers.actionLoading('#form-game-join-submit', 'after');
 
-                    if (error) {
-                        Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
-                    } else {
-                        Materialize.toast(response.message, App.Defaults.toastTime);
+                if (error) {
+                    Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
+                } else {
+                    Materialize.toast(response.message, App.Defaults.toastTime);
 
-                        if (response.success) {
-                            // Game joined, redirect to game screen
-                            Router.go('game', {gameId: response.data});
-                        }
+                    if (response.success) {
+                        // Game joined, redirect to game screen
+                        Router.go('game', {gameId: response.data});
                     }
-                });
-            }, 500);
+                }
+            });
         } else {
             App.Helpers.actionLoading('#form-game-join-submit', 'after');
 
