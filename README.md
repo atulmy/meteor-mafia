@@ -1,12 +1,6 @@
-# Mafia
+# Mafia! The Party Game
 
-### The party game!
-
-### `Work in progress!`
-
-## Web
-
-Coming Soon.
+### Now play all time fun game Mafia with your friends online and during the get togethers and nightouts.
 
 ## Mobile
 
@@ -15,8 +9,6 @@ Coming Soon.
 ## Authors
 
 Atul Yadav - [GitHub](https://github.com/atulmy) &bull; [Twitter](https://twitter.com/atulmy)
-
-Swapnil Mhaske - [GitHub](https://github.com/swapnil0545) &bull; [Twitter](https://twitter.com/swapnil0545)
 
 ## Made with Meteor
 
