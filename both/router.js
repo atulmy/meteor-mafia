@@ -46,6 +46,13 @@ Router.onBeforeAction(loginCheck, {
             return Meteor.subscribe('userDetails');
         }
     });
+    // Contact
+    Router.route('/goodbye', {
+        name: 'goodbye',
+        template: 'pagesGoodbye',
+        layoutTemplate: 'layoutsFull'
+    });
+
     // Game
         // Home
         Router.route('/home', {

@@ -86,7 +86,10 @@
         <div class="col col-8 s12 center-align vertical-align">
             <div class="clearfix vertical-align-child">
                 {{# if canInvite }}
-                    <button class="btn waves-effect waves-light red accent-2 mr10" id="game-invite"><i class="material-icons left">group_add</i> Invite</button>
+                    <button class="btn waves-effect waves-light red accent-2 mr10" id="game-invite">
+                        <span class="action-text"><i class="material-icons left">group_add</i> Invite</span>
+                        <span class="action-loading display-none"><i class="material-icons left">group_add</i> Invite</span>
+                    </button>
                 {{/ if }}
 
                 {{# if canStart }}

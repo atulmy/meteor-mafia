@@ -98,9 +98,12 @@ Template.gamePlayers.events({
         var game = Games.findOne({_id: Session.get('gameId')});
 
         if(Meteor.isCordova) {
+            // Show action loading
+            App.Helpers.actionLoading('#game-invite', 'before');
+
             var message = 'Mafia in '+game.city.name+'! Code: '+game.city.code;
             var subject = 'Join us and save the city!';
-            var image = 'http://mafia.atulmy.com/images/logo.png';
+            var image = 'http://mafia.atulmy.com/static/images/ic_launcher.png';
             var link = 'http://mafia.atulmy.com/';
             window.plugins.socialsharing.share(
                 message,
@@ -108,6 +111,10 @@ Template.gamePlayers.events({
                 image,
                 link
             );
+
+            setTimeout(function() {
+                App.Helpers.actionLoading('#game-invite', 'after');
+            }, 2000);
         }
     }
 });

@@ -56,26 +56,32 @@ Template.userProfileDefault.events({
         console.log(input);
 
         // Validate
-        if(input.name != '' && input.name != 'New Player' && input.image.id != '' && input.image.id != 'default-user-image') {
-            setTimeout(function() {
-                Meteor.call('userProfileUpdate', input, function (error, response) {
-                    console.log('M - userProfileUpdate');
+        if(input.name != '' && input.name != 'New Player') {
+            if(input.image.id != '' && input.image.id != 'default-user-image') {
+                setTimeout(function() {
+                    Meteor.call('userProfileUpdate', input, function (error, response) {
+                        console.log('M - userProfileUpdate');
 
-                    App.Helpers.actionLoading('#form-user-profile-submit', 'after');
+                        App.Helpers.actionLoading('#form-user-profile-submit', 'after');
 
-                    if (error) {
-                        Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
-                    } else {
-                        Materialize.toast(response.message, App.Defaults.toastTime);
+                        if (error) {
+                            Materialize.toast(App.Defaults.messages.error, App.Defaults.toastTime);
+                        } else {
+                            Materialize.toast(response.message, App.Defaults.toastTime);
 
-                        if (response.success) {
-                            Router.go('home');
+                            if (response.success) {
+                                Router.go('home');
+                            }
                         }
-                    }
-                });
-            }, 500);
+                    });
+                }, 500);
+            } else {
+                Materialize.toast('And yes, click a nice photo of yours!', App.Defaults.toastTime);
+
+                App.Helpers.actionLoading('#form-user-profile-submit', 'after');
+            }
         } else {
-            Materialize.toast('Come on now, put your name and click a nice photo of yours', App.Defaults.toastTime);
+            Materialize.toast('Enter your real name please!', App.Defaults.toastTime);
 
             App.Helpers.actionLoading('#form-user-profile-submit', 'after');
         }

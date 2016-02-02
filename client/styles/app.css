@@ -212,7 +212,7 @@
         z-index: 3;
     }
     #app-header nav {
-        box-shadow: none;
+
     }
     #app-header nav .brand-logo {
         font-size: 18px;
@@ -293,9 +293,10 @@
         left: 0;
         position: fixed;
         right: 0;
-        bottom: 0;
+        bottom: 0 !important;
         z-index: 2;
         overflow: hidden;
+        box-shadow: 0 1px 8px 4px rgba(0, 0, 0, 0.12)
     }
     /* footer icons */
         #app-footer .footer-icons {
@@ -311,7 +312,9 @@
             display: block;
             text-transform: uppercase;
             font-size: 12px;
-            padding: 12px 0px;
+            line-height: 12px;
+            padding-top: 12px;
+            height: 68px;
         }
         #app-footer .footer-icons .col a.active {
             color: #FF5252;
@@ -321,7 +324,7 @@
             line-height: 30px;
         }
         #app-footer .footer-icons a p {
-            margin: 0px;
+            margin: 5px 0px 0px 0px;
             font-size: 12px;
             line-height: 12px;
         }

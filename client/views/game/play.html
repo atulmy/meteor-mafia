@@ -131,7 +131,7 @@
                             <p class="mt10 mb0 pr10 pl10 center-align position-relative">
                                 {{# if game.is.finished }}
                                     {{# if currentPlayerIsMafia value.character }}
-                                        <img src="/images/logo.png"  alt="mafia" class="responsive-img rounded"/>
+                                        <img src="/images/logo.png"  alt="mafia" class="responsive-img rounded" style="width: 100px; height: 100px;"/>
                                     {{ else }}
                                         <img src="{{ c.url value.image width=100 height=100 crop='fill' }}" alt="{{ value.name }}" class="responsive-img rounded"/>
                                     {{/ if }}

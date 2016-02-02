@@ -171,12 +171,6 @@ Template.gamePlay.helpers({
 
         playerAliveOrDeadBtn: function(aliveOrDead) {
             return (aliveOrDead) ? '' : 'disabled';
-        },
-
-    // Notify
-        notifyRound: function() {
-
-            return true;
         }
 });
 
@@ -435,11 +429,9 @@ Template.gamePlay.events({
     'click .action-exit-app': function(event) {
         console.log('E - click .action-exit-app');
 
-        if(Meteor.isCordova) {
-            event.preventDefault();
+        event.preventDefault();
 
-            navigator.app.exitApp();
-        }
+        Router.go('goodbye');
     }
 });
 
