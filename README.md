@@ -1,7 +1,7 @@
 # Mafia! The Party Game
 Now play Mafia with your friends online and during the get together and nightout
 
-- Mafia! is a game with 4 characters and can be played with 4 to 18 people at a time in which all of the players are in one game.
+- Mafia! is a multiplayer game with 4 characters and can be played with 4 to 18 people at a time in which all of the players are in one game.
 - At the beginning of each game, the players are assigned a character which are can be either Mafia, Doctor, Detective or Citizen.
 - Mafia's target is to eliminate all the citizens (also doctor and detective) to win the game and capture the city.
 - The doctor has ability to save anyone including himself/herself each round.
