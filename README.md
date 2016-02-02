@@ -1,11 +1,13 @@
-# Mafia
+# Mafia! The Party Game
+Now play Mafia with your friends online and during the get together and nightout
 
-The Party Game!
-
-- Yes, now you can play all time fun game Mafia with your friends online and during the get togethers and nightouts.
-- Create game with different cities
-- Invite your friends to join the game with secret city code
-- Discuss with 
+- Mafia! is a game with 4 characters and can be played with 4 to 18 people at a time in which all of the players are in one game.
+- At the beginning of each game, the players are assigned a character which are can be either Mafia, Doctor, Detective or Citizen.
+- Mafia's target is to eliminate all the citizens (also doctor and detective) to win the game and capture the city.
+- The doctor has ability to save anyone including himself/herself each round.
+- The detective can guess on any one player each round for finding mafia.
+- The citizens can vote after each round to find the mafia.
+- Citizens (including doctor and detective) will win if they catch the mafia during the voting and the game will end. If the mafia continues to eliminate players until there is only one player left, the mafia wins and the game ends.
 
 ## Mobile
 
