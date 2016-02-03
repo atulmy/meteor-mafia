@@ -11,7 +11,9 @@ Now play Mafia with your friends online and during the get together and nightout
 
 ## Mobile
 
-Coming Soon.
+[![Google Play](http://atulmy.com/attachments/images/google-play.png)](httpshttps://play.google.com/store/apps/details?id=com.id93yrtu1ihk6ed136ub4c)
+
+Share URL: http://bit.ly/mafia-app
 
 ## Screenshots
 ![screenshot](https://lh3.googleusercontent.com/6njmVyA_pbNMQt3IqMuXWlN5cFGWa0u3QHVE_mcm2hdtc_mKWOnTk4eTXd-CqSlNg_g=h365) ![screenshot](https://lh3.googleusercontent.com/7VieDQqQYFYanPAt7qv8hzo2UDIWVSDxTa0CFEGhOtgsPq5kXemYrIZTehvsNUqTLQ=h365) ![screenshot](https://lh3.googleusercontent.com/w4qtBsyIi7R6VeI9Atj_6IwSTLhI2zrTX5nO7DkxeCFwqJ0XGnrzA8rsxMRAnbbrWEdm=h365) ![screenshot](https://lh3.googleusercontent.com/plgfroBaqmY00cQbo81c6iDWqWYib3yoUVxYtEXRgjzaQPZaI1rFxMTyRYM8gN72nA=h365)
