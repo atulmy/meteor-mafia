@@ -11,7 +11,7 @@ Now play Mafia with your friends online and during the get together and nightout
 
 ## Mobile
 
-[![Google Play](http://atulmy.com/attachments/images/google-play.png)](httpshttps://play.google.com/store/apps/details?id=com.id93yrtu1ihk6ed136ub4c)
+[![Google Play](http://atulmy.com/attachments/images/google-play.png)](https://play.google.com/store/apps/details?id=com.id93yrtu1ihk6ed136ub4c)
 
 Share URL: http://bit.ly/mafia-app
 
