@@ -1,2 +1,3 @@
+cordova-plugin-camera@1.2.0
 cordova-plugin-x-socialsharing@5.0.6
-hu.dpal.phonegap.plugins.uniquedeviceid@1.2.0
+hu.dpal.phonegap.plugins.uniquedeviceid@https://github.com/Paldom/UniqueDeviceID.git#af3dbabde8fd21642ccfe119dd96538cbac7cc05

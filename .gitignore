@@ -2,3 +2,4 @@
 .meteor/local
 server/startup/config.js
 mobile-config.js
+mup.json

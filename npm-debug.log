@@ -1,0 +1,561 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/apple/.meteor/packages/meteor-tool/.1.4.1_1.1olwmbj++os.osx.x86_64+web.browser+web.cordova/mt-os.osx.x86_64/dev_bundle/bin/node',
+1 verbose cli   '/Users/apple/.meteor/packages/meteor-tool/1.4.1_1/mt-os.osx.x86_64/dev_bundle/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'bcrypt' ]
+2 info using npm@3.10.6
+3 info using node@v4.5.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData bcrypt
+8 silly fetchNamedPackageData bcrypt
+9 silly mapToRegistry name bcrypt
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'bcrypt',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   escapedName: 'bcrypt',
+12 silly mapToRegistry   name: 'bcrypt',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri https://registry.npmjs.org/bcrypt
+14 verbose request uri https://registry.npmjs.org/bcrypt
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 5:16:57 PM
+17 verbose request id e44dc4870dd822d4
+18 verbose etag "ES8MKY4VN15JHF1YJPP6RA5FS"
+19 http request GET https://registry.npmjs.org/bcrypt
+20 http 200 https://registry.npmjs.org/bcrypt
+21 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+21 verbose headers   etag: '"2W7CTWO1ETKY4R5XARYMM9SFN"',
+21 verbose headers   'content-type': 'application/json',
+21 verbose headers   'content-encoding': 'gzip',
+21 verbose headers   'cache-control': 'max-age=300',
+21 verbose headers   'content-length': '11903',
+21 verbose headers   'accept-ranges': 'bytes',
+21 verbose headers   date: 'Sat, 01 Oct 2016 11:46:57 GMT',
+21 verbose headers   via: '1.1 varnish',
+21 verbose headers   age: '0',
+21 verbose headers   connection: 'keep-alive',
+21 verbose headers   'x-served-by': 'cache-sin6920-SIN',
+21 verbose headers   'x-cache': 'HIT',
+21 verbose headers   'x-cache-hits': '1',
+21 verbose headers   'x-timer': 'S1475322417.469776,VS0,VE216',
+21 verbose headers   vary: 'Accept-Encoding' }
+22 silly get cb [ 200,
+22 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+22 silly get     etag: '"2W7CTWO1ETKY4R5XARYMM9SFN"',
+22 silly get     'content-type': 'application/json',
+22 silly get     'content-encoding': 'gzip',
+22 silly get     'cache-control': 'max-age=300',
+22 silly get     'content-length': '11903',
+22 silly get     'accept-ranges': 'bytes',
+22 silly get     date: 'Sat, 01 Oct 2016 11:46:57 GMT',
+22 silly get     via: '1.1 varnish',
+22 silly get     age: '0',
+22 silly get     connection: 'keep-alive',
+22 silly get     'x-served-by': 'cache-sin6920-SIN',
+22 silly get     'x-cache': 'HIT',
+22 silly get     'x-cache-hits': '1',
+22 silly get     'x-timer': 'S1475322417.469776,VS0,VE216',
+22 silly get     vary: 'Accept-Encoding' } ]
+23 verbose get saving bcrypt to /Users/apple/.npm/registry.npmjs.org/bcrypt/.cache.json
+24 verbose correctMkdir /Users/apple/.npm correctMkdir not in flight; initializing
+25 silly install normalizeTree
+26 silly loadCurrentTree Finishing
+27 silly loadIdealTree Starting
+28 silly install loadIdealTree
+29 silly cloneCurrentTree Starting
+30 silly install cloneCurrentTreeToIdealTree
+31 silly cloneCurrentTree Finishing
+32 silly loadShrinkwrap Starting
+33 silly install loadShrinkwrap
+34 silly loadShrinkwrap Finishing
+35 silly loadAllDepsIntoIdealTree Starting
+36 silly install loadAllDepsIntoIdealTree
+37 silly resolveWithNewModule bcrypt@0.8.7 checking installable status
+38 silly cache add args [ 'bcrypt', null ]
+39 verbose cache add spec bcrypt
+40 silly cache add parsed spec Result {
+40 silly cache add   raw: 'bcrypt',
+40 silly cache add   scope: null,
+40 silly cache add   escapedName: 'bcrypt',
+40 silly cache add   name: 'bcrypt',
+40 silly cache add   rawSpec: '',
+40 silly cache add   spec: 'latest',
+40 silly cache add   type: 'tag' }
+41 silly addNamed bcrypt@latest
+42 verbose addNamed "latest" is being treated as a dist-tag for bcrypt
+43 info addNameTag [ 'bcrypt', 'latest' ]
+44 silly mapToRegistry name bcrypt
+45 silly mapToRegistry using default registry
+46 silly mapToRegistry registry https://registry.npmjs.org/
+47 silly mapToRegistry data Result {
+47 silly mapToRegistry   raw: 'bcrypt',
+47 silly mapToRegistry   scope: null,
+47 silly mapToRegistry   escapedName: 'bcrypt',
+47 silly mapToRegistry   name: 'bcrypt',
+47 silly mapToRegistry   rawSpec: '',
+47 silly mapToRegistry   spec: 'latest',
+47 silly mapToRegistry   type: 'tag' }
+48 silly mapToRegistry uri https://registry.npmjs.org/bcrypt
+49 verbose addNameTag registry:https://registry.npmjs.org/bcrypt not in flight; fetching
+50 verbose get https://registry.npmjs.org/bcrypt not expired, no request
+51 silly addNameTag next cb for bcrypt with tag latest
+52 silly addNamed bcrypt@0.8.7
+53 verbose addNamed "0.8.7" is a plain semver version for bcrypt
+54 silly cache afterAdd bcrypt@0.8.7
+55 verbose afterAdd /Users/apple/.npm/bcrypt/0.8.7/package/package.json not in flight; writing
+56 verbose correctMkdir /Users/apple/.npm correctMkdir not in flight; initializing
+57 verbose afterAdd /Users/apple/.npm/bcrypt/0.8.7/package/package.json written
+58 silly fetchNamedPackageData bindings
+59 silly mapToRegistry name bindings
+60 silly mapToRegistry using default registry
+61 silly mapToRegistry registry https://registry.npmjs.org/
+62 silly mapToRegistry data Result {
+62 silly mapToRegistry   raw: 'bindings',
+62 silly mapToRegistry   scope: null,
+62 silly mapToRegistry   escapedName: 'bindings',
+62 silly mapToRegistry   name: 'bindings',
+62 silly mapToRegistry   rawSpec: '',
+62 silly mapToRegistry   spec: 'latest',
+62 silly mapToRegistry   type: 'tag' }
+63 silly mapToRegistry uri https://registry.npmjs.org/bindings
+64 silly fetchNamedPackageData nan
+65 silly mapToRegistry name nan
+66 silly mapToRegistry using default registry
+67 silly mapToRegistry registry https://registry.npmjs.org/
+68 silly mapToRegistry data Result {
+68 silly mapToRegistry   raw: 'nan',
+68 silly mapToRegistry   scope: null,
+68 silly mapToRegistry   escapedName: 'nan',
+68 silly mapToRegistry   name: 'nan',
+68 silly mapToRegistry   rawSpec: '',
+68 silly mapToRegistry   spec: 'latest',
+68 silly mapToRegistry   type: 'tag' }
+69 silly mapToRegistry uri https://registry.npmjs.org/nan
+70 verbose request uri https://registry.npmjs.org/bindings
+71 verbose request no auth needed
+72 info attempt registry request try #1 at 5:16:57 PM
+73 verbose etag "33TX4J3DNTGF7K41ZUV6OA182"
+74 http request GET https://registry.npmjs.org/bindings
+75 verbose request uri https://registry.npmjs.org/nan
+76 verbose request no auth needed
+77 info attempt registry request try #1 at 5:16:57 PM
+78 verbose etag "1OOZJAUMBQC59OINHZGMRRCSL"
+79 http request GET https://registry.npmjs.org/nan
+80 http 200 https://registry.npmjs.org/bindings
+81 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+81 verbose headers   etag: '"C1AW6UVQGY4VZQGFC1WTIGMDV"',
+81 verbose headers   'content-type': 'application/json',
+81 verbose headers   'content-encoding': 'gzip',
+81 verbose headers   'cache-control': 'max-age=300',
+81 verbose headers   'content-length': '3811',
+81 verbose headers   'accept-ranges': 'bytes',
+81 verbose headers   date: 'Sat, 01 Oct 2016 11:46:57 GMT',
+81 verbose headers   via: '1.1 varnish',
+81 verbose headers   age: '51',
+81 verbose headers   connection: 'keep-alive',
+81 verbose headers   'x-served-by': 'cache-sin6920-SIN',
+81 verbose headers   'x-cache': 'HIT',
+81 verbose headers   'x-cache-hits': '1',
+81 verbose headers   'x-timer': 'S1475322417.813867,VS0,VE0',
+81 verbose headers   vary: 'Accept-Encoding' }
+82 silly get cb [ 200,
+82 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+82 silly get     etag: '"C1AW6UVQGY4VZQGFC1WTIGMDV"',
+82 silly get     'content-type': 'application/json',
+82 silly get     'content-encoding': 'gzip',
+82 silly get     'cache-control': 'max-age=300',
+82 silly get     'content-length': '3811',
+82 silly get     'accept-ranges': 'bytes',
+82 silly get     date: 'Sat, 01 Oct 2016 11:46:57 GMT',
+82 silly get     via: '1.1 varnish',
+82 silly get     age: '51',
+82 silly get     connection: 'keep-alive',
+82 silly get     'x-served-by': 'cache-sin6920-SIN',
+82 silly get     'x-cache': 'HIT',
+82 silly get     'x-cache-hits': '1',
+82 silly get     'x-timer': 'S1475322417.813867,VS0,VE0',
+82 silly get     vary: 'Accept-Encoding' } ]
+83 verbose get saving bindings to /Users/apple/.npm/registry.npmjs.org/bindings/.cache.json
+84 verbose correctMkdir /Users/apple/.npm correctMkdir not in flight; initializing
+85 silly resolveWithNewModule bindings@1.2.1 checking installable status
+86 silly cache add args [ 'bindings@1.2.1', null ]
+87 verbose cache add spec bindings@1.2.1
+88 silly cache add parsed spec Result {
+88 silly cache add   raw: 'bindings@1.2.1',
+88 silly cache add   scope: null,
+88 silly cache add   escapedName: 'bindings',
+88 silly cache add   name: 'bindings',
+88 silly cache add   rawSpec: '1.2.1',
+88 silly cache add   spec: '1.2.1',
+88 silly cache add   type: 'version' }
+89 silly addNamed bindings@1.2.1
+90 verbose addNamed "1.2.1" is a plain semver version for bindings
+91 silly mapToRegistry name bindings
+92 silly mapToRegistry using default registry
+93 silly mapToRegistry registry https://registry.npmjs.org/
+94 silly mapToRegistry data Result {
+94 silly mapToRegistry   raw: 'bindings',
+94 silly mapToRegistry   scope: null,
+94 silly mapToRegistry   escapedName: 'bindings',
+94 silly mapToRegistry   name: 'bindings',
+94 silly mapToRegistry   rawSpec: '',
+94 silly mapToRegistry   spec: 'latest',
+94 silly mapToRegistry   type: 'tag' }
+95 silly mapToRegistry uri https://registry.npmjs.org/bindings
+96 verbose addNameVersion registry:https://registry.npmjs.org/bindings not in flight; fetching
+97 verbose get https://registry.npmjs.org/bindings not expired, no request
+98 silly cache afterAdd bindings@1.2.1
+99 verbose afterAdd /Users/apple/.npm/bindings/1.2.1/package/package.json not in flight; writing
+100 verbose correctMkdir /Users/apple/.npm correctMkdir not in flight; initializing
+101 verbose afterAdd /Users/apple/.npm/bindings/1.2.1/package/package.json written
+102 http 200 https://registry.npmjs.org/nan
+103 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+103 verbose headers   etag: '"1YJEPM5V4XH0MZT0HV3B8R9BB"',
+103 verbose headers   'content-type': 'application/json',
+103 verbose headers   'content-encoding': 'gzip',
+103 verbose headers   'cache-control': 'max-age=300',
+103 verbose headers   'content-length': '17162',
+103 verbose headers   'accept-ranges': 'bytes',
+103 verbose headers   date: 'Sat, 01 Oct 2016 11:46:57 GMT',
+103 verbose headers   via: '1.1 varnish',
+103 verbose headers   age: '21',
+103 verbose headers   connection: 'keep-alive',
+103 verbose headers   'x-served-by': 'cache-sin6924-SIN',
+103 verbose headers   'x-cache': 'HIT',
+103 verbose headers   'x-cache-hits': '1',
+103 verbose headers   'x-timer': 'S1475322417.908981,VS0,VE0',
+103 verbose headers   vary: 'Accept-Encoding' }
+104 silly get cb [ 200,
+104 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+104 silly get     etag: '"1YJEPM5V4XH0MZT0HV3B8R9BB"',
+104 silly get     'content-type': 'application/json',
+104 silly get     'content-encoding': 'gzip',
+104 silly get     'cache-control': 'max-age=300',
+104 silly get     'content-length': '17162',
+104 silly get     'accept-ranges': 'bytes',
+104 silly get     date: 'Sat, 01 Oct 2016 11:46:57 GMT',
+104 silly get     via: '1.1 varnish',
+104 silly get     age: '21',
+104 silly get     connection: 'keep-alive',
+104 silly get     'x-served-by': 'cache-sin6924-SIN',
+104 silly get     'x-cache': 'HIT',
+104 silly get     'x-cache-hits': '1',
+104 silly get     'x-timer': 'S1475322417.908981,VS0,VE0',
+104 silly get     vary: 'Accept-Encoding' } ]
+105 verbose get saving nan to /Users/apple/.npm/registry.npmjs.org/nan/.cache.json
+106 verbose correctMkdir /Users/apple/.npm correctMkdir not in flight; initializing
+107 silly resolveWithNewModule nan@2.3.5 checking installable status
+108 silly cache add args [ 'nan@2.3.5', null ]
+109 verbose cache add spec nan@2.3.5
+110 silly cache add parsed spec Result {
+110 silly cache add   raw: 'nan@2.3.5',
+110 silly cache add   scope: null,
+110 silly cache add   escapedName: 'nan',
+110 silly cache add   name: 'nan',
+110 silly cache add   rawSpec: '2.3.5',
+110 silly cache add   spec: '2.3.5',
+110 silly cache add   type: 'version' }
+111 silly addNamed nan@2.3.5
+112 verbose addNamed "2.3.5" is a plain semver version for nan
+113 silly mapToRegistry name nan
+114 silly mapToRegistry using default registry
+115 silly mapToRegistry registry https://registry.npmjs.org/
+116 silly mapToRegistry data Result {
+116 silly mapToRegistry   raw: 'nan',
+116 silly mapToRegistry   scope: null,
+116 silly mapToRegistry   escapedName: 'nan',
+116 silly mapToRegistry   name: 'nan',
+116 silly mapToRegistry   rawSpec: '',
+116 silly mapToRegistry   spec: 'latest',
+116 silly mapToRegistry   type: 'tag' }
+117 silly mapToRegistry uri https://registry.npmjs.org/nan
+118 verbose addNameVersion registry:https://registry.npmjs.org/nan not in flight; fetching
+119 verbose get https://registry.npmjs.org/nan not expired, no request
+120 silly cache afterAdd nan@2.3.5
+121 verbose afterAdd /Users/apple/.npm/nan/2.3.5/package/package.json not in flight; writing
+122 verbose correctMkdir /Users/apple/.npm correctMkdir not in flight; initializing
+123 verbose afterAdd /Users/apple/.npm/nan/2.3.5/package/package.json written
+124 silly loadAllDepsIntoIdealTree Finishing
+125 silly loadIdealTree Finishing
+126 silly currentTree mafia
+127 silly idealTree mafia
+127 silly idealTree ├── bcrypt@0.8.7
+127 silly idealTree ├── bindings@1.2.1
+127 silly idealTree └── nan@2.3.5
+128 silly generateActionsToTake Starting
+129 silly install generateActionsToTake
+130 silly generateActionsToTake Finishing
+131 silly diffTrees action count 3
+132 silly diffTrees add bindings@1.2.1
+133 silly diffTrees add nan@2.3.5
+134 silly diffTrees add bcrypt@0.8.7
+135 silly decomposeActions action count 24
+136 silly decomposeActions fetch bindings@1.2.1
+137 silly decomposeActions extract bindings@1.2.1
+138 silly decomposeActions test bindings@1.2.1
+139 silly decomposeActions preinstall bindings@1.2.1
+140 silly decomposeActions build bindings@1.2.1
+141 silly decomposeActions install bindings@1.2.1
+142 silly decomposeActions postinstall bindings@1.2.1
+143 silly decomposeActions finalize bindings@1.2.1
+144 silly decomposeActions fetch nan@2.3.5
+145 silly decomposeActions extract nan@2.3.5
+146 silly decomposeActions test nan@2.3.5
+147 silly decomposeActions preinstall nan@2.3.5
+148 silly decomposeActions build nan@2.3.5
+149 silly decomposeActions install nan@2.3.5
+150 silly decomposeActions postinstall nan@2.3.5
+151 silly decomposeActions finalize nan@2.3.5
+152 silly decomposeActions fetch bcrypt@0.8.7
+153 silly decomposeActions extract bcrypt@0.8.7
+154 silly decomposeActions test bcrypt@0.8.7
+155 silly decomposeActions preinstall bcrypt@0.8.7
+156 silly decomposeActions build bcrypt@0.8.7
+157 silly decomposeActions install bcrypt@0.8.7
+158 silly decomposeActions postinstall bcrypt@0.8.7
+159 silly decomposeActions finalize bcrypt@0.8.7
+160 silly executeActions Starting
+161 silly install executeActions
+162 silly doSerial global-install 0
+163 silly doParallel fetch 3
+164 verbose correctMkdir /Users/apple/.npm/_locks correctMkdir not in flight; initializing
+165 verbose lock using /Users/apple/.npm/_locks/staging-1240c451aa6ae650.lock for /Users/apple/office/web/meteor/mafia/node_modules/.staging
+166 silly doParallel extract 3
+167 silly extract bindings@1.2.1
+168 silly extract nan@2.3.5
+169 silly extract bcrypt@0.8.7
+170 verbose unbuild node_modules/.staging/bindings-929915eb
+171 verbose unbuild node_modules/.staging/nan-de476261
+172 verbose unbuild node_modules/.staging/bcrypt-aa6f1467
+173 silly gentlyRm /Users/apple/office/web/meteor/mafia/node_modules/.staging/bindings-929915eb is being purged from base /Users/apple/office/web/meteor/mafia
+174 verbose gentlyRm don't care about contents; nuking /Users/apple/office/web/meteor/mafia/node_modules/.staging/bindings-929915eb
+175 silly gentlyRm /Users/apple/office/web/meteor/mafia/node_modules/.staging/nan-de476261 is being purged from base /Users/apple/office/web/meteor/mafia
+176 verbose gentlyRm don't care about contents; nuking /Users/apple/office/web/meteor/mafia/node_modules/.staging/nan-de476261
+177 silly gentlyRm /Users/apple/office/web/meteor/mafia/node_modules/.staging/bcrypt-aa6f1467 is being purged from base /Users/apple/office/web/meteor/mafia
+178 verbose gentlyRm don't care about contents; nuking /Users/apple/office/web/meteor/mafia/node_modules/.staging/bcrypt-aa6f1467
+179 verbose tar unpack /Users/apple/.npm/bindings/1.2.1/package.tgz
+180 verbose tar unpacking to /Users/apple/office/web/meteor/mafia/node_modules/.staging/bindings-929915eb
+181 silly gentlyRm /Users/apple/office/web/meteor/mafia/node_modules/.staging/bindings-929915eb is being purged
+182 verbose gentlyRm don't care about contents; nuking /Users/apple/office/web/meteor/mafia/node_modules/.staging/bindings-929915eb
+183 verbose tar unpack /Users/apple/.npm/nan/2.3.5/package.tgz
+184 verbose tar unpacking to /Users/apple/office/web/meteor/mafia/node_modules/.staging/nan-de476261
+185 silly gentlyRm /Users/apple/office/web/meteor/mafia/node_modules/.staging/nan-de476261 is being purged
+186 verbose gentlyRm don't care about contents; nuking /Users/apple/office/web/meteor/mafia/node_modules/.staging/nan-de476261
+187 verbose tar unpack /Users/apple/.npm/bcrypt/0.8.7/package.tgz
+188 verbose tar unpacking to /Users/apple/office/web/meteor/mafia/node_modules/.staging/bcrypt-aa6f1467
+189 silly gentlyRm /Users/apple/office/web/meteor/mafia/node_modules/.staging/bcrypt-aa6f1467 is being purged
+190 verbose gentlyRm don't care about contents; nuking /Users/apple/office/web/meteor/mafia/node_modules/.staging/bcrypt-aa6f1467
+191 silly gunzTarPerm modes [ '755', '644' ]
+192 silly gunzTarPerm modes [ '755', '644' ]
+193 silly gunzTarPerm modes [ '755', '644' ]
+194 silly gunzTarPerm extractEntry package.json
+195 silly gunzTarPerm extractEntry package.json
+196 silly gunzTarPerm modified mode [ 'package.json', 436, 420 ]
+197 silly gunzTarPerm extractEntry package.json
+198 silly gunzTarPerm extractEntry README.md
+199 silly gunzTarPerm extractEntry bindings.js
+200 silly gunzTarPerm extractEntry README.md
+201 silly gunzTarPerm modified mode [ 'README.md', 436, 420 ]
+202 silly gunzTarPerm extractEntry include_dirs.js
+203 silly gunzTarPerm modified mode [ 'include_dirs.js', 436, 420 ]
+204 silly gunzTarPerm extractEntry .npmignore
+205 silly gunzTarPerm extractEntry README.md
+206 silly gunzTarPerm extractEntry nan_converters.h
+207 silly gunzTarPerm modified mode [ 'nan_converters.h', 436, 420 ]
+208 silly gunzTarPerm extractEntry LICENSE.md
+209 silly gunzTarPerm modified mode [ 'LICENSE.md', 436, 420 ]
+210 silly gunzTarPerm extractEntry doc/node_misc.md
+211 silly gunzTarPerm modified mode [ 'doc/node_misc.md', 436, 420 ]
+212 silly gunzTarPerm extractEntry LICENSE
+213 silly gunzTarPerm extractEntry bcrypt.js
+214 silly gunzTarPerm extractEntry Makefile
+215 silly gunzTarPerm extractEntry .travis.yml
+216 silly gunzTarPerm extractEntry CHANGELOG.md
+217 silly gunzTarPerm extractEntry binding.gyp
+218 silly gunzTarPerm extractEntry examples/async_compare.js
+219 silly gunzTarPerm extractEntry examples/forever_gen_salt.js
+220 silly gunzTarPerm extractEntry test/async.js
+221 silly gunzTarPerm extractEntry test/repetitions.js
+222 silly gunzTarPerm extractEntry test/sync.js
+223 silly gunzTarPerm extractEntry ISSUE_TEMPLATE.md
+224 silly gunzTarPerm extractEntry src/bcrypt.cc
+225 silly gunzTarPerm extractEntry src/bcrypt_node.cc
+226 silly gunzTarPerm extractEntry src/blowfish.cc
+227 silly gunzTarPerm extractEntry src/node_blf.h
+228 silly gunzTarPerm extractEntry werker.yml
+229 silly gunzTarPerm extractEntry doc/asyncworker.md
+230 silly gunzTarPerm modified mode [ 'doc/asyncworker.md', 436, 420 ]
+231 silly gunzTarPerm extractEntry doc/callback.md
+232 silly gunzTarPerm modified mode [ 'doc/callback.md', 436, 420 ]
+233 silly gunzTarPerm extractEntry doc/converters.md
+234 silly gunzTarPerm modified mode [ 'doc/converters.md', 436, 420 ]
+235 silly gunzTarPerm extractEntry doc/errors.md
+236 silly gunzTarPerm modified mode [ 'doc/errors.md', 436, 420 ]
+237 silly gunzTarPerm extractEntry doc/maybe_types.md
+238 silly gunzTarPerm modified mode [ 'doc/maybe_types.md', 436, 420 ]
+239 silly gentlyRm /Users/apple/office/web/meteor/mafia/node_modules/.staging/bindings-929915eb/node_modules is being purged
+240 verbose gentlyRm don't care about contents; nuking /Users/apple/office/web/meteor/mafia/node_modules/.staging/bindings-929915eb/node_modules
+241 silly gunzTarPerm extractEntry doc/methods.md
+242 silly gunzTarPerm modified mode [ 'doc/methods.md', 436, 420 ]
+243 silly gunzTarPerm extractEntry doc/new.md
+244 silly gunzTarPerm modified mode [ 'doc/new.md', 436, 420 ]
+245 silly gunzTarPerm extractEntry doc/buffers.md
+246 silly gunzTarPerm modified mode [ 'doc/buffers.md', 436, 420 ]
+247 silly gunzTarPerm extractEntry doc/object_wrappers.md
+248 silly gunzTarPerm modified mode [ 'doc/object_wrappers.md', 436, 420 ]
+249 silly gunzTarPerm extractEntry doc/persistent.md
+250 silly gunzTarPerm modified mode [ 'doc/persistent.md', 436, 420 ]
+251 silly gunzTarPerm extractEntry doc/scopes.md
+252 silly gunzTarPerm modified mode [ 'doc/scopes.md', 436, 420 ]
+253 silly gunzTarPerm extractEntry doc/script.md
+254 silly gunzTarPerm modified mode [ 'doc/script.md', 436, 420 ]
+255 silly gunzTarPerm extractEntry doc/string_bytes.md
+256 silly gunzTarPerm modified mode [ 'doc/string_bytes.md', 436, 420 ]
+257 silly gunzTarPerm extractEntry doc/v8_internals.md
+258 silly gunzTarPerm modified mode [ 'doc/v8_internals.md', 436, 420 ]
+259 silly gunzTarPerm extractEntry doc/v8_misc.md
+260 silly gunzTarPerm modified mode [ 'doc/v8_misc.md', 436, 420 ]
+261 silly gunzTarPerm extractEntry nan.h
+262 silly gunzTarPerm modified mode [ 'nan.h', 436, 420 ]
+263 silly gunzTarPerm extractEntry nan_callbacks.h
+264 silly gunzTarPerm modified mode [ 'nan_callbacks.h', 436, 420 ]
+265 silly gunzTarPerm extractEntry nan_callbacks_12_inl.h
+266 silly gunzTarPerm modified mode [ 'nan_callbacks_12_inl.h', 436, 420 ]
+267 silly gunzTarPerm extractEntry nan_callbacks_pre_12_inl.h
+268 silly gunzTarPerm modified mode [ 'nan_callbacks_pre_12_inl.h', 436, 420 ]
+269 silly gunzTarPerm extractEntry nan_converters_43_inl.h
+270 silly gunzTarPerm modified mode [ 'nan_converters_43_inl.h', 436, 420 ]
+271 silly gunzTarPerm extractEntry nan_converters_pre_43_inl.h
+272 silly gunzTarPerm modified mode [ 'nan_converters_pre_43_inl.h', 436, 420 ]
+273 silly gunzTarPerm extractEntry nan_implementation_12_inl.h
+274 silly gunzTarPerm modified mode [ 'nan_implementation_12_inl.h', 436, 420 ]
+275 silly gunzTarPerm extractEntry nan_implementation_pre_12_inl.h
+276 silly gunzTarPerm modified mode [ 'nan_implementation_pre_12_inl.h', 436, 420 ]
+277 silly gunzTarPerm extractEntry nan_maybe_43_inl.h
+278 silly gunzTarPerm modified mode [ 'nan_maybe_43_inl.h', 436, 420 ]
+279 silly gunzTarPerm extractEntry nan_maybe_pre_43_inl.h
+280 silly gunzTarPerm modified mode [ 'nan_maybe_pre_43_inl.h', 436, 420 ]
+281 silly gunzTarPerm extractEntry nan_new.h
+282 silly gunzTarPerm modified mode [ 'nan_new.h', 436, 420 ]
+283 silly gunzTarPerm extractEntry nan_object_wrap.h
+284 silly gunzTarPerm modified mode [ 'nan_object_wrap.h', 436, 420 ]
+285 silly gunzTarPerm extractEntry nan_persistent_12_inl.h
+286 silly gunzTarPerm modified mode [ 'nan_persistent_12_inl.h', 436, 420 ]
+287 silly gunzTarPerm extractEntry nan_persistent_pre_12_inl.h
+288 silly gunzTarPerm modified mode [ 'nan_persistent_pre_12_inl.h', 436, 420 ]
+289 silly gunzTarPerm extractEntry nan_string_bytes.h
+290 silly gunzTarPerm modified mode [ 'nan_string_bytes.h', 436, 420 ]
+291 silly gunzTarPerm extractEntry nan_typedarray_contents.h
+292 silly gunzTarPerm modified mode [ 'nan_typedarray_contents.h', 436, 420 ]
+293 silly gunzTarPerm extractEntry nan_weak.h
+294 silly gunzTarPerm modified mode [ 'nan_weak.h', 436, 420 ]
+295 silly gunzTarPerm extractEntry CHANGELOG.md
+296 silly gunzTarPerm modified mode [ 'CHANGELOG.md', 436, 420 ]
+297 silly gunzTarPerm extractEntry tools/package.json
+298 silly gunzTarPerm modified mode [ 'tools/package.json', 436, 420 ]
+299 silly gunzTarPerm extractEntry tools/README.md
+300 silly gunzTarPerm modified mode [ 'tools/README.md', 436, 420 ]
+301 silly gunzTarPerm extractEntry tools/1to2.js
+302 silly gunzTarPerm modified mode [ 'tools/1to2.js', 509, 493 ]
+303 silly gentlyRm /Users/apple/office/web/meteor/mafia/node_modules/.staging/bcrypt-aa6f1467/node_modules is being purged
+304 verbose gentlyRm don't care about contents; nuking /Users/apple/office/web/meteor/mafia/node_modules/.staging/bcrypt-aa6f1467/node_modules
+305 silly gentlyRm /Users/apple/office/web/meteor/mafia/node_modules/.staging/nan-de476261/node_modules is being purged
+306 verbose gentlyRm don't care about contents; nuking /Users/apple/office/web/meteor/mafia/node_modules/.staging/nan-de476261/node_modules
+307 silly doParallel preinstall 3
+308 silly preinstall bindings@1.2.1 /Users/apple/office/web/meteor/mafia/node_modules/.staging/bindings-929915eb
+309 info lifecycle bindings@1.2.1~preinstall: bindings@1.2.1
+310 silly preinstall nan@2.3.5 /Users/apple/office/web/meteor/mafia/node_modules/.staging/nan-de476261
+311 info lifecycle nan@2.3.5~preinstall: nan@2.3.5
+312 silly preinstall bcrypt@0.8.7 /Users/apple/office/web/meteor/mafia/node_modules/.staging/bcrypt-aa6f1467
+313 info lifecycle bcrypt@0.8.7~preinstall: bcrypt@0.8.7
+314 silly lifecycle bindings@1.2.1~preinstall: no script for preinstall, continuing
+315 silly lifecycle nan@2.3.5~preinstall: no script for preinstall, continuing
+316 silly lifecycle bcrypt@0.8.7~preinstall: no script for preinstall, continuing
+317 silly doReverseSerial remove 0
+318 silly doSerial move 0
+319 silly doSerial finalize 3
+320 silly finalize /Users/apple/office/web/meteor/mafia/node_modules/bindings
+321 silly finalize /Users/apple/office/web/meteor/mafia/node_modules/nan
+322 silly finalize /Users/apple/office/web/meteor/mafia/node_modules/bcrypt
+323 silly doSerial build 3
+324 silly build bindings@1.2.1
+325 info linkStuff bindings@1.2.1
+326 silly linkStuff bindings@1.2.1 has /Users/apple/office/web/meteor/mafia/node_modules as its parent node_modules
+327 verbose linkBins bindings@1.2.1
+328 verbose linkMans bindings@1.2.1
+329 silly build nan@2.3.5
+330 info linkStuff nan@2.3.5
+331 silly linkStuff nan@2.3.5 has /Users/apple/office/web/meteor/mafia/node_modules as its parent node_modules
+332 verbose linkBins nan@2.3.5
+333 verbose linkMans nan@2.3.5
+334 silly build bcrypt@0.8.7
+335 info linkStuff bcrypt@0.8.7
+336 silly linkStuff bcrypt@0.8.7 has /Users/apple/office/web/meteor/mafia/node_modules as its parent node_modules
+337 verbose linkBins bcrypt@0.8.7
+338 verbose linkMans bcrypt@0.8.7
+339 silly doSerial global-link 0
+340 silly doParallel update-linked 0
+341 silly doSerial install 3
+342 silly install bindings@1.2.1 /Users/apple/office/web/meteor/mafia/node_modules/.staging/bindings-929915eb
+343 info lifecycle bindings@1.2.1~install: bindings@1.2.1
+344 silly lifecycle bindings@1.2.1~install: no script for install, continuing
+345 silly install nan@2.3.5 /Users/apple/office/web/meteor/mafia/node_modules/.staging/nan-de476261
+346 info lifecycle nan@2.3.5~install: nan@2.3.5
+347 silly lifecycle nan@2.3.5~install: no script for install, continuing
+348 silly install bcrypt@0.8.7 /Users/apple/office/web/meteor/mafia/node_modules/.staging/bcrypt-aa6f1467
+349 info lifecycle bcrypt@0.8.7~install: bcrypt@0.8.7
+350 verbose lifecycle bcrypt@0.8.7~install: unsafe-perm in lifecycle true
+351 verbose lifecycle bcrypt@0.8.7~install: PATH: /Users/apple/.meteor/packages/meteor-tool/.1.4.1_1.1olwmbj++os.osx.x86_64+web.browser+web.cordova/mt-os.osx.x86_64/dev_bundle/lib/node_modules/npm/bin/node-gyp-bin:/Users/apple/office/web/meteor/mafia/node_modules/bcrypt/node_modules/.bin:/Users/apple/office/web/meteor/mafia/node_modules/.bin:/Users/apple/.meteor/packages/meteor-tool/.1.4.1_1.1olwmbj++os.osx.x86_64+web.browser+web.cordova/mt-os.osx.x86_64/dev_bundle/bin:/Users/apple/.meteor/packages/meteor-tool/1.4.1_1/mt-os.osx.x86_64/dev_bundle/bin:/Users/apple/.meteor/packages/meteor-tool/1.4.1_1/mt-os.osx.x86_64/dev_bundle/lib/node_modules/.bin:/usr/local/mysql/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+352 verbose lifecycle bcrypt@0.8.7~install: CWD: /Users/apple/office/web/meteor/mafia/node_modules/bcrypt
+353 silly lifecycle bcrypt@0.8.7~install: Args: [ '-c', 'node-gyp rebuild' ]
+354 silly lifecycle bcrypt@0.8.7~install: Returned: code: 1  signal: null
+355 info lifecycle bcrypt@0.8.7~install: Failed to exec install script
+356 verbose unlock done using /Users/apple/.npm/_locks/staging-1240c451aa6ae650.lock for /Users/apple/office/web/meteor/mafia/node_modules/.staging
+357 silly rollbackFailedOptional Starting
+358 silly rollbackFailedOptional Finishing
+359 silly runTopLevelLifecycles Starting
+360 silly runTopLevelLifecycles Finishing
+361 silly install printInstalled
+362 warn enoent ENOENT: no such file or directory, open '/Users/apple/office/web/meteor/mafia/package.json'
+363 warn mafia No description
+364 warn mafia No repository field.
+365 warn mafia No README data
+366 warn mafia No license field.
+367 verbose stack Error: bcrypt@0.8.7 install: `node-gyp rebuild`
+367 verbose stack Exit status 1
+367 verbose stack     at EventEmitter.<anonymous> (/Users/apple/.meteor/packages/meteor-tool/.1.4.1_1.1olwmbj++os.osx.x86_64+web.browser+web.cordova/mt-os.osx.x86_64/dev_bundle/lib/node_modules/npm/lib/utils/lifecycle.js:255:16)
+367 verbose stack     at emitTwo (events.js:87:13)
+367 verbose stack     at EventEmitter.emit (events.js:172:7)
+367 verbose stack     at ChildProcess.<anonymous> (/Users/apple/.meteor/packages/meteor-tool/.1.4.1_1.1olwmbj++os.osx.x86_64+web.browser+web.cordova/mt-os.osx.x86_64/dev_bundle/lib/node_modules/npm/lib/utils/spawn.js:40:14)
+367 verbose stack     at emitTwo (events.js:87:13)
+367 verbose stack     at ChildProcess.emit (events.js:172:7)
+367 verbose stack     at maybeClose (internal/child_process.js:829:16)
+367 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+368 verbose pkgid bcrypt@0.8.7
+369 verbose cwd /Users/apple/office/web/meteor/mafia
+370 error Darwin 16.0.0
+371 error argv "/Users/apple/.meteor/packages/meteor-tool/.1.4.1_1.1olwmbj++os.osx.x86_64+web.browser+web.cordova/mt-os.osx.x86_64/dev_bundle/bin/node" "/Users/apple/.meteor/packages/meteor-tool/1.4.1_1/mt-os.osx.x86_64/dev_bundle/bin/npm" "install" "--save" "bcrypt"
+372 error node v4.5.0
+373 error npm  v3.10.6
+374 error code ELIFECYCLE
+375 error bcrypt@0.8.7 install: `node-gyp rebuild`
+375 error Exit status 1
+376 error Failed at the bcrypt@0.8.7 install script 'node-gyp rebuild'.
+376 error Make sure you have the latest version of node.js and npm installed.
+376 error If you do, this is most likely a problem with the bcrypt package,
+376 error not with npm itself.
+376 error Tell the author that this fails on your system:
+376 error     node-gyp rebuild
+376 error You can get information on how to open an issue for this project with:
+376 error     npm bugs bcrypt
+376 error Or if that isn't available, you can get their info via:
+376 error     npm owner ls bcrypt
+376 error There is likely additional logging output above.
+377 verbose exit [ 1, true ]
